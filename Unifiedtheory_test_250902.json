@@ -1,0 +1,137 @@
+{
+  "nodes": [
+    {
+      "id": "plant_theory",
+      "label": "Unified Plant Theory",
+      "size": 60,
+      "type": "theory",
+      "description": "A unified theory of plant photosynthesis and hydraulics based on trait-based optimality."
+    },
+    {
+      "id": "hydraulics",
+      "label": "Plant Hydraulics",
+      "size": 50,
+      "type": "domain",
+      "description": "Concerns the transport of water and risks of hydraulic failure."
+    },
+    {
+      "id": "photosynthesis",
+      "label": "Photosynthesis",
+      "size": 50,
+      "type": "domain",
+      "description": "Process of converting light energy into chemical energy, involving CO2 uptake and biochemical processes."
+    },
+    {
+      "id": "optimization",
+      "label": "Optimization Principle",
+      "size": 55,
+      "type": "principle",
+      "description": "Plants optimize stomatal conductance and photosynthetic capacity to maximize net carbon gain (profit)."
+    },
+    {
+      "id": "hydraulic_pathway",
+      "label": "Hydraulic Pathway",
+      "size": 45,
+      "type": "system",
+      "description": "The continuous column of water from soil, through roots, stem (xylem), and to the leaves.",
+      "traits": ["Kp (conductance)", "ψ50 (vulnerability)", "b (shape)"]
+    },
+    {
+      "id": "water_potential_diff",
+      "label": "Water Potential Gradient (Δψ)",
+      "size": 40,
+      "type": "property",
+      "description": "The driving force for water movement from soil to leaf."
+    },
+    {
+      "id": "stomatal_conductance_gs",
+      "label": "Stomatal Conductance (gs)",
+      "size": 42,
+      "type": "process",
+      "description": "Controls the rates of transpiration and CO2 uptake through stomata."
+    },
+    {
+      "id": "transpiration_e",
+      "label": "Transpiration (E)",
+      "size": 40,
+      "type": "process",
+      "description": "Water loss from the plant to the atmosphere, driven by vapor pressure deficit (D)."
+    },
+    {
+      "id": "hydraulic_failure_risk",
+      "label": "Hydraulic Failure Risk",
+      "size": 38,
+      "type": "risk",
+      "description": "Risk of embolism in xylem due to excessively negative water potentials, leading to mortality."
+    },
+    {
+      "id": "photosynthetic_capacity",
+      "label": "Photosynthetic Capacity",
+      "size": 45,
+      "type": "capacity",
+      "components": ["Vcmax (carboxylation)", "Jmax (electron transport)"],
+      "description": "The maximum rate at which the leaf can carry out photosynthesis."
+    },
+    {
+      "id": "assimilation_a",
+      "label": "CO2 Assimilation (A)",
+      "size": 42,
+      "type": "process",
+      "description": "The process of fixing atmospheric CO2 into organic compounds."
+    },
+    {
+      "id": "coordination_hypothesis",
+      "label": "Photosynthetic Coordination",
+      "size": 35,
+      "type": "hypothesis",
+      "description": "Carboxylation-limited (Ac) and light-limited (Aj) assimilation rates are coordinated (Ac = Aj)."
+    },
+    {
+      "id": "profit_maximization_f",
+      "label": "Profit Maximization (F)",
+      "size": 33,
+      "type": "optimization_goal",
+      "formula": "F = A - (Photosynthetic Costs) - (Hydraulic Costs)",
+      "description": "Maximizing net carbon gain after accounting for costs."
+    },
+    {
+      "id": "photosynthetic_costs",
+      "label": "Photosynthetic Costs",
+      "size": 30,
+      "type": "cost",
+      "proxy": "α * Jmax",
+      "description": "Costs of maintaining carboxylation and electron transport capacities."
+    },
+    {
+      "id": "hydraulic_costs",
+      "label": "Hydraulic Costs",
+      "size": 30,
+      "type": "cost",
+      "proxy": "γ * Δψ²",
+      "description": "Costs of building/maintaining hydraulic pathways and risk of failure."
+    }
+  ],
+  "edges": [
+    {"source": "plant_theory", "target": "hydraulics", "weight": 8, "label": "unifies"},
+    {"source": "plant_theory", "target": "photosynthesis", "weight": 8, "label": "unifies"},
+    {"source": "plant_theory", "target": "optimization", "weight": 9, "label": "is_based_on"},
+    {"source": "hydraulics", "target": "hydraulic_pathway", "weight": 7, "label": "concerns"},
+    {"source": "hydraulics", "target": "hydraulic_failure_risk", "weight": 6, "label": "assesses"},
+    {"source": "photosynthesis", "target": "photosynthetic_capacity", "weight": 7, "label": "determined_by"},
+    {"source": "photosynthesis", "target": "assimilation_a", "weight": 7, "label": "results_in"},
+    {"source": "optimization", "target": "profit_maximization_f", "weight": 8, "label": "seeks"},
+    {"source": "hydraulic_pathway", "target": "water_potential_diff", "weight": 6, "label": "enables", "description": "The pathway's conductance (Kp) and vulnerability (ψ50) determine the potential gradient."},
+    {"source": "water_potential_diff", "target": "stomatal_conductance_gs", "weight": 7, "label": "regulates", "description": "Plants adjust gs to manage Δψ and avoid hydraulic risk."},
+    {"source": "stomatal_conductance_gs", "target": "transpiration_e", "weight": 8, "label": "controls", "description": "E = 1.6 * gs * D. Governs water loss."},
+    {"source": "stomatal_conductance_gs", "target": "assimilation_a", "weight": 8, "label": "controls", "description": "Governs CO2 uptake, creating a fundamental trade-off."},
+    {"source": "transpiration_e", "target": "hydraulic_failure_risk", "weight": 5, "label": "increases", "description": "High transpiration leads to more negative water potentials."},
+    {"source": "photosynthetic_capacity", "target": "assimilation_a", "weight": 8, "label": "limits", "description": "Vcmax and Jmax set the upper bound for the assimilation rate A."},
+    {"source": "photosynthetic_capacity", "target": "coordination_hypothesis", "weight": 4, "label": "acclimates_via"},
+    {"source": "profit_maximization_f", "target": "assimilation_a", "weight": 7, "label": "maximizes", "description": "The benefit term in the profit function is the carbon gain A."},
+    {"source": "profit_maximization_f", "target": "photosynthetic_costs", "weight": 6, "label": "accounts_for"},
+    {"source": "profit_maximization_f", "target": "hydraulic_costs", "weight": 6, "label": "accounts_for"},
+    {"source": "photosynthetic_costs", "target": "photosynthetic_capacity", "weight": 5, "label": "represents_cost_of"},
+    {"source": "hydraulic_costs", "target": "water_potential_diff", "weight": 5, "label": "represents_cost_of", "description": "Costs increase quadratically with the stress (Δψ) on the hydraulic system."}
+  ]
+}
+

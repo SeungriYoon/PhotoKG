@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Knowledge Graph System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles_analysis.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧠 Advanced Knowledge Graph System</h1>
+            <p>Knowledge Graph Visualization and Analysis Platform</p>
+        </header>
+
+
+        <div class="main-content">
+            <div class="left-panel">
+                <!-- 데이터 업로드 섹션 -->
+                <div class="control-section">
+                    <h3>📁 Data Upload</h3>
+                    <div class="compact-upload-area" id="fileUploadArea">
+                        <input type="file" id="fileInput" accept=".csv,.json,.pdf" multiple style="display: none;">
+                        <button class="compact-upload-btn" id="selectFileBtn">
+                            Select File
+                        </button>
+                        <div class="file-types-compact">
+                            <span class="file-type-small">CSV</span>
+                            <span class="file-type-small">JSON</span>
+                            <span class="file-type-small">PDF</span>
+                        </div>
+                        <div class="upload-status-compact" id="uploadStatus" style="display: none;">
+                            <div class="status-text-small">Processing...</div>
+                            <div class="progress-bar-small">
+                                <div class="progress-fill" id="progressFill"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 데이터 필터 섹션 -->
+                <div class="control-section">
+                    <h3>📊 Data Filter</h3>
+                    <div class="filter-group">
+                        <label>Node Size Threshold:</label>
+                        <input type="range" id="nodeSizeThreshold" min="0" max="100" value="20">
+                        <span id="nodeSizeValue">20</span>
+                    </div>
+                    <div class="filter-group">
+                        <label>Edge Weight Threshold:</label>
+                        <input type="range" id="edgeWeightThreshold" min="0" max="10" value="1">
+                        <span id="edgeWeightValue">1</span>
+                    </div>
+                    <div class="filter-group">
+                        <label>Max Nodes to Display:</label>
+                        <input type="range" id="maxNodesDisplay" min="10" max="200" value="50">
+                        <span id="maxNodesValue">50</span>
+                    </div>
+                    <div class="filter-group">
+                        <label>
+                            <input type="checkbox" id="progressiveLoading" checked>
+                            Progressive Loading
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 노드 검색 섹션 -->
+                <div class="control-section">
+                    <h3>🔍 Node Search</h3>
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Search nodes...">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                    <div id="searchResults" class="search-results"></div>
+                </div>
+
+                <!-- 성능 모니터링 섹션 -->
+                <div class="control-section">
+                    <h3>📈 Performance Info</h3>
+                    <div class="performance-stats">
+                        <div>FPS: <span id="fpsCounter">0</span></div>
+                        <div>Rendering: <span id="renderTime">0ms</span></div>
+                        <div>Nodes: <span id="visibleNodes">0</span></div>
+                        <div>Edges: <span id="visibleEdges">0</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="center-panel">
+                <div class="visualization-container" id="visualizationContainer">
+                    <svg id="graph" width="100%" height="100%"></svg>
+                    <div class="loading-overlay" id="loadingOverlay">
+                        <div class="loading-spinner"></div>
+                        <div class="loading-text">Loading knowledge graph...</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-panel" id="rightPanel">
+                <!-- 그래프 제어 섹션 -->
+                <div class="control-section">
+                    <h3>🎮 Graph Control</h3>
+                    <div class="control-buttons">
+                        <button class="control-btn" id="zoomInBtn" title="Zoom In">
+                            <span class="btn-icon">+</span>
+                        </button>
+                        <button class="control-btn" id="zoomOutBtn" title="Zoom Out">
+                            <span class="btn-icon">−</span>
+                        </button>
+                        <button class="control-btn" id="resetBtn" title="Reset">
+                            <span class="btn-icon">↺</span>
+                        </button>
+                        <button class="control-btn" id="exportBtn" title="Export">
+                            <span class="btn-icon">💾</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Analysis Results 섹션 -->
+                <div class="control-section">
+                    <h3>📊 Analysis Results</h3>
+                    <div class="analysis-controls">
+                        <button id="peoAnalysisBtn" class="analysis-btn" onclick="openAnalysisPopup('peo')">🔍 PEO Analysis</button>
+                        <button id="networkAnalysisBtn" class="analysis-btn" onclick="openAnalysisPopup('network')">🌐 Network Analysis</button>
+                        <button id="aiInsightBtn" class="analysis-btn" onclick="openAnalysisPopup('insights')">🤖 AI Insights</button>
+                    </div>
+                </div>
+
+                <div class="control-section">
+                    <h3>📝 Console</h3>
+                    <div class="console-window" id="consoleWindow">
+                        <div class="console-header">
+                            <span>System Log</span>
+                            <button class="clear-console" onclick="clearConsole()">🗑️</button>
+                        </div>
+                        <div class="console-content" id="consoleContent">
+                            <div class="console-message">System is ready.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 노드 상세 정보 패널 -->
+        <div id="nodeDetailsPanel" class="node-details-panel">
+            <div class="panel-header">
+                <h3>Node Details</h3>
+                <button class="close-btn" onclick="hideNodeDetails()">×</button>
+            </div>
+            <div class="panel-content">
+                <div class="node-info">
+                    <h4 id="nodeTitle">Node Title</h4>
+                    <p id="nodeType">Type: <span></span></p>
+                    <p id="nodeSize">Size: <span></span></p>
+                </div>
+                
+                <div class="properties-section">
+                    <h5>Properties</h5>
+                    <div id="propertiesList" class="properties-list"></div>
+                </div>
+                
+                <div class="formula-section" style="display: none;">
+                    <h5>Formula</h5>
+                    <div id="formulaDisplay" class="formula-display"></div>
+                </div>
+                
+                <div class="references-section" style="display: none;">
+                    <h5>References</h5>
+                    <div id="referencesList" class="references-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 확장 가능한 AI 워크스페이스 -->
+        <div id="aiWorkspace" class="ai-workspace" style="display: none;">
+            <div class="ai-workspace-header">
+                <h2>🤖 AI Workspace</h2>
+                <button class="close-workspace-btn" onclick="toggleAIPanel()">×</button>
+            </div>
+            <div class="ai-workspace-content">
+                <div class="ai-tabs">
+                    <button class="ai-tab active" onclick="switchAITab('analysis')">🔍 Graph Analysis</button>
+                    <button class="ai-tab" onclick="switchAITab('keywords')">🏷️ Keyword Extraction</button>
+                    <button class="ai-tab" onclick="switchAITab('chat')">💬 AI Chat</button>
+                </div>
+                
+                <div id="analysisTab" class="ai-tab-content active">
+                    <h4>Graph Structure Analysis</h4>
+                    <button class="ai-action-btn" onclick="analyzeGraphStructure()">Analyze Structure</button>
+                    <button class="ai-action-btn" onclick="findCommunities()">Detect Communities</button>
+                    <button class="ai-action-btn" onclick="identifyKeyNodes()">Identify Key Nodes</button>
+                    <div id="analysisResults" class="ai-results"></div>
+                </div>
+                
+                <div id="keywordsTab" class="ai-tab-content">
+                    <h4>Keyword & Concept Analysis</h4>
+                    <button class="ai-action-btn" onclick="extractKeywords()">Extract Keywords</button>
+                    <button class="ai-action-btn" onclick="suggestConnections()">Suggest Connections</button>
+                    <button class="ai-action-btn" onclick="categorizeNodes()">Categorize Nodes</button>
+                    <div id="keywordResults" class="ai-results"></div>
+                </div>
+                
+                <div id="chatTab" class="ai-tab-content">
+                    <h4>Chat with AI</h4>
+                    <div class="ai-chat-area">
+                        <div id="chatHistory" class="chat-history"></div>
+                        <div class="chat-input-area">
+                            <input type="text" id="chatInput" placeholder="Ask AI anything..." onkeypress="if(event.key==='Enter') sendChatMessage()">
+                            <button onclick="sendChatMessage()">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 툴팁 -->
+        <div id="tooltip" style="position: absolute; display: none; background: rgba(0,0,0,0.9); color: white; padding: 10px; border-radius: 5px; font-size: 12px; z-index: 1000; max-width: 300px;"></div>
+    </div>
+
+    <!-- Transformers.js 라이브러리 (BERT 모델용) -->
+    <script type="module">
+        // Transformers.js 동적 로드
+        try {
+            const { pipeline, env } = await import('https://cdn.jsdelivr.net/npm/@xenova/transformers@2.6.0');
+            
+            // WASM 및 캐시 설정
+            env.allowRemoteModels = true;
+            env.useBrowserCache = true;
+            env.allowLocalModels = false;
+            
+            // 전역 객체에 저장
+            window.transformersJS = { pipeline, env };
+            
+            console.log('✅ Transformers.js 로드 완료');
+            
+            // Transformers.js 로드 완료 후 BERT 모델 초기화 시도
+            window.dispatchEvent(new CustomEvent('transformersLoaded'));
+            
+        } catch (error) {
+            console.warn('⚠️ Transformers.js 로드 실패:', error);
+            console.log('폴백 모드로 동작합니다.');
+            
+            // 로드 실패 시에도 이벤트 발생
+            window.dispatchEvent(new CustomEvent('transformersLoaded'));
+        }
+    </script>
+    
+    <!-- JavaScript 모듈들 -->
+    <script src="js/config.js"></script>
+    <script src="js/aiService.js"></script>
+    <script src="js/dataProcessor.js"></script>
+    <script src="js/visualization.js"></script>
+    <script src="js/uiManager.js"></script>
+    <script src="js/pdfParser.js"></script>
+    <script src="js/backendAPI.js"></script>
+    <script src="js/analysisPanel.js"></script>
+    <script src="js/main.js"></script>
+    
+    <!-- 전역 BERT 모델 매니저 초기화 -->
+    <script>
+        // Transformers.js 로드 완료 후 BERT 모델 초기화
+        window.addEventListener('transformersLoaded', async () => {
+            console.log('🚀 BERT 모델 초기화 시작...');
+            
+            // 잠시 대기하여 모든 스크립트가 파싱되도록 함
+            await new Promise(resolve => setTimeout(resolve, 100));
+            
+            // Backend API client status check
+            if (window.backendAPI) {
+                const status = window.backendAPI.getStatus();
+                console.log('🔌 Backend API status:', status);
+                
+                if (status.enabled) {
+                    console.log('✅ OpenAI analysis features available');
+                } else {
+                    console.log('🔄 Local mode (backend optional)');
+                }
+            } else {
+                console.error('❌ BackendAPI not found');
+            }
+            
+            // 메인 앱 초기화
+            if (typeof KnowledgeGraphApp !== 'undefined') {
+                window.app = new KnowledgeGraphApp();
+                console.log('✅ KnowledgeGraphApp 초기화 완료');
+            } else {
+                console.error('❌ KnowledgeGraphApp 클래스를 찾을 수 없습니다');
+            }
+        });
+        
+        // DOM 로드 완료 시에도 확인
+        window.addEventListener('DOMContentLoaded', () => {
+            console.log('📄 DOM 로드 완료');
+        });
+    </script>
+</body>
+</html>
