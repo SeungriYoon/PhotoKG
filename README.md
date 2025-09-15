@@ -6,10 +6,10 @@ An advanced knowledge graph visualization and analysis platform designed for sci
 
 ### 🎯 Core Capabilities
 - **Multi-format Data Import**: CSV, JSON, and PDF file support
-- **AI-Powered Analysis**: OpenAI GPT-4 and Google Gemini integration
+- **AI-Powered Analysis**: OpenAI GPT models or Google Gemini models integration
 - **Interactive Visualization**: D3.js-based knowledge graph rendering
 - **Real-time Filtering**: Dynamic node and edge filtering
-- **Advanced Analytics**: PEO analysis, network metrics, and community detection
+- **Advanced Analytics**: Domain coverage and temporal trends  analysis, network metrics, and community detection
 - **Export Functionality**: Save graphs and analysis results
 
 ### 🤖 AI Integration
