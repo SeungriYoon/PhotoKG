@@ -1,0 +1,288 @@
+{
+  "nodes": [
+    {
+      "id": "node1",
+      "label": "C3 Photosynthesis",
+      "size": 8,
+      "type": "physiological_process",
+      "description": "The photosynthetic process in rice, characterized by its inefficiency due to Rubisco's slow catalytic rate and oxygenase activity, leading to photorespiration and energy loss.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node2",
+      "label": "C4 Photosynthesis",
+      "size": 9,
+      "type": "physiological_process",
+      "description": "A more efficient photosynthetic pathway found in plants like maize and sorghum, concentrating CO2 around Rubisco to minimize photorespiration and improve resource use efficiency.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node3",
+      "label": "Rubisco",
+      "size": 7,
+      "type": "enzyme",
+      "description": "The enzyme responsible for carbon fixation in both C3 and C4 photosynthesis, but its limitations in C3 plants lead to inefficiency.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node4",
+      "label": "Photorespiration",
+      "size": 6,
+      "type": "physiological_process",
+      "description": "A process that reduces the efficiency of photosynthesis in C3 plants due to Rubisco's oxygenase activity, leading to energy loss.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node5",
+      "label": "Rice (Oryza sativa)",
+      "size": 10,
+      "type": "plant_species",
+      "description": "A C3 plant targeted for genetic modification to enhance photosynthetic efficiency.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node6",
+      "label": "Maize (Zea mays)",
+      "size": 6,
+      "type": "plant_species",
+      "description": "A C4 plant serving as a model for C4 photosynthesis research.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node7",
+      "label": "Sorghum (Sorghum bicolor)",
+      "size": 6,
+      "type": "plant_species",
+      "description": "A C4 plant used in genetic studies of C4 photosynthesis.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node8",
+      "label": "CO2 Concentration",
+      "size": 7,
+      "type": "biochemical_parameter",
+      "description": "The mechanism in C4 plants that concentrates CO2 around Rubisco, enhancing photosynthetic efficiency.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node9",
+      "label": "Water Use Efficiency",
+      "size": 6,
+      "type": "physiological_parameter",
+      "description": "Improved in C4 plants due to reduced photorespiration and enhanced CO2 fixation.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node10",
+      "label": "Nitrogen Use Efficiency",
+      "size": 6,
+      "type": "physiological_parameter",
+      "description": "Improved in C4 plants due to enhanced photosynthetic efficiency.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node11",
+      "label": "Yield Increase",
+      "size": 7,
+      "type": "quantitative_parameter",
+      "description": "The primary goal of engineering C4 photosynthesis into rice, aiming for higher crop yields.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node12",
+      "label": "Gene Transfer",
+      "size": 6,
+      "type": "genetic_engineering",
+      "description": "The process of transferring genes responsible for C4 photosynthesis into rice.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node13",
+      "label": "Leaf Anatomy",
+      "size": 7,
+      "type": "plant_anatomy",
+      "description": "Significant modifications required for successful C4 rice development, including vein density and cell specialization.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node14",
+      "label": "Vein Spacing",
+      "size": 5,
+      "type": "plant_anatomy",
+      "description": "A key anatomical feature that needs modification in rice to achieve efficient C4 photosynthesis.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node15",
+      "label": "Chloroplast Distribution",
+      "size": 6,
+      "type": "plant_anatomy",
+      "description": "The arrangement of chloroplasts within leaf cells, requiring modification for optimal C4 function.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node16",
+      "label": "Metabolite Transport",
+      "size": 6,
+      "type": "physiological_process",
+      "description": "Enhanced mechanisms needed for efficient C4 photosynthesis in engineered rice.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node17",
+      "label": "Genetic Engineering",
+      "size": 7,
+      "type": "technology",
+      "description": "Techniques used to identify and transfer genes responsible for C4 photosynthesis.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node18",
+      "label": "Mutagenesis",
+      "size": 5,
+      "type": "genetic_engineering",
+      "description": "A technique used to study gene function in C4 photosynthesis.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node19",
+      "label": "Activation Tagging",
+      "size": 5,
+      "type": "genetic_engineering",
+      "description": "A technique used to identify genes involved in C4 photosynthesis.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node20",
+      "label": "Setaria viridis",
+      "size": 5,
+      "type": "plant_species",
+      "description": "A model species used in C4 photosynthesis research.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node21",
+      "label": "Independent Evolution",
+      "size": 6,
+      "type": "evolutionary_process",
+      "description": "C4 photosynthesis has evolved independently over 60 times in different plant taxa.",
+      "reference": "Author et al., Year"
+    }
+  ],
+  "edges": [
+    {
+      "source": "node1",
+      "target": "node3",
+      "label": "is catalyzed by",
+      "weight": 2
+    },
+    {
+      "source": "node1",
+      "target": "node4",
+      "label": "results in",
+      "weight": 3
+    },
+    {
+      "source": "node1",
+      "target": "node5",
+      "label": "occurs in",
+      "weight": 2
+    },
+    {
+      "source": "node2",
+      "target": "node3",
+      "label": "utilizes",
+      "weight": 2
+    },
+    {
+      "source": "node2",
+      "target": "node8",
+      "label": "involves",
+      "weight": 3
+    },
+    {
+      "source": "node2",
+      "target": "node9",
+      "label": "leads to improved",
+      "weight": 2
+    },
+    {
+      "source": "node2",
+      "target": "node10",
+      "label": "leads to improved",
+      "weight": 2
+    },
+    {
+      "source": "node2",
+      "target": "node11",
+      "label": "leads to increased",
+      "weight": 3
+    },
+    {
+      "source": "node2",
+      "target": "node6",
+      "label": "occurs in",
+      "weight": 2
+    },
+    {
+      "source": "node2",
+      "target": "node7",
+      "label": "occurs in",
+      "weight": 2
+    },
+    {
+      "source": "node5",
+      "target": "node12",
+      "label": "undergoes",
+      "weight": 3
+    },
+    {
+      "source": "node12",
+      "target": "node2",
+      "label": "to achieve",
+      "weight": 3
+    },
+    {
+      "source": "node12",
+      "target": "node13",
+      "label": "requires modification of",
+      "weight": 3
+    },
+    {
+      "source": "node13",
+      "target": "node14",
+      "label": "includes",
+      "weight": 2
+    },
+    {
+      "source": "node13",
+      "target": "node15",
+      "label": "includes",
+      "weight": 2
+    },
+    {
+      "source": "node12",
+      "target": "node16",
+      "label": "requires improved",
+      "weight": 2
+    },
+    {
+      "source": "node17",
+      "target": "node18",
+      "label": "uses",
+      "weight": 1
+    },
+    {
+      "source": "node17",
+      "target": "node19",
+      "label": "uses",
+      "weight": 1
+    },
+    {
+      "source": "node21",
+      "target": "node2",
+      "label": "has independently evolved into",
+      "weight": 3
+    }
+  ]
+}

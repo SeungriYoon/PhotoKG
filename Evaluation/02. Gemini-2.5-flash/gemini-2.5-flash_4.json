@@ -1,0 +1,334 @@
+{
+  "nodes": [
+    {
+      "id": "C3_PHOTOSYNTHESIS",
+      "label": "C3 Photosynthesis",
+      "size": 8,
+      "type": "Process",
+      "description": "A photosynthetic pathway where Rubisco directly fixes CO2 in mesophyll cells, often limited by Rubisco capacity, RuBP regeneration, and Pi regeneration.",
+      "reference": "Review Paper"
+    },
+    {
+      "id": "C4_PHOTOSYNTHESIS",
+      "label": "C4 Photosynthesis",
+      "size": 8,
+      "type": "Process",
+      "description": "A photosynthetic pathway with spatial separation of CO2 fixation, enhancing efficiency at higher temperatures and often less limited by Rubisco at optimal temperatures.",
+      "reference": "Review Paper"
+    },
+    {
+      "id": "TEMPERATURE_RESPONSE",
+      "label": "Temperature Response of Photosynthesis",
+      "size": 8,
+      "type": "Phenomenon",
+      "description": "The varying efficiency and limitation factors of photosynthesis across a range of non-harmful temperatures.",
+      "reference": "Review Paper"
+    },
+    {
+      "id": "RUBISCO_CAPACITY",
+      "label": "Rubisco Capacity",
+      "size": 8,
+      "type": "Biochemical Component",
+      "description": "The maximum rate at which the enzyme Rubisco can fix CO2, a primary photosynthetic limitation in C3 plants at low CO2 and in C4 plants below 20°C.",
+      "reference": "Review Paper"
+    },
+    {
+      "id": "RUBP_REGENERATION",
+      "label": "RuBP Regeneration",
+      "size": 8,
+      "type": "Biochemical Process",
+      "description": "The process of regenerating ribulose-1,5-bisphosphate, a substrate for Rubisco in the Calvin cycle, identified as a limitation in C3 photosynthesis.",
+      "reference": "Review Paper"
+    },
+    {
+      "id": "PI_REGENERATION",
+      "label": "Pi Regeneration",
+      "size": 8,
+      "type": "Biochemical Process",
+      "description": "The regeneration of inorganic phosphate, crucial for ATP synthesis and Calvin cycle function, becomes a limitation in C3 plants at higher temperatures.",
+      "reference": "Review Paper"
+    },
+    {
+      "id": "RUBISCO_ACTIVASE_STABILITY",
+      "label": "Rubisco Activase Stability",
+      "size": 8,
+      "type": "Enzyme Property",
+      "description": "The resilience of Rubisco activase to maintain function; its heat-induced lability limits C3 photosynthesis at elevated temperatures and is a future constraint.",
+      "reference": "Review Paper"
+    },
+    {
+      "id": "ELECTRON_TRANSPORT_CAPACITY",
+      "label": "Electron Transport Capacity",
+      "size": 8,
+      "type": "Biochemical Process",
+      "description": "The maximum rate of electron flow through the photosynthetic electron transport chain, a limitation at higher temperatures in C3 plants and an expected future constraint.",
+      "reference": "Review Paper"
+    },
+    {
+      "id": "LOW_CO2_CONDITIONS",
+      "label": "Low CO2 Conditions",
+      "size": 8,
+      "type": "Environmental Factor",
+      "description": "Environmental state where CO2 concentration is low, making Rubisco capacity the dominant limitation for C3 photosynthesis.",
+      "reference": "Review Paper"
+    },
+    {
+      "id": "ELEVATED_TEMPERATURES",
+      "label": "Elevated Temperatures",
+      "size": 8,
+      "type": "Environmental Factor",
+      "description": "Temperatures higher than optimal, leading to shifted photosynthetic limitations towards Pi regeneration, electron transport, and Rubisco activase lability.",
+      "reference": "Review Paper"
+    },
+    {
+      "id": "THERMAL_OPTIMUM_PHOTOSYNTHESIS",
+      "label": "Thermal Optimum for Photosynthesis",
+      "size": 8,
+      "type": "Physiological Characteristic",
+      "description": "The temperature at which photosynthetic rates are maximal; it can shift with growth conditions and acclimation.",
+      "reference": "Review Paper"
+    },
+    {
+      "id": "ACCLIMATION_TO_TEMPERATURE",
+      "label": "Acclimation to Temperature",
+      "size": 8,
+      "type": "Biological Process",
+      "description": "Physiological adjustments by plants to sustained temperature changes, enhancing components like Pi regeneration, electron transport, and Rubisco activase stability.",
+      "reference": "Review Paper"
+    },
+    {
+      "id": "GLOBAL_CLIMATE_CHANGE",
+      "label": "Global Climate Change",
+      "size": 8,
+      "type": "Environmental Phenomenon",
+      "description": "Anticipated global warming and increased CO2 levels, expected to shift photosynthetic limitations towards electron transport and Rubisco activase constraints.",
+      "reference": "Review Paper"
+    },
+    {
+      "id": "HIGH_CO2_CONDITIONS",
+      "label": "High CO2 Conditions",
+      "size": 8,
+      "type": "Environmental Factor",
+      "description": "Environmental state with elevated CO2 concentrations, predicted under global change to increase the prominence of electron transport and Rubisco activase limitations.",
+      "reference": "Review Paper"
+    },
+    {
+      "id": "PLANT_PRODUCTIVITY",
+      "label": "Plant Productivity",
+      "size": 8,
+      "type": "Outcome",
+      "description": "The overall efficiency of biomass production by plants, directly influenced by photosynthetic performance under various conditions.",
+      "reference": "Review Paper"
+    },
+    {
+      "id": "COLD_ADAPTED_PLANTS",
+      "label": "Cold-Adapted Plants",
+      "size": 8,
+      "type": "Organism Group",
+      "description": "Plant species thriving in cold environments, typically with a safe photosynthetic operating range of 0–30°C.",
+      "reference": "Review Paper"
+    },
+    {
+      "id": "WARM_SEASON_CROPS",
+      "label": "Warm-Season Crops",
+      "size": 8,
+      "type": "Organism Group",
+      "description": "Agricultural plants that grow optimally in warmer conditions, with a safe photosynthetic operating range of 7–40°C.",
+      "reference": "Review Paper"
+    },
+    {
+      "id": "TROPICAL_DESERT_SPECIES",
+      "label": "Tropical/Desert Species",
+      "size": 8,
+      "type": "Organism Group",
+      "description": "Plant species adapted to hot, often arid or humid tropical environments, with a safe photosynthetic operating range of 15–45°C.",
+      "reference": "Review Paper"
+    },
+    {
+      "id": "CHILLING_TOLERANT_C4_SPECIES",
+      "label": "Chilling-Tolerant C4 Species",
+      "size": 8,
+      "type": "Organism Group",
+      "description": "C4 plant varieties that can maintain photosynthetic function and avoid Rubisco limitation at temperatures below 20°C.",
+      "reference": "Review Paper"
+    },
+    {
+      "id": "C4_CYCLE_ENZYMES",
+      "label": "C4 Cycle Enzymes",
+      "size": 8,
+      "type": "Biochemical Component",
+      "description": "Key enzymes of the C4 photosynthetic pathway, such as PEPC, which are increased during acclimation to cooler conditions in C4 plants.",
+      "reference": "Review Paper"
+    }
+  ],
+  "edges": [
+    {
+      "source": "C3_PHOTOSYNTHESIS",
+      "target": "RUBISCO_CAPACITY",
+      "label": "involves",
+      "weight": 2
+    },
+    {
+      "source": "C3_PHOTOSYNTHESIS",
+      "target": "RUBP_REGENERATION",
+      "label": "involves",
+      "weight": 2
+    },
+    {
+      "source": "C3_PHOTOSYNTHESIS",
+      "target": "PI_REGENERATION",
+      "label": "involves",
+      "weight": 2
+    },
+    {
+      "source": "C3_PHOTOSYNTHESIS",
+      "target": "RUBISCO_ACTIVASE_STABILITY",
+      "label": "limited by lability of (at high temp)",
+      "weight": 3
+    },
+    {
+      "source": "RUBISCO_CAPACITY",
+      "target": "C3_PHOTOSYNTHESIS",
+      "label": "is primary limitation for (at low CO2, various temps)",
+      "weight": 3
+    },
+    {
+      "source": "PI_REGENERATION",
+      "target": "C3_PHOTOSYNTHESIS",
+      "label": "limits (at higher temperatures)",
+      "weight": 3
+    },
+    {
+      "source": "ELECTRON_TRANSPORT_CAPACITY",
+      "target": "C3_PHOTOSYNTHESIS",
+      "label": "limits (at higher temperatures)",
+      "weight": 3
+    },
+    {
+      "source": "RUBISCO_CAPACITY",
+      "target": "C4_PHOTOSYNTHESIS",
+      "label": "limits (below 20°C in chilling-tolerant species)",
+      "weight": 3
+    },
+    {
+      "source": "ACCLIMATION_TO_TEMPERATURE",
+      "target": "PI_REGENERATION",
+      "label": "enhances capacity of (in C3 plants)",
+      "weight": 2
+    },
+    {
+      "source": "ACCLIMATION_TO_TEMPERATURE",
+      "target": "ELECTRON_TRANSPORT_CAPACITY",
+      "label": "enhances capacity of (in C3 plants)",
+      "weight": 2
+    },
+    {
+      "source": "ACCLIMATION_TO_TEMPERATURE",
+      "target": "RUBISCO_ACTIVASE_STABILITY",
+      "label": "enhances (in C3 plants)",
+      "weight": 2
+    },
+    {
+      "source": "ACCLIMATION_TO_TEMPERATURE",
+      "target": "RUBISCO_CAPACITY",
+      "label": "increases (in C4 plants acclimating to cooler conditions)",
+      "weight": 2
+    },
+    {
+      "source": "ACCLIMATION_TO_TEMPERATURE",
+      "target": "C4_CYCLE_ENZYMES",
+      "label": "increases (in C4 plants acclimating to cooler conditions)",
+      "weight": 2
+    },
+    {
+      "source": "GLOBAL_CLIMATE_CHANGE",
+      "target": "ELEVATED_TEMPERATURES",
+      "label": "expected to cause",
+      "weight": 3
+    },
+    {
+      "source": "GLOBAL_CLIMATE_CHANGE",
+      "target": "HIGH_CO2_CONDITIONS",
+      "label": "expected to cause",
+      "weight": 3
+    },
+    {
+      "source": "ELEVATED_TEMPERATURES",
+      "target": "ELECTRON_TRANSPORT_CAPACITY",
+      "label": "shifts limitations toward (under global change)",
+      "weight": 3
+    },
+    {
+      "source": "ELEVATED_TEMPERATURES",
+      "target": "RUBISCO_ACTIVASE_STABILITY",
+      "label": "shifts limitations toward (under global change)",
+      "weight": 3
+    },
+    {
+      "source": "HIGH_CO2_CONDITIONS",
+      "target": "ELECTRON_TRANSPORT_CAPACITY",
+      "label": "shifts limitations toward (under global change)",
+      "weight": 3
+    },
+    {
+      "source": "HIGH_CO2_CONDITIONS",
+      "target": "RUBISCO_ACTIVASE_STABILITY",
+      "label": "shifts limitations toward (under global change)",
+      "weight": 3
+    },
+    {
+      "source": "TEMPERATURE_RESPONSE",
+      "target": "THERMAL_OPTIMUM_PHOTOSYNTHESIS",
+      "label": "determines",
+      "weight": 2
+    },
+    {
+      "source": "ACCLIMATION_TO_TEMPERATURE",
+      "target": "THERMAL_OPTIMUM_PHOTOSYNTHESIS",
+      "label": "can adjust",
+      "weight": 2
+    },
+    {
+      "source": "COLD_ADAPTED_PLANTS",
+      "target": "TEMPERATURE_RESPONSE",
+      "label": "operates safely within 0–30°C for",
+      "weight": 2
+    },
+    {
+      "source": "WARM_SEASON_CROPS",
+      "target": "TEMPERATURE_RESPONSE",
+      "label": "operates safely within 7–40°C for",
+      "weight": 2
+    },
+    {
+      "source": "TROPICAL_DESERT_SPECIES",
+      "target": "TEMPERATURE_RESPONSE",
+      "label": "operates safely within 15–45°C for",
+      "weight": 2
+    },
+    {
+      "source": "LOW_CO2_CONDITIONS",
+      "target": "RUBISCO_CAPACITY",
+      "label": "causes dominant limitation by (in C3 plants)",
+      "weight": 3
+    },
+    {
+      "source": "ELEVATED_TEMPERATURES",
+      "target": "RUBISCO_ACTIVASE_STABILITY",
+      "label": "induces lability of",
+      "weight": 3
+    },
+    {
+      "source": "GLOBAL_CLIMATE_CHANGE",
+      "target": "PLANT_PRODUCTIVITY",
+      "label": "affects",
+      "weight": 2
+    },
+    {
+      "source": "TEMPERATURE_RESPONSE",
+      "target": "PLANT_PRODUCTIVITY",
+      "label": "influences",
+      "weight": 2
+    }
+  ]
+}

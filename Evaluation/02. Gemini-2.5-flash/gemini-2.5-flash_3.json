@@ -1,0 +1,316 @@
+{
+  "nodes": [
+    {
+      "id": "C4RC",
+      "label": "C4 Rice Consortium",
+      "size": 8,
+      "type": "Organization",
+      "description": "An international consortium aiming to engineer C4 photosynthesis into rice to enhance its yields and resource efficiency.",
+      "reference": "Research Paper"
+    },
+    {
+      "id": "RiceC3",
+      "label": "Rice (C3 Crop)",
+      "size": 8,
+      "type": "Organism",
+      "description": "A major C3 crop that is the target for genetic engineering to incorporate C4 photosynthetic pathways.",
+      "reference": "Research Paper"
+    },
+    {
+      "id": "C3Photo",
+      "label": "C3 Photosynthesis",
+      "size": 8,
+      "type": "Process",
+      "description": "The current photosynthetic mechanism in rice, characterized by inefficiencies related to the Rubisco enzyme and photorespiration.",
+      "reference": "Research Paper"
+    },
+    {
+      "id": "Rubisco",
+      "label": "Rubisco Enzyme",
+      "size": 8,
+      "type": "Molecule",
+      "description": "A key enzyme in C3 photosynthesis known for its slow catalytic rate and oxygenase activity, leading to inefficiencies.",
+      "reference": "Research Paper"
+    },
+    {
+      "id": "OxygenaseAct",
+      "label": "Oxygenase Activity",
+      "size": 8,
+      "type": "Trait",
+      "description": "The activity of Rubisco that uses oxygen as a substrate, initiating photorespiration in C3 plants.",
+      "reference": "Research Paper"
+    },
+    {
+      "id": "Photorespiration",
+      "label": "Photorespiration",
+      "size": 8,
+      "type": "Process",
+      "description": "A metabolic process in C3 plants resulting from Rubisco's oxygenase activity, leading to energy loss and reduced photosynthetic efficiency.",
+      "reference": "Research Paper"
+    },
+    {
+      "id": "EnergyLoss",
+      "label": "Energy Loss",
+      "size": 8,
+      "type": "Outcome",
+      "description": "A significant energetic cost associated with photorespiration in C3 photosynthetic pathways.",
+      "reference": "Research Paper"
+    },
+    {
+      "id": "C4Photo",
+      "label": "C4 Photosynthesis",
+      "size": 8,
+      "type": "Process",
+      "description": "An evolved photosynthetic pathway that concentrates CO2 around Rubisco, enhancing efficiency and resource use.",
+      "reference": "Research Paper"
+    },
+    {
+      "id": "CO2Conc",
+      "label": "CO2 Concentration Mechanism",
+      "size": 8,
+      "type": "Process",
+      "description": "The core strategy of C4 plants to elevate CO2 levels around Rubisco, overcoming its oxygenase activity.",
+      "reference": "Research Paper"
+    },
+    {
+      "id": "HigherYields",
+      "label": "Higher Yields",
+      "size": 8,
+      "type": "Outcome",
+      "description": "A primary objective and expected benefit of introducing C4 photosynthesis into rice.",
+      "reference": "Research Paper"
+    },
+    {
+      "id": "WaterUseEff",
+      "label": "Improved Water Use Efficiency",
+      "size": 8,
+      "type": "Trait",
+      "description": "An advantage of C4 photosynthesis, particularly beneficial under warm, semi-arid environmental conditions.",
+      "reference": "Research Paper"
+    },
+    {
+      "id": "NitrogenUseEff",
+      "label": "Improved Nitrogen Use Efficiency",
+      "size": 8,
+      "type": "Trait",
+      "description": "A benefit of C4 photosynthesis, contributing to more efficient utilization of nitrogen resources by plants.",
+      "reference": "Research Paper"
+    },
+    {
+      "id": "C4Plants",
+      "label": "C4 Plants (Maize & Sorghum)",
+      "size": 8,
+      "type": "Organism",
+      "description": "Examples of natural C4 crops known for their high photosynthetic capacity and efficient resource use.",
+      "reference": "Research Paper"
+    },
+    {
+      "id": "C4Evolution",
+      "label": "C4 Pathway Evolution",
+      "size": 8,
+      "type": "Process",
+      "description": "The independent evolution of C4 photosynthesis over 60 times in various plant taxa, involving specialized anatomy and biochemistry.",
+      "reference": "Research Paper"
+    },
+    {
+      "id": "C4LeafAnatomy",
+      "label": "Specialized C4 Leaf Anatomy",
+      "size": 8,
+      "type": "Trait",
+      "description": "Distinct anatomical features, such as Kranz anatomy, crucial for the functional compartmentalization in C4 photosynthesis.",
+      "reference": "Research Paper"
+    },
+    {
+      "id": "C4BiochemMod",
+      "label": "C4 Biochemical Modifications",
+      "size": 8,
+      "type": "Trait",
+      "description": "Specific enzymatic pathways and reactions that facilitate CO2 concentration within C4 plant cells.",
+      "reference": "Research Paper"
+    },
+    {
+      "id": "GenomicTranscript",
+      "label": "Genomic & Transcriptional Approaches",
+      "size": 8,
+      "type": "Method",
+      "description": "Research methodologies employed to identify regulatory genes essential for C4 traits by comparing C3 and C4 species.",
+      "reference": "Research Paper"
+    },
+    {
+      "id": "C4RegGenes",
+      "label": "C4 Regulatory Genes",
+      "size": 8,
+      "type": "Molecule",
+      "description": "Genes that control the expression and development of C4 specific traits, identified for transfer to rice.",
+      "reference": "Research Paper"
+    },
+    {
+      "id": "GeneTransfer",
+      "label": "C4 Gene Transfer",
+      "size": 8,
+      "type": "Process",
+      "description": "The process of cloning and expressing genes involved in the C4 pathway into the rice genome.",
+      "reference": "Research Paper"
+    },
+    {
+      "id": "AnatModRice",
+      "label": "Anatomical Modifications (Rice)",
+      "size": 8,
+      "type": "Process",
+      "description": "Necessary structural changes to rice leaves, including vein density, cell specialization, and chloroplast distribution, to support C4 function.",
+      "reference": "Research Paper"
+    },
+    {
+      "id": "MetaboliteTransport",
+      "label": "Metabolite Transport Mechanisms",
+      "size": 8,
+      "type": "Process",
+      "description": "Systems for efficient transport of metabolites between specialized cells, critical for a functional C4 pathway in engineered rice.",
+      "reference": "Research Paper"
+    },
+    {
+      "id": "PrototypeC4",
+      "label": "Prototype C4 Rice",
+      "size": 8,
+      "type": "Goal",
+      "description": "An intermediate, achievable goal involving biochemical gene transfer, considered feasible with current genetic tools.",
+      "reference": "Research Paper"
+    },
+    {
+      "id": "OptimalC4",
+      "label": "Optimal C4 Rice",
+      "size": 8,
+      "type": "Goal",
+      "description": "The ultimate research objective, requiring extensive fine-tuning of both biochemical pathways and leaf anatomy for full functionality.",
+      "reference": "Research Paper"
+    }
+  ],
+  "edges": [
+    {
+      "source": "C4RC",
+      "target": "RiceC3",
+      "label": "AIMS_TO_ENGINEER",
+      "weight": 2
+    },
+    {
+      "source": "RiceC3",
+      "target": "C3Photo",
+      "label": "UTILIZES",
+      "weight": 2
+    },
+    {
+      "source": "C3Photo",
+      "target": "Rubisco",
+      "label": "LIMITED_BY",
+      "weight": 2
+    },
+    {
+      "source": "Rubisco",
+      "target": "OxygenaseAct",
+      "label": "HAS",
+      "weight": 2
+    },
+    {
+      "source": "OxygenaseAct",
+      "target": "Photorespiration",
+      "label": "LEADS_TO",
+      "weight": 2
+    },
+    {
+      "source": "Photorespiration",
+      "target": "EnergyLoss",
+      "label": "RESULTS_IN",
+      "weight": 2
+    },
+    {
+      "source": "C4Photo",
+      "target": "CO2Conc",
+      "label": "EMPOWERS",
+      "weight": 2
+    },
+    {
+      "source": "CO2Conc",
+      "target": "HigherYields",
+      "label": "LEADS_TO",
+      "weight": 2
+    },
+    {
+      "source": "CO2Conc",
+      "target": "WaterUseEff",
+      "label": "IMPROVES",
+      "weight": 2
+    },
+    {
+      "source": "CO2Conc",
+      "target": "NitrogenUseEff",
+      "label": "IMPROVES",
+      "weight": 2
+    },
+    {
+      "source": "C4Plants",
+      "target": "C4Photo",
+      "label": "EXEMPLIFY",
+      "weight": 2
+    },
+    {
+      "source": "C4Photo",
+      "target": "C4Evolution",
+      "label": "EVOLVED_VIA",
+      "weight": 2
+    },
+    {
+      "source": "C4Photo",
+      "target": "C4LeafAnatomy",
+      "label": "REQUIRES",
+      "weight": 2
+    },
+    {
+      "source": "C4Photo",
+      "target": "C4BiochemMod",
+      "label": "REQUIRES",
+      "weight": 2
+    },
+    {
+      "source": "C4RC",
+      "target": "GenomicTranscript",
+      "label": "EMPLOYS",
+      "weight": 2
+    },
+    {
+      "source": "GenomicTranscript",
+      "target": "C4RegGenes",
+      "label": "IDENTIFIES",
+      "weight": 2
+    },
+    {
+      "source": "C4RegGenes",
+      "target": "GeneTransfer",
+      "label": "ARE_TARGETED_FOR",
+      "weight": 2
+    },
+    {
+      "source": "GeneTransfer",
+      "target": "PrototypeC4",
+      "label": "CONTRIBUTES_TO",
+      "weight": 2
+    },
+    {
+      "source": "PrototypeC4",
+      "target": "OptimalC4",
+      "label": "IS_A_STEP_TOWARDS",
+      "weight": 2
+    },
+    {
+      "source": "OptimalC4",
+      "target": "AnatModRice",
+      "label": "REQUIRES",
+      "weight": 2
+    },
+    {
+      "source": "OptimalC4",
+      "target": "MetaboliteTransport",
+      "label": "REQUIRES",
+      "weight": 2
+    }
+  ]
+}

@@ -1,0 +1,304 @@
+{
+  "nodes": [
+    {
+      "id": "N1",
+      "label": "Photosynthesis",
+      "size": 8,
+      "type": "category",
+      "description": "The process by which green plants and some other organisms convert light energy into chemical energy, forming sugars.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "N2",
+      "label": "Traditional PAR Range",
+      "size": 8,
+      "type": "category",
+      "description": "The spectral range of 400–700 nm, historically defined as Photosynthetically Active Radiation (PAR), but now recognized to overlook far-red photon contributions.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "N3",
+      "label": "Far-Red Photons (701–750 nm)",
+      "size": 8,
+      "type": "category",
+      "description": "Photons with wavelengths between 701 and 750 nm, shown to be efficiently utilized in photosynthesis, particularly in shaded environments.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "N4",
+      "label": "Leaf Gross Photosynthesis",
+      "size": 8,
+      "type": "category",
+      "description": "The total rate of carbon fixation by a leaf, before accounting for respiration.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "N5",
+      "label": "Sunlit Conditions",
+      "size": 8,
+      "type": "category",
+      "description": "Environmental conditions characterized by high incident light intensity, such as full sun exposure.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "N6",
+      "label": "Deep Shade Conditions",
+      "size": 8,
+      "type": "category",
+      "description": "Environmental conditions characterized by low incident light intensity, often found in dense canopies or understory environments.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "N7",
+      "label": "Photosystem I (PSI)",
+      "size": 8,
+      "type": "category",
+      "description": "One of the two photosystems in plant thylakoid membranes, preferentially excited by longer-wavelength (far-red) photons.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "N8",
+      "label": "Photosystem II (PSII)",
+      "size": 8,
+      "type": "category",
+      "description": "One of the two photosystems in plant thylakoid membranes, primarily excited by shorter-wavelength photons, with its efficiency enhanced by far-red synergy.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "N9",
+      "label": "Shorter-Wavelength Photons (<700 nm)",
+      "size": 8,
+      "type": "category",
+      "description": "Photons within the traditional PAR range, primarily responsible for exciting Photosystem II.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "N10",
+      "label": "Synergistic Interactions",
+      "size": 8,
+      "type": "category",
+      "description": "A process where the combined effect of far-red and shorter-wavelength photons on photosynthesis is greater than the sum of their individual effects.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "N11",
+      "label": "Photosynthetic Efficiency",
+      "size": 8,
+      "type": "category",
+      "description": "The effectiveness with which plants convert light energy into chemical energy, significantly improved by far-red photon utilization.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "N12",
+      "label": "Current Photosynthesis Models",
+      "size": 8,
+      "type": "category",
+      "description": "Computational frameworks used to simulate photosynthetic processes, which typically exclude photons above 700 nm.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "N13",
+      "label": "Current Photosynthesis Measurements",
+      "size": 8,
+      "type": "category",
+      "description": "Experimental techniques used to quantify photosynthetic rates, which commonly exclude photons above 700 nm.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "N14",
+      "label": "Plant Productivity",
+      "size": 8,
+      "type": "category",
+      "description": "The rate at which plants accumulate biomass, directly influenced by the accuracy of photosynthesis assessment.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "N15",
+      "label": "Global Carbon Cycle",
+      "size": 8,
+      "type": "category",
+      "description": "The biogeochemical cycle of carbon exchange among Earth's major reservoirs, heavily influenced by plant photosynthesis.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "N16",
+      "label": "Climate Change Impacts",
+      "size": 8,
+      "type": "category",
+      "description": "The effects on global climate systems, where accurate understanding of carbon cycling through photosynthesis is crucial.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "N17",
+      "label": "Definition of PAR",
+      "size": 8,
+      "type": "category",
+      "description": "The established scientific boundary for Photosynthetically Active Radiation, which needs revision to include far-red wavelengths.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "N18",
+      "label": "Incident Photons in Shade",
+      "size": 8,
+      "type": "category",
+      "description": "The total number of photons reaching a plant in shaded environments, where far-red photons can constitute over 50%.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "N19",
+      "label": "PSII Efficiency",
+      "size": 8,
+      "type": "category",
+      "description": "The quantum efficiency of Photosystem II, which is enhanced by synergistic interactions with far-red photons.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "N20",
+      "label": "Canopy and Shade Environments",
+      "size": 8,
+      "type": "category",
+      "description": "Specific microenvironments within plant communities where light quality, particularly far-red proportion, is significantly altered.",
+      "reference": "Author et al., Year"
+    }
+  ],
+  "edges": [
+    {
+      "source": "N2",
+      "target": "N1",
+      "label": "traditional definition of light for",
+      "weight": 2
+    },
+    {
+      "source": "N3",
+      "target": "N1",
+      "label": "efficiently utilized for",
+      "weight": 2
+    },
+    {
+      "source": "N3",
+      "target": "N4",
+      "label": "contributes to",
+      "weight": 2
+    },
+    {
+      "source": "N3",
+      "target": "N5",
+      "label": "contributes 24-25% in",
+      "weight": 2
+    },
+    {
+      "source": "N3",
+      "target": "N6",
+      "label": "contributes 10-14% in",
+      "weight": 2
+    },
+    {
+      "source": "N3",
+      "target": "N7",
+      "label": "preferentially excites",
+      "weight": 2
+    },
+    {
+      "source": "N9",
+      "target": "N8",
+      "label": "excites",
+      "weight": 2
+    },
+    {
+      "source": "N3",
+      "target": "N9",
+      "label": "interacts synergistically with",
+      "weight": 2
+    },
+    {
+      "source": "N10",
+      "target": "N19",
+      "label": "enhances",
+      "weight": 2
+    },
+    {
+      "source": "N10",
+      "target": "N11",
+      "label": "increases",
+      "weight": 2
+    },
+    {
+      "source": "N10",
+      "target": "N1",
+      "label": "increases rates of",
+      "weight": 2
+    },
+    {
+      "source": "N2",
+      "target": "N3",
+      "label": "overlooks contribution of",
+      "weight": 2
+    },
+    {
+      "source": "N12",
+      "target": "N3",
+      "label": "exclude",
+      "weight": 2
+    },
+    {
+      "source": "N13",
+      "target": "N3",
+      "label": "exclude",
+      "weight": 2
+    },
+    {
+      "source": "N12",
+      "target": "N1",
+      "label": "may underestimate",
+      "weight": 2
+    },
+    {
+      "source": "N13",
+      "target": "N1",
+      "label": "may underestimate",
+      "weight": 2
+    },
+    {
+      "source": "N1",
+      "target": "N14",
+      "label": "impacts",
+      "weight": 2
+    },
+    {
+      "source": "N1",
+      "target": "N15",
+      "label": "impacts",
+      "weight": 2
+    },
+    {
+      "source": "N1",
+      "target": "N16",
+      "label": "impacts understanding of",
+      "weight": 2
+    },
+    {
+      "source": "N17",
+      "target": "N2",
+      "label": "needs revision from",
+      "weight": 2
+    },
+    {
+      "source": "N17",
+      "target": "N3",
+      "label": "should incorporate",
+      "weight": 2
+    },
+    {
+      "source": "N3",
+      "target": "N18",
+      "label": "constitutes >50% of",
+      "weight": 2
+    },
+    {
+      "source": "N3",
+      "target": "N20",
+      "label": "is important in",
+      "weight": 2
+    }
+  ]
+}

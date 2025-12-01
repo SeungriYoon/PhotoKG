@@ -309,6 +309,17 @@ LOG_LEVEL=warn
 
 ---
 
+## 🧪 Evaluation Assets (Optional)
+
+If you plan to validate extraction quality or reproduce our paper benchmarks, include the `Evaluation/` folder when cloning or syncing:
+
+- `01. Ground Truth/` — curated annotations for five reference documents.
+- `02.~05./` — JSON outputs grouped by provider/model (Gemini-2.5-flash, Gemini-1.5-flash, GPT-4o-mini, GPT-4.1-nano).
+
+You can extend these sets with your own runs and compare against ground truth in any evaluation notebook.
+
+---
+
 ## 📚 Additional Resources
 
 ### API Documentation

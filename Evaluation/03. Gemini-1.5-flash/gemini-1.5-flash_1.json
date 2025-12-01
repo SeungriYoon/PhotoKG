@@ -1,0 +1,294 @@
+{
+  "nodes": [
+    {
+      "id": "node1",
+      "label": "Chlorobium tepidum",
+      "size": 6,
+      "type": "organism",
+      "description": "Green sulfur bacterium used in the study.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node2",
+      "label": "Chloroflexus aurantiacus",
+      "size": 6,
+      "type": "organism",
+      "description": "Green nonsulfur bacterium used in the study.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node3",
+      "label": "Bacteriochlorophyll biosynthesis",
+      "size": 8,
+      "type": "physiological_process",
+      "description": "Biosynthetic pathway for bacteriochlorophyll production.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node4",
+      "label": "Chlorophyll biosynthesis",
+      "size": 8,
+      "type": "physiological_process",
+      "description": "Biosynthetic pathway for chlorophyll production.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node5",
+      "label": "Photosynthetic electron transfer",
+      "size": 7,
+      "type": "physiological_process",
+      "description": "Electron transfer chain in photosynthesis.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node6",
+      "label": "Carotenoid biosynthesis",
+      "size": 7,
+      "type": "physiological_process",
+      "description": "Biosynthetic pathway for carotenoid production.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node7",
+      "label": "Heliobacteria",
+      "size": 6,
+      "type": "organism",
+      "description": "Bacterial group identified as closest to the last common ancestor of oxygenic photosynthetic lineages.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node8",
+      "label": "Purple bacteria",
+      "size": 6,
+      "type": "organism",
+      "description": "Identified as the earliest emerging photosynthetic lineage.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node9",
+      "label": "Oxygenic photosynthetic lineages",
+      "size": 7,
+      "type": "lineage",
+      "description": "Lineages of organisms capable of oxygenic photosynthesis.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node10",
+      "label": "Last common ancestor",
+      "size": 7,
+      "type": "evolutionary_concept",
+      "description": "The most recent common ancestor of all oxygenic photosynthetic lineages.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node11",
+      "label": "31 genes",
+      "size": 5,
+      "type": "measurement",
+      "description": "Number of photosynthesis-related genes identified.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node12",
+      "label": "100 kb genomic sequence",
+      "size": 5,
+      "type": "measurement",
+      "description": "Approximate length of genomic sequence analyzed.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node13",
+      "label": "Phylogenetic analysis",
+      "size": 7,
+      "type": "method",
+      "description": "Method used to infer evolutionary relationships.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node14",
+      "label": "Granick hypothesis",
+      "size": 6,
+      "type": "hypothesis",
+      "description": "Hypothesis about the order of bacteriochlorophyll and chlorophyll biosynthesis evolution.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node15",
+      "label": "16S rRNA analysis",
+      "size": 6,
+      "type": "method",
+      "description": "Previous method used for phylogenetic analysis.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node16",
+      "label": "Hsp60/Hsp70 analysis",
+      "size": 6,
+      "type": "method",
+      "description": "Previous method used for phylogenetic analysis.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node17",
+      "label": "Early evolution of photosynthesis",
+      "size": 8,
+      "type": "topic",
+      "description": "The main focus of the study.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node18",
+      "label": "Open reading frames",
+      "size": 6,
+      "type": "molecular_biology",
+      "description": "Sequences of DNA that encode proteins.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node19",
+      "label": "Bacteriochlorophyll",
+      "size": 7,
+      "type": "biomolecule",
+      "description": "A type of chlorophyll found in some bacteria.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node20",
+      "label": "Chlorophyll",
+      "size": 7,
+      "type": "biomolecule",
+      "description": "A type of pigment found in plants and some bacteria.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node21",
+      "label": "Phototrophic",
+      "size": 6,
+      "type": "characteristic",
+      "description": "Organisms that obtain energy from light.",
+      "reference": "Author et al., Year"
+    }
+  ],
+  "edges": [
+    {
+      "source": "node1",
+      "target": "node3",
+      "label": "involved in",
+      "weight": 2
+    },
+    {
+      "source": "node1",
+      "target": "node5",
+      "label": "involved in",
+      "weight": 2
+    },
+    {
+      "source": "node2",
+      "target": "node3",
+      "label": "involved in",
+      "weight": 2
+    },
+    {
+      "source": "node2",
+      "target": "node5",
+      "label": "involved in",
+      "weight": 2
+    },
+    {
+      "source": "node3",
+      "target": "node19",
+      "label": "produces",
+      "weight": 3
+    },
+    {
+      "source": "node4",
+      "target": "node20",
+      "label": "produces",
+      "weight": 3
+    },
+    {
+      "source": "node7",
+      "target": "node10",
+      "label": "closest relative",
+      "weight": 3
+    },
+    {
+      "source": "node10",
+      "target": "node9",
+      "label": "ancestor of",
+      "weight": 3
+    },
+    {
+      "source": "node1",
+      "target": "node18",
+      "label": "contains",
+      "weight": 2
+    },
+    {
+      "source": "node2",
+      "target": "node18",
+      "label": "contains",
+      "weight": 2
+    },
+    {
+      "source": "node18",
+      "target": "node11",
+      "label": "number of",
+      "weight": 1
+    },
+    {
+      "source": "node13",
+      "target": "node7",
+      "label": "indicates",
+      "weight": 2
+    },
+    {
+      "source": "node13",
+      "target": "node8",
+      "label": "indicates",
+      "weight": 2
+    },
+    {
+      "source": "node13",
+      "target": "node10",
+      "label": "indicates",
+      "weight": 2
+    },
+    {
+      "source": "node3",
+      "target": "node14",
+      "label": "challenges",
+      "weight": 2
+    },
+    {
+      "source": "node4",
+      "target": "node3",
+      "label": "evolved after",
+      "weight": 3
+    },
+    {
+      "source": "node15",
+      "target": "node17",
+      "label": "previous study on",
+      "weight": 1
+    },
+    {
+      "source": "node16",
+      "target": "node17",
+      "label": "previous study on",
+      "weight": 1
+    },
+    {
+      "source": "node8",
+      "target": "node21",
+      "label": "is a",
+      "weight": 2
+    },
+    {
+      "source": "node12",
+      "target": "node11",
+      "label": "within",
+      "weight": 1
+    }
+  ]
+}

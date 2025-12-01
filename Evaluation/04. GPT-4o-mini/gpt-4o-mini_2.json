@@ -1,0 +1,280 @@
+{
+  "nodes": [
+    {
+      "id": "node1",
+      "label": "C3 Photosynthesis",
+      "size": 8,
+      "type": "biological_process",
+      "description": "The primary photosynthetic pathway in most plants where CO2 is fixed directly by Rubisco in the Calvin cycle, limited by photorespiration and CO2 diffusion constraints.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node2",
+      "label": "Crop Yield Potential",
+      "size": 6,
+      "type": "agronomic_parameter",
+      "description": "The maximum achievable crop production under optimal conditions, which can be influenced by photosynthetic efficiency.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node3",
+      "label": "CO2 Enrichment Studies",
+      "size": 7,
+      "type": "experimental_method",
+      "description": "Experiments increasing atmospheric CO2 levels to assess effects on photosynthesis and crop yield, providing evidence for photosynthesis enhancement strategies.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node4",
+      "label": "C4 Photosynthesis",
+      "size": 6,
+      "type": "photosynthetic_type",
+      "description": "A more efficient photosynthetic pathway in some plants that concentrates CO2 around Rubisco, often yielding higher productivity under certain conditions.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node5",
+      "label": "Stomatal Conductance",
+      "size": 7,
+      "type": "physiological_parameter",
+      "description": "The rate at which CO2 enters and water vapor exits the leaf through stomata; manipulation can enhance CO2 diffusion to chloroplasts.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node6",
+      "label": "Membrane Permeability",
+      "size": 6,
+      "type": "biophysical_property",
+      "description": "The ease with which CO2 crosses cell membranes; increased permeability can improve internal CO2 diffusion.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node7",
+      "label": "Leaf Anatomy",
+      "size": 6,
+      "type": "morphological_feature",
+      "description": "Structural features of leaves, such as mesophyll cell arrangement, influencing CO2 diffusion efficiency.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node8",
+      "label": "Aquaporins",
+      "size": 6,
+      "type": "membrane_protein",
+      "description": "Water channel proteins that also facilitate CO2 movement across membranes; manipulating aquaporins can enhance mesophyll conductance.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node9",
+      "label": "Mesophyll Conductance (gm)",
+      "size": 7,
+      "type": "physiological_parameter",
+      "description": "The rate of CO2 diffusion from intercellular air spaces to the chloroplasts; a key factor limiting photosynthesis in C3 plants.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node10",
+      "label": "Rubisco Enzyme",
+      "size": 8,
+      "type": "biochemical_entity",
+      "description": "Ribulose-1,5-bisphosphate carboxylase/oxygenase, catalyzes CO2 fixation; its kinetic properties are critical for photosynthetic efficiency.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node11",
+      "label": "Rubisco Specificity for CO2",
+      "size": 7,
+      "type": "biochemical_parameter",
+      "description": "The enzyme's preference for CO2 over O2; higher specificity reduces photorespiration and improves photosynthesis.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node12",
+      "label": "Rubisco Catalytic Turnover (kcat)",
+      "size": 6,
+      "type": "biochemical_parameter",
+      "description": "The rate at which Rubisco catalyzes its reactions; higher kcat can increase photosynthetic rate if coupled with high specificity.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node13",
+      "label": "Photorespiration",
+      "size": 7,
+      "type": "physiological_process",
+      "description": "A process where Rubisco oxygenates RuBP, leading to energy loss; mitigated by engineering alternative pathways.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node14",
+      "label": "Alternative Photorespiratory Pathways",
+      "size": 6,
+      "type": "biochemical_pathway",
+      "description": "Engineered routes that bypass or reduce NADPH consumption during photorespiration, improving efficiency.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node15",
+      "label": "Chloroplast CO2 Levels",
+      "size": 6,
+      "type": "biochemical_parameter",
+      "description": "Concentration of CO2 within chloroplasts; higher levels can suppress photorespiration and enhance photosynthesis.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node16",
+      "label": "Rubisco Assembly and Structure",
+      "size": 7,
+      "type": "molecular_biological_process",
+      "description": "Processes involved in Rubisco enzyme formation and its structural features, influencing its efficiency and stability.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node17",
+      "label": "Genetic Engineering of Rubisco",
+      "size": 6,
+      "type": "biotechnological_method",
+      "description": "Techniques to modify Rubisco's kinetic properties or assembly to improve photosynthetic performance.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node18",
+      "label": "Photosynthetic Efficiency",
+      "size": 8,
+      "type": "physiological_measurement",
+      "description": "The overall capacity of a plant to convert light energy into chemical energy; a target for improvement in crop productivity.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node19",
+      "label": "Crop Productivity",
+      "size": 7,
+      "type": "agronomic_parameter",
+      "description": "The yield and biomass accumulation of crops, influenced by photosynthetic capacity and environmental factors.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node20",
+      "label": "Future Research Directions",
+      "size": 6,
+      "type": "research_area",
+      "description": "Focus on improving CO2 diffusion, Rubisco efficiency, and photorespiratory pathways using molecular biology and plant physiology.",
+      "reference": "Author et al., Year"
+    }
+  ],
+  "edges": [
+    {
+      "source": "node1",
+      "target": "node2",
+      "label": "Enhancement of C3 photosynthesis can increase crop yield potential",
+      "weight": 2
+    },
+    {
+      "source": "node3",
+      "target": "node1",
+      "label": "CO2 enrichment studies demonstrate potential for improving photosynthesis",
+      "weight": 2
+    },
+    {
+      "source": "node4",
+      "target": "node1",
+      "label": "C4 photosynthesis offers higher efficiency compared to C3 under certain conditions",
+      "weight": 2
+    },
+    {
+      "source": "node5",
+      "target": "node1",
+      "label": "Stomatal conductance influences CO2 diffusion into leaves",
+      "weight": 2
+    },
+    {
+      "source": "node6",
+      "target": "node5",
+      "label": "Membrane permeability affects stomatal and cellular CO2 movement",
+      "weight": 1
+    },
+    {
+      "source": "node7",
+      "target": "node5",
+      "label": "Leaf anatomy impacts stomatal distribution and CO2 diffusion pathways",
+      "weight": 1
+    },
+    {
+      "source": "node8",
+      "target": "node6",
+      "label": "Aquaporins facilitate CO2 movement across membranes, enhancing mesophyll conductance",
+      "weight": 2
+    },
+    {
+      "source": "node9",
+      "target": "node5",
+      "label": "Mesophyll conductance (gm) determines internal CO2 availability for Rubisco",
+      "weight": 2
+    },
+    {
+      "source": "node10",
+      "target": "node1",
+      "label": "Rubisco catalyzes CO2 fixation in the Calvin cycle",
+      "weight": 3
+    },
+    {
+      "source": "node11",
+      "target": "node10",
+      "label": "Rubisco specificity for CO2 over O2 reduces photorespiration",
+      "weight": 2
+    },
+    {
+      "source": "node12",
+      "target": "node10",
+      "label": "Rubisco catalytic turnover (kcat) influences the rate of CO2 fixation",
+      "weight": 2
+    },
+    {
+      "source": "node13",
+      "target": "node10",
+      "label": "Photorespiration occurs when Rubisco oxygenates RuBP, leading to energy loss",
+      "weight": 2
+    },
+    {
+      "source": "node14",
+      "target": "node13",
+      "label": "Alternative pathways aim to bypass or reduce photorespiration",
+      "weight": 2
+    },
+    {
+      "source": "node15",
+      "target": "node13",
+      "label": "Elevated chloroplast CO2 levels can suppress photorespiration",
+      "weight": 2
+    },
+    {
+      "source": "node16",
+      "target": "node10",
+      "label": "Rubisco assembly and structure affect enzyme efficiency and stability",
+      "weight": 2
+    },
+    {
+      "source": "node17",
+      "target": "node10",
+      "label": "Genetic engineering can modify Rubisco to improve its kinetic properties",
+      "weight": 2
+    },
+    {
+      "source": "node18",
+      "target": "node1",
+      "label": "Photosynthetic efficiency directly impacts crop productivity",
+      "weight": 2
+    },
+    {
+      "source": "node19",
+      "target": "node18",
+      "label": "Enhanced photosynthetic efficiency can lead to increased crop productivity",
+      "weight": 2
+    },
+    {
+      "source": "node20",
+      "target": "node18",
+      "label": "Future research aims to improve CO2 diffusion, Rubisco, and photorespiration pathways",
+      "weight": 2
+    }
+  ]
+}

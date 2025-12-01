@@ -1,0 +1,310 @@
+{
+  "nodes": [
+    {
+      "id": "Early_Evolution_Photosynthesis_Study",
+      "label": "Early Evolution of Photosynthesis Study",
+      "size": 10,
+      "type": "StudyFocus",
+      "description": "Academic research investigating the early evolutionary history of photosynthesis.",
+      "reference": "This Study"
+    },
+    {
+      "id": "Chlorobium_tepidum",
+      "label": "Chlorobium tepidum",
+      "size": 8,
+      "type": "Organism",
+      "description": "A green sulfur bacterium, one of the two organisms from which new gene sequences were analyzed.",
+      "reference": "This Study"
+    },
+    {
+      "id": "Chloroflexus_aurantiacus",
+      "label": "Chloroflexus aurantiacus",
+      "size": 8,
+      "type": "Organism",
+      "description": "A green nonsulfur bacterium, one of the two organisms from which new gene sequences were analyzed.",
+      "reference": "This Study"
+    },
+    {
+      "id": "Heliobacteria",
+      "label": "Heliobacteria",
+      "size": 8,
+      "type": "Organism",
+      "description": "A group of photosynthetic bacteria found to be closest to the last common ancestor of all oxygenic photosynthetic lineages.",
+      "reference": "This Study"
+    },
+    {
+      "id": "Purple_Bacteria",
+      "label": "Purple Bacteria",
+      "size": 8,
+      "type": "Organism",
+      "description": "A group of photosynthetic bacteria identified as the earliest emerging phototrophic lineage by this study.",
+      "reference": "This Study"
+    },
+    {
+      "id": "Oxygenic_Photosynthetic_Lineages",
+      "label": "Oxygenic Photosynthetic Lineages",
+      "size": 7,
+      "type": "BiologicalGroup",
+      "description": "Evolutionary groups of organisms that perform oxygen-producing photosynthesis.",
+      "reference": "This Study"
+    },
+    {
+      "id": "Gene_Sequence_Analysis",
+      "label": "Gene Sequence Analysis",
+      "size": 9,
+      "type": "Method",
+      "description": "Experimental method involving the analysis of new gene sequences to infer evolutionary relationships and pathways.",
+      "reference": "This Study"
+    },
+    {
+      "id": "Phylogenetic_Analyses_Methods",
+      "label": "Phylogenetic Analyses (Methods)",
+      "size": 9,
+      "type": "Method",
+      "description": "Computational methods (e.g., various algorithms) used to infer evolutionary relationships between organisms or genes.",
+      "reference": "This Study"
+    },
+    {
+      "id": "Genomic_Sequence_Data",
+      "label": "~100 kb Genomic Sequence",
+      "size": 7,
+      "type": "Data",
+      "description": "Approximately 100 kilobases of genomic DNA sequence analyzed from *Chlorobium tepidum* and *Chloroflexus aurantiacus*.",
+      "reference": "This Study"
+    },
+    {
+      "id": "Photosynthesis_Related_ORFs_31",
+      "label": "31 Photosynthesis-Related ORFs",
+      "size": 8,
+      "type": "Data",
+      "description": "Thirty-one open reading frames (ORFs) identified within the analyzed genomic sequences, related to photosynthetic pathways.",
+      "reference": "This Study"
+    },
+    {
+      "id": "Bacteriochlorophyll_Biosynthesis",
+      "label": "Bacteriochlorophyll Biosynthesis",
+      "size": 9,
+      "type": "Process",
+      "description": "The biochemical pathway for producing bacteriochlorophyll, a light-harvesting pigment in anoxygenic photosynthesis.",
+      "reference": "This Study"
+    },
+    {
+      "id": "Porphyrin_Biosynthesis",
+      "label": "Porphyrin Biosynthesis",
+      "size": 7,
+      "type": "Process",
+      "description": "The biochemical pathway for synthesizing porphyrins, which are precursors to chlorophylls and bacteriochlorophylls.",
+      "reference": "This Study"
+    },
+    {
+      "id": "Carotenoid_Biosynthesis",
+      "label": "Carotenoid Biosynthesis",
+      "size": 7,
+      "type": "Process",
+      "description": "The biochemical pathway for producing carotenoids, accessory pigments involved in light harvesting and photoprotection.",
+      "reference": "This Study"
+    },
+    {
+      "id": "Photosynthetic_Electron_Transfer",
+      "label": "Photosynthetic Electron Transfer",
+      "size": 7,
+      "type": "Process",
+      "description": "The process by which electrons are moved through a series of carriers to generate energy in photosynthesis.",
+      "reference": "This Study"
+    },
+    {
+      "id": "Chlorophyll_Biosynthesis",
+      "label": "Chlorophyll Biosynthesis",
+      "size": 9,
+      "type": "Process",
+      "description": "The biochemical pathway for producing chlorophyll, the primary light-harvesting pigment in oxygenic photosynthesis.",
+      "reference": "This Study"
+    },
+    {
+      "id": "Last_Common_Ancestor_Oxygenic_Finding",
+      "label": "Common Ancestor of Oxygenic Lineages",
+      "size": 10,
+      "type": "Finding",
+      "description": "A key finding that Heliobacteria are phylogenetically closest to this evolutionary point for oxygenic photosynthetic organisms.",
+      "reference": "This Study"
+    },
+    {
+      "id": "Earliest_Phototrophic_Lineage_Finding",
+      "label": "Earliest Phototrophic Lineage",
+      "size": 10,
+      "type": "Finding",
+      "description": "A key finding that Purple Bacteria represent the earliest emerging group capable of photosynthesis.",
+      "reference": "This Study"
+    },
+    {
+      "id": "Granick_Hypothesis",
+      "label": "Granick Hypothesis",
+      "size": 7,
+      "type": "Hypothesis",
+      "description": "A challenged hypothesis proposing that chlorophyll biosynthesis evolved before bacteriochlorophyll biosynthesis.",
+      "reference": "This Study"
+    },
+    {
+      "id": "Bchl_Predates_Chl_Finding",
+      "label": "Bacteriochlorophyll Predates Chlorophyll",
+      "size": 11,
+      "type": "KeyFinding",
+      "description": "A central finding of this study, indicating that bacteriochlorophyll biosynthesis evolved before chlorophyll biosynthesis.",
+      "reference": "This Study"
+    },
+    {
+      "id": "Previous_Hypotheses_Challenged",
+      "label": "Previous 16S/Hsp Hypotheses",
+      "size": 8,
+      "type": "Hypothesis",
+      "description": "Earlier hypotheses, based on 16S rRNA or Hsp60/Hsp70 analyses, suggesting green nonsulfur bacteria or heliobacteria as the earliest phototrophs.",
+      "reference": "This Study"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Early_Evolution_Photosynthesis_Study",
+      "target": "Gene_Sequence_Analysis",
+      "label": "investigated_by",
+      "weight": 2
+    },
+    {
+      "source": "Early_Evolution_Photosynthesis_Study",
+      "target": "Phylogenetic_Analyses_Methods",
+      "label": "investigated_by",
+      "weight": 2
+    },
+    {
+      "source": "Gene_Sequence_Analysis",
+      "target": "Chlorobium_tepidum",
+      "label": "performed_on",
+      "weight": 2
+    },
+    {
+      "source": "Gene_Sequence_Analysis",
+      "target": "Chloroflexus_aurantiacus",
+      "label": "performed_on",
+      "weight": 2
+    },
+    {
+      "source": "Chlorobium_tepidum",
+      "target": "Genomic_Sequence_Data",
+      "label": "source_of",
+      "weight": 1
+    },
+    {
+      "source": "Chloroflexus_aurantiacus",
+      "target": "Genomic_Sequence_Data",
+      "label": "source_of",
+      "weight": 1
+    },
+    {
+      "source": "Genomic_Sequence_Data",
+      "target": "Photosynthesis_Related_ORFs_31",
+      "label": "contains",
+      "weight": 2
+    },
+    {
+      "source": "Photosynthesis_Related_ORFs_31",
+      "target": "Bacteriochlorophyll_Biosynthesis",
+      "label": "related_to",
+      "weight": 1
+    },
+    {
+      "source": "Photosynthesis_Related_ORFs_31",
+      "target": "Porphyrin_Biosynthesis",
+      "label": "related_to",
+      "weight": 1
+    },
+    {
+      "source": "Photosynthesis_Related_ORFs_31",
+      "target": "Carotenoid_Biosynthesis",
+      "label": "related_to",
+      "weight": 1
+    },
+    {
+      "source": "Photosynthesis_Related_ORFs_31",
+      "target": "Photosynthetic_Electron_Transfer",
+      "label": "related_to",
+      "weight": 1
+    },
+    {
+      "source": "Phylogenetic_Analyses_Methods",
+      "target": "Heliobacteria",
+      "label": "inferred_relationships_for",
+      "weight": 2
+    },
+    {
+      "source": "Heliobacteria",
+      "target": "Last_Common_Ancestor_Oxygenic_Finding",
+      "label": "closest_to",
+      "weight": 3
+    },
+    {
+      "source": "Last_Common_Ancestor_Oxygenic_Finding",
+      "target": "Oxygenic_Photosynthetic_Lineages",
+      "label": "of",
+      "weight": 1
+    },
+    {
+      "source": "Phylogenetic_Analyses_Methods",
+      "target": "Chlorobium_tepidum",
+      "label": "inferred_relationships_for",
+      "weight": 2
+    },
+    {
+      "source": "Chlorobium_tepidum",
+      "target": "Chloroflexus_aurantiacus",
+      "label": "closest_relative_to",
+      "weight": 3
+    },
+    {
+      "source": "Phylogenetic_Analyses_Methods",
+      "target": "Purple_Bacteria",
+      "label": "inferred_relationships_for",
+      "weight": 2
+    },
+    {
+      "source": "Purple_Bacteria",
+      "target": "Earliest_Phototrophic_Lineage_Finding",
+      "label": "identified_as",
+      "weight": 4
+    },
+    {
+      "source": "Early_Evolution_Photosynthesis_Study",
+      "target": "Granick_Hypothesis",
+      "label": "challenges",
+      "weight": 3
+    },
+    {
+      "source": "Early_Evolution_Photosynthesis_Study",
+      "target": "Previous_Hypotheses_Challenged",
+      "label": "challenges",
+      "weight": 3
+    },
+    {
+      "source": "Bchl_Predates_Chl_Finding",
+      "target": "Granick_Hypothesis",
+      "label": "opposes",
+      "weight": 3
+    },
+    {
+      "source": "Bacteriochlorophyll_Biosynthesis",
+      "target": "Chlorophyll_Biosynthesis",
+      "label": "predates",
+      "weight": 4
+    },
+    {
+      "source": "Bacteriochlorophyll_Biosynthesis",
+      "target": "Bchl_Predates_Chl_Finding",
+      "label": "evidence_for",
+      "weight": 3
+    },
+    {
+      "source": "Chlorophyll_Biosynthesis",
+      "target": "Bchl_Predates_Chl_Finding",
+      "label": "is_predated_by",
+      "weight": 3
+    }
+  ]
+}

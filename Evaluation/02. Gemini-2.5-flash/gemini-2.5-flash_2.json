@@ -1,0 +1,330 @@
+{
+  "nodes": [
+    {
+      "id": "c3_photosynthesis",
+      "label": "C3 Photosynthesis",
+      "size": 8,
+      "type": "Process",
+      "description": "The primary photosynthetic pathway in C3 plants, subject to limitations like photorespiration and Rubisco inefficiency.",
+      "reference": "Research Paper, Undated"
+    },
+    {
+      "id": "crop_yield_potential",
+      "label": "Crop Yield Potential",
+      "size": 8,
+      "type": "Objective",
+      "description": "The maximum productivity achievable by crop plants under optimal conditions, a key target for improvement.",
+      "reference": "Research Paper, Undated"
+    },
+    {
+      "id": "global_demand_crop_yields",
+      "label": "Global Demand for Crop Yields",
+      "size": 8,
+      "type": "Challenge",
+      "description": "The increasing worldwide need for agricultural output, driven by population growth and changing diets.",
+      "reference": "Research Paper, Undated"
+    },
+    {
+      "id": "leaf_photosynthesis_enhancement",
+      "label": "Leaf Photosynthesis Enhancement",
+      "size": 8,
+      "type": "Strategy",
+      "description": "Strategies aimed at increasing the rate of carbon fixation in plant leaves to boost overall productivity.",
+      "reference": "Research Paper, Undated"
+    },
+    {
+      "id": "co2_diffusion_improvement",
+      "label": "CO2 Diffusion Improvement",
+      "size": 8,
+      "type": "Strategy",
+      "description": "Modifications to plant structure and physiology to enhance the movement of CO2 from the atmosphere to Rubisco.",
+      "reference": "Research Paper, Undated"
+    },
+    {
+      "id": "rubisco_performance_enhancement",
+      "label": "Rubisco Performance Enhancement",
+      "size": 8,
+      "type": "Strategy",
+      "description": "Efforts to improve the efficiency and specificity of the Rubisco enzyme for CO2 fixation.",
+      "reference": "Research Paper, Undated"
+    },
+    {
+      "id": "photorespiration_mitigation",
+      "label": "Photorespiration Mitigation",
+      "size": 8,
+      "type": "Strategy",
+      "description": "Approaches to reduce the energy-wasting process of photorespiration, which competes with CO2 fixation.",
+      "reference": "Research Paper, Undated"
+    },
+    {
+      "id": "genetic_modifications",
+      "label": "Genetic Modifications",
+      "size": 8,
+      "type": "Methodology",
+      "description": "Application of genetic engineering techniques to alter plant traits for improved photosynthesis and yield.",
+      "reference": "Research Paper, Undated"
+    },
+    {
+      "id": "physiological_modifications",
+      "label": "Physiological Modifications",
+      "size": 8,
+      "type": "Methodology",
+      "description": "Changes in plant metabolic processes, cellular structures, or responses to environmental cues.",
+      "reference": "Research Paper, Undated"
+    },
+    {
+      "id": "stomatal_conductance",
+      "label": "Stomatal Conductance",
+      "size": 8,
+      "type": "Measurement",
+      "description": "A measure of the rate of gas exchange through stomata, influencing CO2 entry into the leaf.",
+      "reference": "Research Paper, Undated"
+    },
+    {
+      "id": "mesophyll_conductance",
+      "label": "Mesophyll Conductance",
+      "size": 8,
+      "type": "Measurement",
+      "description": "The efficiency of CO2 diffusion from the substomatal cavity to the chloroplast stroma, influenced by leaf anatomy and aquaporins.",
+      "reference": "Research Paper, Undated"
+    },
+    {
+      "id": "rubisco",
+      "label": "Rubisco",
+      "size": 8,
+      "type": "Enzyme",
+      "description": "Ribulose-1,5-bisphosphate carboxylase/oxygenase, the enzyme responsible for carbon fixation in photosynthesis but also initiates photorespiration.",
+      "reference": "Research Paper, Undated"
+    },
+    {
+      "id": "rubisco_specificity_co2",
+      "label": "Rubisco Specificity for CO2",
+      "size": 8,
+      "type": "Property",
+      "description": "The enzyme's preference for CO2 over O2 as a substrate, critical for photosynthetic efficiency.",
+      "reference": "Research Paper, Undated"
+    },
+    {
+      "id": "rubisco_catalytic_turnover",
+      "label": "Rubisco Catalytic Turnover",
+      "size": 8,
+      "type": "Property",
+      "description": "The rate at which Rubisco catalyzes the carboxylation reaction, often a limiting factor due to its slow speed.",
+      "reference": "Research Paper, Undated"
+    },
+    {
+      "id": "alternative_photorespiratory_pathways",
+      "label": "Alternative Photorespiratory Pathways",
+      "size": 8,
+      "type": "Process",
+      "description": "Engineered metabolic routes to process photorespiratory intermediates more efficiently, reducing energy loss.",
+      "reference": "Research Paper, Undated"
+    },
+    {
+      "id": "nadph_consumption_reduction",
+      "label": "NADPH Consumption Reduction",
+      "size": 8,
+      "type": "Outcome",
+      "description": "A goal of photorespiration mitigation, conserving reducing power that would otherwise be wasted.",
+      "reference": "Research Paper, Undated"
+    },
+    {
+      "id": "chloroplast_co2_levels_elevation",
+      "label": "Chloroplast CO2 Levels Elevation",
+      "size": 8,
+      "type": "Outcome",
+      "description": "Increasing the concentration of CO2 at the site of Rubisco activity within the chloroplast, favoring carboxylation.",
+      "reference": "Research Paper, Undated"
+    },
+    {
+      "id": "co2_enrichment_studies",
+      "label": "CO2 Enrichment Studies",
+      "size": 8,
+      "type": "Evidence",
+      "description": "Experimental data showing increased crop yields under elevated atmospheric CO2 concentrations, supporting photosynthesis-yield link.",
+      "reference": "Research Paper, Undated"
+    },
+    {
+      "id": "c4_plants",
+      "label": "C4 Plants",
+      "size": 8,
+      "type": "Organism",
+      "description": "Plants with a specialized photosynthetic pathway that concentrates CO2 around Rubisco, reducing photorespiration and providing a benchmark.",
+      "reference": "Research Paper, Undated"
+    },
+    {
+      "id": "rubisco_assembly_structure",
+      "label": "Rubisco Assembly & Structure",
+      "size": 8,
+      "type": "Concept",
+      "description": "The process of forming and the three-dimensional arrangement of the Rubisco enzyme, critical for its function.",
+      "reference": "Research Paper, Undated"
+    },
+    {
+      "id": "enhanced_photosynthetic_efficiency",
+      "label": "Enhanced Photosynthetic Efficiency",
+      "size": 8,
+      "type": "Outcome",
+      "description": "An improved rate of converting light energy into chemical energy, leading to better carbon fixation.",
+      "reference": "Research Paper, Undated"
+    }
+  ],
+  "edges": [
+    {
+      "source": "global_demand_crop_yields",
+      "target": "crop_yield_potential",
+      "label": "drives need for increasing",
+      "weight": 2
+    },
+    {
+      "source": "c3_photosynthesis",
+      "target": "crop_yield_potential",
+      "label": "is central to",
+      "weight": 2
+    },
+    {
+      "source": "leaf_photosynthesis_enhancement",
+      "target": "c3_photosynthesis",
+      "label": "aims to improve",
+      "weight": 2
+    },
+    {
+      "source": "leaf_photosynthesis_enhancement",
+      "target": "crop_yield_potential",
+      "label": "is a promising avenue for",
+      "weight": 2
+    },
+    {
+      "source": "genetic_modifications",
+      "target": "c3_photosynthesis",
+      "label": "can enhance",
+      "weight": 2
+    },
+    {
+      "source": "physiological_modifications",
+      "target": "c3_photosynthesis",
+      "label": "can enhance",
+      "weight": 2
+    },
+    {
+      "source": "co2_diffusion_improvement",
+      "target": "leaf_photosynthesis_enhancement",
+      "label": "is a strategy for",
+      "weight": 2
+    },
+    {
+      "source": "rubisco_performance_enhancement",
+      "target": "leaf_photosynthesis_enhancement",
+      "label": "is a strategy for",
+      "weight": 2
+    },
+    {
+      "source": "photorespiration_mitigation",
+      "target": "leaf_photosynthesis_enhancement",
+      "label": "is a strategy for",
+      "weight": 2
+    },
+    {
+      "source": "co2_diffusion_improvement",
+      "target": "stomatal_conductance",
+      "label": "involves modifying",
+      "weight": 2
+    },
+    {
+      "source": "co2_diffusion_improvement",
+      "target": "mesophyll_conductance",
+      "label": "involves modifying",
+      "weight": 2
+    },
+    {
+      "source": "rubisco_performance_enhancement",
+      "target": "rubisco",
+      "label": "focuses on improving",
+      "weight": 2
+    },
+    {
+      "source": "rubisco",
+      "target": "rubisco_specificity_co2",
+      "label": "has property",
+      "weight": 2
+    },
+    {
+      "source": "rubisco",
+      "target": "rubisco_catalytic_turnover",
+      "label": "has property",
+      "weight": 2
+    },
+    {
+      "source": "rubisco_performance_enhancement",
+      "target": "rubisco_assembly_structure",
+      "label": "benefits from understanding",
+      "weight": 2
+    },
+    {
+      "source": "photorespiration_mitigation",
+      "target": "alternative_photorespiratory_pathways",
+      "label": "involves engineering",
+      "weight": 2
+    },
+    {
+      "source": "alternative_photorespiratory_pathways",
+      "target": "nadph_consumption_reduction",
+      "label": "aims to reduce",
+      "weight": 2
+    },
+    {
+      "source": "alternative_photorespiratory_pathways",
+      "target": "chloroplast_co2_levels_elevation",
+      "label": "aims to elevate",
+      "weight": 2
+    },
+    {
+      "source": "nadph_consumption_reduction",
+      "target": "enhanced_photosynthetic_efficiency",
+      "label": "contributes to",
+      "weight": 2
+    },
+    {
+      "source": "chloroplast_co2_levels_elevation",
+      "target": "enhanced_photosynthetic_efficiency",
+      "label": "contributes to",
+      "weight": 2
+    },
+    {
+      "source": "enhanced_photosynthetic_efficiency",
+      "target": "crop_yield_potential",
+      "label": "potentially leads to higher",
+      "weight": 2
+    },
+    {
+      "source": "co2_enrichment_studies",
+      "target": "leaf_photosynthesis_enhancement",
+      "label": "supports evidence for",
+      "weight": 2
+    },
+    {
+      "source": "c4_plants",
+      "target": "leaf_photosynthesis_enhancement",
+      "label": "provides comparison for",
+      "weight": 2
+    },
+    {
+      "source": "c3_photosynthesis",
+      "target": "photorespiration_mitigation",
+      "label": "is limited by (addressed by)",
+      "weight": 2
+    },
+    {
+      "source": "rubisco",
+      "target": "rubisco_specificity_co2",
+      "label": "limited by low",
+      "weight": 2
+    },
+    {
+      "source": "rubisco",
+      "target": "rubisco_catalytic_turnover",
+      "label": "limited by slow",
+      "weight": 2
+    }
+  ]
+}

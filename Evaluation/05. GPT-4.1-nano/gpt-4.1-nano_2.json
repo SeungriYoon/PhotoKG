@@ -1,0 +1,274 @@
+{
+  "nodes": [
+    {
+      "id": "node_1",
+      "label": "C3 Photosynthesis",
+      "size": 8,
+      "type": "physiological_process",
+      "description": "A type of photosynthesis occurring in C3 plants, characterized by the fixation of CO2 into a three-carbon compound, 3-phosphoglycerate.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node_2",
+      "label": "Crop Yield",
+      "size": 7,
+      "type": "biochemical_parameter",
+      "description": "The total production of crop biomass or grain, often measured in tons per hectare, influenced by photosynthesis efficiency.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node_3",
+      "label": "CO2 Enrichment",
+      "size": 6,
+      "type": "environmental_factor",
+      "description": "The increase of atmospheric CO2 concentration, which can enhance photosynthesis and crop yields under controlled conditions.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node_4",
+      "label": "Stomatal Conductance",
+      "size": 5,
+      "type": "physiological_process",
+      "description": "The rate at which CO2 enters and water vapor exits through stomata, crucial for CO2 diffusion in leaves.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node_5",
+      "label": "Membrane Permeability",
+      "size": 5,
+      "type": "biochemical_parameter",
+      "description": "The ability of cell membranes to allow the passage of gases such as CO2, affecting photosynthesis efficiency.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node_6",
+      "label": "Leaf Anatomy",
+      "size": 6,
+      "type": "biological_structure",
+      "description": "The structural composition of leaves, which can influence light capture and gas exchange, impacting photosynthesis.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node_7",
+      "label": "Aquaporins",
+      "size": 5,
+      "type": "biochemical_parameter",
+      "description": "Water channel proteins that facilitate the movement of water and CO2 across cell membranes, enhancing mesophyll conductance.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node_8",
+      "label": "Mesophyll Conductance",
+      "size": 6,
+      "type": "physiological_process",
+      "description": "The ease with which CO2 diffuses from the intercellular air spaces into the chloroplasts, critical for efficient photosynthesis.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node_9",
+      "label": "Rubisco",
+      "size": 8,
+      "type": "biochemical_parameter",
+      "description": "Ribulose-1,5-bisphosphate carboxylase/oxygenase, an enzyme that catalyzes the first step of carbon fixation in photosynthesis.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node_10",
+      "label": "Rubisco Specificity",
+      "size": 6,
+      "type": "biochemical_parameter",
+      "description": "The preference of Rubisco for CO2 over O2, which affects the efficiency of photosynthesis and photorespiration.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node_11",
+      "label": "Catalytic Turnover",
+      "size": 5,
+      "type": "biochemical_parameter",
+      "description": "The rate at which Rubisco catalyzes the conversion of substrate to product, influencing photosynthetic efficiency.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node_12",
+      "label": "Photorespiration",
+      "size": 7,
+      "type": "physiological_process",
+      "description": "A metabolic pathway that consumes O2 and releases CO2, reducing the efficiency of photosynthesis in C3 plants.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node_13",
+      "label": "NADPH Consumption",
+      "size": 5,
+      "type": "biochemical_parameter",
+      "description": "The use of NADPH in metabolic processes, which can be reduced by engineering alternative pathways to improve photosynthesis.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node_14",
+      "label": "Chloroplast CO2 Levels",
+      "size": 6,
+      "type": "biochemical_parameter",
+      "description": "The concentration of CO2 within chloroplasts, which can be elevated to enhance photosynthetic efficiency.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node_15",
+      "label": "Genetic Engineering",
+      "size": 7,
+      "type": "biochemical_parameter",
+      "description": "Techniques used to modify the genetic makeup of organisms, aimed at improving traits such as photosynthesis in crops.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node_16",
+      "label": "Photosynthetic Efficiency",
+      "size": 8,
+      "type": "biochemical_parameter",
+      "description": "The effectiveness of photosynthesis in converting light energy into chemical energy, crucial for crop productivity.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node_17",
+      "label": "Yield Potential",
+      "size": 6,
+      "type": "biochemical_parameter",
+      "description": "The maximum achievable yield of a crop under optimal conditions, influenced by photosynthesis and sink capacity.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node_18",
+      "label": "C4 Plants",
+      "size": 6,
+      "type": "biological_category",
+      "description": "Plants that utilize a different photosynthetic pathway, known for higher efficiency in CO2 fixation compared to C3 plants.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node_19",
+      "label": "Global Change",
+      "size": 5,
+      "type": "environmental_factor",
+      "description": "Changes in climate and environmental conditions that impact agricultural productivity and photosynthesis.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node_20",
+      "label": "Crop Improvement",
+      "size": 6,
+      "type": "biochemical_parameter",
+      "description": "Strategies aimed at enhancing crop traits, including yield, disease resistance, and stress tolerance.",
+      "reference": "Author et al., 20XX"
+    }
+  ],
+  "edges": [
+    {
+      "source": "node_1",
+      "target": "node_2",
+      "label": "enhancing leads to potential increase in",
+      "weight": 2
+    },
+    {
+      "source": "node_3",
+      "target": "node_1",
+      "label": "can enhance",
+      "weight": 2
+    },
+    {
+      "source": "node_4",
+      "target": "node_8",
+      "label": "affects",
+      "weight": 2
+    },
+    {
+      "source": "node_5",
+      "target": "node_8",
+      "label": "influences",
+      "weight": 2
+    },
+    {
+      "source": "node_6",
+      "target": "node_8",
+      "label": "affects",
+      "weight": 2
+    },
+    {
+      "source": "node_7",
+      "target": "node_8",
+      "label": "enhances",
+      "weight": 2
+    },
+    {
+      "source": "node_8",
+      "target": "node_9",
+      "label": "provides CO2 for",
+      "weight": 2
+    },
+    {
+      "source": "node_9",
+      "target": "node_10",
+      "label": "specificity impacts",
+      "weight": 2
+    },
+    {
+      "source": "node_9",
+      "target": "node_11",
+      "label": "turnover rate affects",
+      "weight": 2
+    },
+    {
+      "source": "node_12",
+      "target": "node_9",
+      "label": "reduces efficiency of",
+      "weight": 2
+    },
+    {
+      "source": "node_13",
+      "target": "node_12",
+      "label": "is a consequence of",
+      "weight": 2
+    },
+    {
+      "source": "node_14",
+      "target": "node_12",
+      "label": "can be elevated to improve",
+      "weight": 2
+    },
+    {
+      "source": "node_15",
+      "target": "node_1",
+      "label": "used to enhance",
+      "weight": 2
+    },
+    {
+      "source": "node_16",
+      "target": "node_2",
+      "label": "improves",
+      "weight": 2
+    },
+    {
+      "source": "node_17",
+      "target": "node_2",
+      "label": "is influenced by",
+      "weight": 2
+    },
+    {
+      "source": "node_18",
+      "target": "node_1",
+      "label": "compared to",
+      "weight": 2
+    },
+    {
+      "source": "node_19",
+      "target": "node_2",
+      "label": "affects",
+      "weight": 2
+    },
+    {
+      "source": "node_20",
+      "target": "node_2",
+      "label": "aims to enhance",
+      "weight": 2
+    }
+  ]
+}

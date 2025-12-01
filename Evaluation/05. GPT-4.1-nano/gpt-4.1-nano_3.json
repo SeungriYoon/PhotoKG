@@ -1,0 +1,270 @@
+{
+  "nodes": [
+    {
+      "id": "1",
+      "label": "C3 Photosynthesis",
+      "size": 8,
+      "type": "physiological_process",
+      "description": "Photosynthetic pathway utilized by rice, characterized by the inefficiency of Rubisco, leading to photorespiration and energy loss.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "2",
+      "label": "Rubisco Enzyme",
+      "size": 7,
+      "type": "biochemical_parameter",
+      "description": "Key enzyme in C3 photosynthesis with a slow catalytic rate and oxygenase activity, contributing to inefficiencies in rice.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "3",
+      "label": "Photorespiration",
+      "size": 6,
+      "type": "biochemical_process",
+      "description": "Process occurring in C3 plants where oxygen is fixed instead of carbon dioxide, leading to energy loss.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "4",
+      "label": "C4 Photosynthesis",
+      "size": 9,
+      "type": "physiological_process",
+      "description": "More efficient photosynthetic pathway found in plants like maize and sorghum, concentrating CO2 around Rubisco to enhance yields.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "5",
+      "label": "International C4 Rice Consortium",
+      "size": 5,
+      "type": "organization",
+      "description": "Collaborative group focused on engineering C4 photosynthesis into rice to improve yields and resource efficiency.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "6",
+      "label": "Gene Transfer",
+      "size": 6,
+      "type": "biochemical_process",
+      "description": "Process of identifying and transferring genes responsible for C4 photosynthesis into rice.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "7",
+      "label": "Water Use Efficiency",
+      "size": 5,
+      "type": "biochemical_parameter",
+      "description": "Measure of how effectively a plant uses water during photosynthesis, improved in C4 plants.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "8",
+      "label": "Nitrogen Use Efficiency",
+      "size": 5,
+      "type": "biochemical_parameter",
+      "description": "Measure of how effectively a plant utilizes nitrogen, enhanced in C4 photosynthesis.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "9",
+      "label": "Yield Improvement",
+      "size": 7,
+      "type": "biochemical_parameter",
+      "description": "Increase in crop production, targeted by engineering C4 traits into rice.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "10",
+      "label": "Sorghum",
+      "size": 6,
+      "type": "plant_species",
+      "description": "Model species used for studying C4 traits and gene identification.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "11",
+      "label": "Setaria viridis",
+      "size": 6,
+      "type": "plant_species",
+      "description": "Model species utilized in mutagenesis and activation tagging to study C4 photosynthesis.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "12",
+      "label": "Vein Density",
+      "size": 5,
+      "type": "anatomical_feature",
+      "description": "Density of vascular tissue in leaves, crucial for C4 photosynthesis and a target for modification in rice.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "13",
+      "label": "Chloroplast Distribution",
+      "size": 5,
+      "type": "anatomical_feature",
+      "description": "Arrangement of chloroplasts in leaf cells, important for efficient photosynthesis and a challenge in C4 rice development.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "14",
+      "label": "Metabolite Transport Mechanisms",
+      "size": 6,
+      "type": "biochemical_process",
+      "description": "Processes involved in the transport of metabolites necessary for photosynthesis, requiring enhancement in C4 rice.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "15",
+      "label": "Gene Identification",
+      "size": 6,
+      "type": "biochemical_process",
+      "description": "Process of discovering genes associated with C4 traits through genomic and transcriptional approaches.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "16",
+      "label": "Anatomical Modifications",
+      "size": 7,
+      "type": "biochemical_process",
+      "description": "Changes required in leaf structure to support C4 photosynthesis in rice, including vein density and cell specialization.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "17",
+      "label": "Biochemical Modifications",
+      "size": 7,
+      "type": "biochemical_process",
+      "description": "Alterations in biochemical pathways necessary for the implementation of C4 photosynthesis in rice.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "18",
+      "label": "Evolution of C4 Pathway",
+      "size": 6,
+      "type": "biological_process",
+      "description": "Independent evolution of C4 photosynthesis over 60 times in various plant taxa, showcasing its adaptive significance.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "19",
+      "label": "Warm Semi-Arid Conditions",
+      "size": 5,
+      "type": "environmental_factor",
+      "description": "Environmental conditions under which C4 plants exhibit superior performance compared to C3 plants.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "20",
+      "label": "Prototype C4 Rice",
+      "size": 6,
+      "type": "biochemical_parameter",
+      "description": "Initial version of rice engineered to exhibit C4 traits, feasible with current genetic tools.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "21",
+      "label": "Complex Anatomy of C4 Plants",
+      "size": 6,
+      "type": "anatomical_feature",
+      "description": "Intricate leaf structure of C4 plants that poses challenges for replication in rice.",
+      "reference": "Author et al., 20XX"
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "target": "2",
+      "label": "Rubisco is the key enzyme in C3 photosynthesis",
+      "weight": 2
+    },
+    {
+      "source": "1",
+      "target": "3",
+      "label": "C3 photosynthesis leads to photorespiration",
+      "weight": 2
+    },
+    {
+      "source": "4",
+      "target": "2",
+      "label": "C4 photosynthesis improves Rubisco efficiency",
+      "weight": 2
+    },
+    {
+      "source": "4",
+      "target": "7",
+      "label": "C4 photosynthesis enhances water use efficiency",
+      "weight": 2
+    },
+    {
+      "source": "4",
+      "target": "8",
+      "label": "C4 photosynthesis improves nitrogen use efficiency",
+      "weight": 2
+    },
+    {
+      "source": "5",
+      "target": "6",
+      "label": "C4 Rice Consortium focuses on gene transfer",
+      "weight": 2
+    },
+    {
+      "source": "6",
+      "target": "15",
+      "label": "Gene transfer involves gene identification",
+      "weight": 2
+    },
+    {
+      "source": "10",
+      "target": "15",
+      "label": "Sorghum is used for gene identification",
+      "weight": 2
+    },
+    {
+      "source": "11",
+      "target": "15",
+      "label": "Setaria viridis is used for gene identification",
+      "weight": 2
+    },
+    {
+      "source": "12",
+      "target": "16",
+      "label": "Vein density is an anatomical modification target",
+      "weight": 2
+    },
+    {
+      "source": "13",
+      "target": "16",
+      "label": "Chloroplast distribution is an anatomical modification target",
+      "weight": 2
+    },
+    {
+      "source": "16",
+      "target": "17",
+      "label": "Anatomical modifications require biochemical modifications",
+      "weight": 2
+    },
+    {
+      "source": "18",
+      "target": "4",
+      "label": "C4 pathway has evolved independently in various taxa",
+      "weight": 2
+    },
+    {
+      "source": "19",
+      "target": "4",
+      "label": "C4 plants perform better under warm semi-arid conditions",
+      "weight": 2
+    },
+    {
+      "source": "20",
+      "target": "17",
+      "label": "Prototype C4 rice requires biochemical modifications",
+      "weight": 2
+    },
+    {
+      "source": "21",
+      "target": "16",
+      "label": "Complex anatomy of C4 plants presents challenges for modifications",
+      "weight": 2
+    }
+  ]
+}

@@ -1,0 +1,298 @@
+{
+  "nodes": [
+    {
+      "id": "N1",
+      "label": "Photosynthesis-related genes (31 ORFs)",
+      "size": 8,
+      "type": "genetic_element",
+      "description": "A set of 31 open reading frames identified in *Chlorobium tepidum* and *Chloroflexus aurantiacus* associated with bacteriochlorophyll/porphyrin biosynthesis, carotenoid biosynthesis, and photosynthetic electron transfer, spanning approximately 100 kb of genomic sequence.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "N2",
+      "label": "Chlorobium tepidum",
+      "size": 6,
+      "type": "organism",
+      "description": "Green sulfur bacterium used as a source of photosynthesis-related gene sequences, contributing to understanding of anoxygenic photosynthesis evolution.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "N3",
+      "label": "Chloroflexus aurantiacus",
+      "size": 6,
+      "type": "organism",
+      "description": "Green nonsulfur bacterium providing gene sequences related to photosynthesis, aiding in phylogenetic analysis of early phototrophs.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "N4",
+      "label": "Bacteriochlorophyll biosynthesis pathway",
+      "size": 7,
+      "type": "biochemical_pathway",
+      "description": "A biosynthetic pathway responsible for producing bacteriochlorophyll, suggested to have evolved prior to chlorophyll biosynthesis, indicating an early origin in photosynthetic evolution.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "N5",
+      "label": "Chlorophyll biosynthesis pathway",
+      "size": 7,
+      "type": "biochemical_pathway",
+      "description": "The pathway for chlorophyll production, proposed to have evolved after bacteriochlorophyll biosynthesis, challenging previous hypotheses about the order of photosynthetic pigment evolution.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "N6",
+      "label": "Heliobacteria",
+      "size": 6,
+      "type": "bacterial_clade",
+      "description": "Closest to the last common ancestor of all oxygenic photosynthetic lineages according to phylogenetic analyses, indicating an early divergence in photosynthetic evolution.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "N7",
+      "label": "Green sulfur bacteria",
+      "size": 6,
+      "type": "bacterial_clade",
+      "description": "Phototrophic bacteria closely related to green nonsulfur bacteria, with phylogenetic analyses suggesting they are each other's closest relatives.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "N8",
+      "label": "Green nonsulfur bacteria",
+      "size": 6,
+      "type": "bacterial_clade",
+      "description": "Phototrophic bacteria identified as closely related to green sulfur bacteria, involved in early photosynthetic evolution studies.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "N9",
+      "label": "Purple bacteria",
+      "size": 6,
+      "type": "bacterial_clade",
+      "description": "Lineage identified as the earliest phototrophic group, predating other bacterial photosynthetic lineages, challenging previous hypotheses about early phototrophs.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "N10",
+      "label": "Phylogenetic analysis methods",
+      "size": 7,
+      "type": "method",
+      "description": "Various phylogenetic methods used to analyze gene sequences, supporting the evolutionary relationships among photosynthetic bacteria and challenging previous hypotheses.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "N11",
+      "label": "Evolution of photosynthesis",
+      "size": 8,
+      "type": "biological_process",
+      "description": "The development of photosynthetic capability in bacteria, with molecular evidence suggesting bacteriochlorophyll biosynthesis predates chlorophyll biosynthesis, indicating an earlier origin.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "N12",
+      "label": "Granick hypothesis",
+      "size": 6,
+      "type": "scientific_hypothesis",
+      "description": "Previous hypothesis proposing that chlorophyll biosynthesis preceded bacteriochlorophyll biosynthesis, challenged by current molecular evidence.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "N13",
+      "label": "Genomic sequence (~100 kb)",
+      "size": 5,
+      "type": "genomic_feature",
+      "description": "Approximately 100 kb of genomic sequence containing the 31 photosynthesis-related open reading frames, providing a basis for phylogenetic and functional analyses.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "N14",
+      "label": "Molecular evidence",
+      "size": 7,
+      "type": "evidence_type",
+      "description": "Data derived from gene sequences and phylogenetic analyses supporting the early evolution of photosynthesis and the relative timing of biosynthetic pathway emergence.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "N15",
+      "label": "Photosynthetic electron transfer",
+      "size": 7,
+      "type": "biochemical_process",
+      "description": "A key process in photosynthesis involving electron transfer, encoded by specific genes identified in the studied genomes, indicating early development of photosynthetic machinery.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "N16",
+      "label": "Carotenoid biosynthesis genes",
+      "size": 6,
+      "type": "genetic_element",
+      "description": "Genes involved in carotenoid biosynthesis found within the gene cluster, contributing to photoprotection and light harvesting in early photosynthetic bacteria.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "N17",
+      "label": "Porphyrin biosynthesis genes",
+      "size": 6,
+      "type": "genetic_element",
+      "description": "Genes related to porphyrin biosynthesis, essential for chlorophyll and bacteriochlorophyll production, indicating the molecular basis for pigment synthesis.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "N18",
+      "label": "Phylogenetic relationships",
+      "size": 8,
+      "type": "relationship",
+      "description": "The inferred evolutionary relationships among bacterial lineages based on gene sequence analyses, supporting the early emergence of purple bacteria and the placement of heliobacteria.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "N19",
+      "label": "Early evolution of photosynthesis",
+      "size": 8,
+      "type": "concept",
+      "description": "The process and timeline of the emergence of photosynthesis in bacteria, with molecular data indicating an earlier origin than previously thought.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "N20",
+      "label": "Implications for Earth's photosynthetic development",
+      "size": 7,
+      "type": "scientific_concept",
+      "description": "The findings suggest that photosynthetic pathways and lineages emerged earlier, reshaping understanding of the development of photosynthetic life on Earth.",
+      "reference": "Author et al., 20XX"
+    }
+  ],
+  "edges": [
+    {
+      "source": "N1",
+      "target": "N4",
+      "label": "includes genes involved in",
+      "weight": 2
+    },
+    {
+      "source": "N1",
+      "target": "N5",
+      "label": "includes genes involved in",
+      "weight": 2
+    },
+    {
+      "source": "N1",
+      "target": "N16",
+      "label": "contains genes for",
+      "weight": 2
+    },
+    {
+      "source": "N1",
+      "target": "N17",
+      "label": "contains genes for",
+      "weight": 2
+    },
+    {
+      "source": "N2",
+      "target": "N1",
+      "label": "provides gene sequences for",
+      "weight": 2
+    },
+    {
+      "source": "N3",
+      "target": "N1",
+      "label": "provides gene sequences for",
+      "weight": 2
+    },
+    {
+      "source": "N6",
+      "target": "N8",
+      "label": "phylogenetically closest to",
+      "weight": 3
+    },
+    {
+      "source": "N7",
+      "target": "N8",
+      "label": "phylogenetically closest to",
+      "weight": 3
+    },
+    {
+      "source": "N9",
+      "target": "N6",
+      "label": "earliest phototrophic lineage",
+      "weight": 3
+    },
+    {
+      "source": "N10",
+      "target": "N11",
+      "label": "used to analyze",
+      "weight": 2
+    },
+    {
+      "source": "N11",
+      "target": "N4",
+      "label": "supports early evolution of",
+      "weight": 2
+    },
+    {
+      "source": "N11",
+      "target": "N5",
+      "label": "supports later evolution of",
+      "weight": 2
+    },
+    {
+      "source": "N12",
+      "target": "N4",
+      "label": "hypothesized to precede",
+      "weight": 2
+    },
+    {
+      "source": "N12",
+      "target": "N5",
+      "label": "hypothesized to follow",
+      "weight": 2
+    },
+    {
+      "source": "N13",
+      "target": "N1",
+      "label": "contains the genomic sequence with",
+      "weight": 2
+    },
+    {
+      "source": "N14",
+      "target": "N1",
+      "label": "provides molecular evidence for",
+      "weight": 2
+    },
+    {
+      "source": "N15",
+      "target": "N1",
+      "label": "genes encode components of",
+      "weight": 2
+    },
+    {
+      "source": "N18",
+      "target": "N6",
+      "label": "supports relationship between",
+      "weight": 2
+    },
+    {
+      "source": "N18",
+      "target": "N7",
+      "label": "supports relationship between",
+      "weight": 2
+    },
+    {
+      "source": "N19",
+      "target": "N4",
+      "label": "indicates early emergence of",
+      "weight": 2
+    },
+    {
+      "source": "N19",
+      "target": "N5",
+      "label": "indicates later emergence of",
+      "weight": 2
+    },
+    {
+      "source": "N20",
+      "target": "N11",
+      "label": "implies earlier development of",
+      "weight": 2
+    }
+  ]
+}

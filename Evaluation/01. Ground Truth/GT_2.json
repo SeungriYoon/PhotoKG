@@ -1,0 +1,280 @@
+{
+  "nodes": [
+    {
+      "id": "c3_photosynthesis",
+      "label": "C3 Photosynthesis",
+      "size": 9,
+      "type": "physiological_process",
+      "description": "The primary photosynthetic pathway in most crop plants, characterized by carbon fixation through Rubisco enzyme and susceptible to photorespiration limitations",
+      "reference": "von Caemmerer and Evans, 2010"
+    },
+    {
+      "id": "crop_yield_potential",
+      "label": "Crop Yield Potential",
+      "size": 8,
+      "type": "agricultural_parameter",
+      "description": "The maximum theoretical productivity of crops under optimal conditions, currently limited by photosynthetic efficiency and requiring enhancement to meet global food demand",
+      "reference": "von Caemmerer and Evans, 2010"
+    },
+    {
+      "id": "rubisco_enzyme",
+      "label": "Rubisco Enzyme",
+      "size": 10,
+      "type": "biochemical_component",
+      "description": "Ribulose-1,5-bisphosphate carboxylase/oxygenase, the primary CO2-fixing enzyme in photosynthesis with dual carboxylase and oxygenase activity that limits photosynthetic efficiency",
+      "reference": "von Caemmerer and Evans, 2010"
+    },
+    {
+      "id": "co2_diffusion",
+      "label": "CO2 Diffusion",
+      "size": 7,
+      "type": "physiological_process",
+      "description": "The transport of carbon dioxide from atmosphere through stomata and mesophyll to chloroplasts, involving stomatal conductance, membrane permeability, and leaf anatomy",
+      "reference": "von Caemmerer and Evans, 2010"
+    },
+    {
+      "id": "photorespiration",
+      "label": "Photorespiration",
+      "size": 8,
+      "type": "biochemical_process",
+      "description": "The wasteful oxygenase reaction of Rubisco that competes with CO2 fixation, consuming NADPH and reducing photosynthetic efficiency, particularly under high temperature and low CO2 conditions",
+      "reference": "von Caemmerer and Evans, 2010"
+    },
+    {
+      "id": "stomatal_conductance",
+      "label": "Stomatal Conductance",
+      "size": 6,
+      "type": "physiological_parameter",
+      "description": "The rate of gas exchange through leaf stomata, controlling CO2 uptake and water loss, representing a key target for improving CO2 availability to photosynthesis",
+      "reference": "von Caemmerer and Evans, 2010"
+    },
+    {
+      "id": "mesophyll_conductance",
+      "label": "Mesophyll Conductance",
+      "size": 6,
+      "type": "physiological_parameter",
+      "description": "The conductance of CO2 from substomatal cavities to chloroplast stroma, influenced by cell wall thickness, membrane permeability, and aquaporin activity",
+      "reference": "von Caemmerer and Evans, 2010"
+    },
+    {
+      "id": "aquaporins",
+      "label": "Aquaporins",
+      "size": 5,
+      "type": "biochemical_component",
+      "description": "Membrane channel proteins that facilitate CO2 transport across cellular membranes, representing targets for genetic manipulation to enhance mesophyll conductance",
+      "reference": "von Caemmerer and Evans, 2010"
+    },
+    {
+      "id": "rubisco_specificity",
+      "label": "Rubisco CO2/O2 Specificity",
+      "size": 7,
+      "type": "biochemical_parameter",
+      "description": "The ratio of Rubisco's carboxylase to oxygenase activity, a critical kinetic property determining photosynthetic efficiency and photorespiration rates",
+      "reference": "von Caemmerer and Evans, 2010"
+    },
+    {
+      "id": "catalytic_turnover",
+      "label": "Catalytic Turnover Rate",
+      "size": 6,
+      "type": "biochemical_parameter",
+      "description": "The rate at which Rubisco processes substrate molecules, representing a key target for improving overall photosynthetic capacity through enzyme engineering",
+      "reference": "von Caemmerer and Evans, 2010"
+    },
+    {
+      "id": "co2_enrichment",
+      "label": "CO2 Enrichment Studies",
+      "size": 7,
+      "type": "experimental_approach",
+      "description": "Research demonstrating that elevated atmospheric CO2 concentrations increase photosynthetic rates and crop yields, providing evidence for photosynthesis-yield relationships",
+      "reference": "von Caemmerer and Evans, 2010"
+    },
+    {
+      "id": "c4_plants",
+      "label": "C4 Plants",
+      "size": 6,
+      "type": "plant_type",
+      "description": "Plants with specialized CO2-concentrating mechanisms that achieve higher photosynthetic efficiency than C3 plants, serving as models for improving C3 photosynthesis",
+      "reference": "von Caemmerer and Evans, 2010"
+    },
+    {
+      "id": "chloroplast_co2_levels",
+      "label": "Chloroplast CO2 Levels",
+      "size": 6,
+      "type": "biochemical_parameter",
+      "description": "The concentration of CO2 in chloroplast stroma where Rubisco operates, a key factor determining carboxylase versus oxygenase activity and overall photosynthetic efficiency",
+      "reference": "von Caemmerer and Evans, 2010"
+    },
+    {
+      "id": "alternative_photorespiratory_pathways",
+      "label": "Alternative Photorespiratory Pathways",
+      "size": 7,
+      "type": "genetic_engineering_target",
+      "description": "Engineered metabolic routes to bypass or reduce the energy cost of photorespiration, potentially reducing NADPH consumption and improving net photosynthetic efficiency",
+      "reference": "von Caemmerer and Evans, 2010"
+    },
+    {
+      "id": "nadph_consumption",
+      "label": "NADPH Consumption",
+      "size": 5,
+      "type": "biochemical_parameter",
+      "description": "The utilization of reducing power in photorespiration, representing metabolic cost that alternative pathways aim to minimize for improved photosynthetic efficiency",
+      "reference": "von Caemmerer and Evans, 2010"
+    },
+    {
+      "id": "rubisco_assembly",
+      "label": "Rubisco Assembly",
+      "size": 5,
+      "type": "biochemical_process",
+      "description": "The complex formation process of Rubisco holoenzyme involving large and small subunits, chaperones, and assembly factors, critical for enzyme function and engineering efforts",
+      "reference": "von Caemmerer and Evans, 2010"
+    },
+    {
+      "id": "genetic_engineering",
+      "label": "Genetic Engineering Techniques",
+      "size": 6,
+      "type": "biotechnology_approach",
+      "description": "Molecular biology tools for modifying photosynthetic components, including transformation methods, synthetic biology approaches, and directed evolution for improving crop photosynthesis",
+      "reference": "von Caemmerer and Evans, 2010"
+    },
+    {
+      "id": "sink_capacity",
+      "label": "Sink Capacity",
+      "size": 6,
+      "type": "physiological_parameter",
+      "description": "The ability of non-photosynthetic plant tissues to utilize photosynthetic products, representing a potential constraint on realizing yield benefits from enhanced photosynthesis",
+      "reference": "von Caemmerer and Evans, 2010"
+    },
+    {
+      "id": "leaf_anatomy",
+      "label": "Leaf Anatomy",
+      "size": 5,
+      "type": "structural_feature",
+      "description": "Physical structure of leaf tissues including mesophyll cell organization, cell wall properties, and intercellular air spaces that influence CO2 diffusion pathways",
+      "reference": "von Caemmerer and Evans, 2010"
+    },
+    {
+      "id": "photosynthetic_efficiency",
+      "label": "Photosynthetic Efficiency",
+      "size": 8,
+      "type": "physiological_parameter",
+      "description": "The effectiveness of converting light energy and CO2 into biomass, limited by various factors including Rubisco kinetics, CO2 diffusion, and photorespiration in C3 plants",
+      "reference": "von Caemmerer and Evans, 2010"
+    }
+  ],
+  "edges": [
+    {
+      "source": "c3_photosynthesis",
+      "target": "crop_yield_potential",
+      "label": "limits through efficiency constraints",
+      "weight": 3
+    },
+    {
+      "source": "rubisco_enzyme",
+      "target": "c3_photosynthesis",
+      "label": "catalyzes primary CO2 fixation reaction",
+      "weight": 3
+    },
+    {
+      "source": "photorespiration",
+      "target": "photosynthetic_efficiency",
+      "label": "reduces through wasteful oxygenase activity",
+      "weight": 3
+    },
+    {
+      "source": "co2_diffusion",
+      "target": "chloroplast_co2_levels",
+      "label": "determines CO2 availability for Rubisco",
+      "weight": 2
+    },
+    {
+      "source": "stomatal_conductance",
+      "target": "co2_diffusion",
+      "label": "controls initial CO2 uptake pathway",
+      "weight": 2
+    },
+    {
+      "source": "mesophyll_conductance",
+      "target": "co2_diffusion",
+      "label": "facilitates internal CO2 transport",
+      "weight": 2
+    },
+    {
+      "source": "aquaporins",
+      "target": "mesophyll_conductance",
+      "label": "enhance CO2 membrane permeability",
+      "weight": 2
+    },
+    {
+      "source": "rubisco_specificity",
+      "target": "photorespiration",
+      "label": "determines carboxylase vs oxygenase activity",
+      "weight": 3
+    },
+    {
+      "source": "catalytic_turnover",
+      "target": "photosynthetic_efficiency",
+      "label": "influences overall CO2 fixation rate",
+      "weight": 2
+    },
+    {
+      "source": "co2_enrichment",
+      "target": "crop_yield_potential",
+      "label": "demonstrates photosynthesis-yield relationship",
+      "weight": 2
+    },
+    {
+      "source": "c4_plants",
+      "target": "photosynthetic_efficiency",
+      "label": "achieve higher efficiency through CO2 concentration",
+      "weight": 2
+    },
+    {
+      "source": "alternative_photorespiratory_pathways",
+      "target": "nadph_consumption",
+      "label": "reduce metabolic cost",
+      "weight": 2
+    },
+    {
+      "source": "chloroplast_co2_levels",
+      "target": "rubisco_specificity",
+      "label": "influences carboxylase activity",
+      "weight": 2
+    },
+    {
+      "source": "genetic_engineering",
+      "target": "rubisco_assembly",
+      "label": "enables modification of enzyme properties",
+      "weight": 2
+    },
+    {
+      "source": "sink_capacity",
+      "target": "crop_yield_potential",
+      "label": "constrains realization of photosynthetic gains",
+      "weight": 2
+    },
+    {
+      "source": "leaf_anatomy",
+      "target": "mesophyll_conductance",
+      "label": "influences CO2 diffusion pathways",
+      "weight": 1
+    },
+    {
+      "source": "rubisco_enzyme",
+      "target": "photorespiration",
+      "label": "catalyzes competing oxygenase reaction",
+      "weight": 2
+    },
+    {
+      "source": "alternative_photorespiratory_pathways",
+      "target": "chloroplast_co2_levels",
+      "label": "potentially elevate CO2 concentration",
+      "weight": 2
+    },
+    {
+      "source": "photosynthetic_efficiency",
+      "target": "crop_yield_potential",
+      "label": "determines biomass production capacity",
+      "weight": 3
+    }
+  ]
+}

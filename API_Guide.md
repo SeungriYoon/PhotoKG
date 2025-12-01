@@ -5,8 +5,8 @@ This guide explains how to configure and use different AI models with the PhotoR
 ## Supported AI Models
 
 ### Default Configuration
-- **Primary Model**: OpenAI GPT-4.1-nano
-- **High-Accuracy Option**: Google Gemini-2.5-flash
+- **Primary Model**: OpenAI GPT-4.1-nano (large-scale indexing + fast interactions)
+- **Deep Reasoning Partner**: Google Gemini-2.5-flash (triggered for high-impact, on-demand analysis)
 
 ### Available Models
 
@@ -58,17 +58,12 @@ GOOGLE_MODEL=gemini-2.5-flash
 
 ## 🔄 Model Selection Strategy
 
-This system is designed with two primary use cases in mind, reflecting the trade-offs between processing speed and extraction comprehensiveness found in our research paper.
+We run a paired-model workflow:
 
-### 1. Production / Real-Time Use (Default)
-**Model**: `gpt-4.1-nano`
-
-**Reason**: This model offers the best balance between precision (60.3%) and recall (60.6%), with a 3x speed advantage over Gemini-2.5-flash. It is optimized for the production web application where user experience and real-time responsiveness are critical.
-
-### 2. Research / Maximum Extraction
-**Model**: `gemini-2.5-flash`
-
-**Reason**: Recommended for individual researchers or offline batch processing where the primary goal is to extract the most comprehensive set of entities possible. This model achieved the highest F1-score (71.1%) and recall (78.0%) in our evaluations, making it ideal for in-depth analysis.
+1. **Primary engine (`gpt-4.1-nano`)** handles high-volume indexing, streaming user queries, and lightweight graph refresh.  
+2. **On-demand deep reasoning (`gemini-2.5-flash`)** kicks in for high-impact or complex papers, ensuring maximal recall and context fidelity.  
+3. **Real-time parity (`gemini-1.5-flash`)** mirrors GPT latency/quality when we want vendor diversity without sacrificing responsiveness.  
+4. **Burst workloads (`gpt-4o-mini`)** cover time-sensitive tasks that still demand GPT-quality semantics but favor cost/performance.
 
 ---
 
@@ -76,10 +71,10 @@ This system is designed with two primary use cases in mind, reflecting the trade
 
 | Model | Provider | Speed | Cost | Quality | Best For |
 |-------|----------|--------|------|---------|----------|
-| GPT-4.1-nano | OpenAI | ⚡⚡⚡ | 💰 | ⭐⭐⭐⭐ | Real-time apps / Production |
-| Gemini-2.5-flash | Google | ⚡ | 💰 | ⭐⭐⭐⭐⭐ | Max extraction / Research |
-| GPT-4o-mini | OpenAI | ⚡⚡⚡⚡ | 💰 | ⭐⭐⭐⭐ | Fast & cost-effective alternative |
-| Gemini-1.5-flash | Google | ⚡⚡ | 💰 | ⭐⭐⭐⭐ | High recall analysis |
+| GPT-4.1-nano | OpenAI | ⚡⚡⚡ | 💰 | ⭐⭐⭐⭐ | Primary engine for large-scale indexing; pair with Gemini-2.5-flash for on-demand deep reasoning on high-impact papers |
+| Gemini-2.5-flash | Google | ⚡ | 💰 | ⭐⭐⭐⭐⭐ | Max extraction / research-grade deep reasoning |
+| Gemini-1.5-flash | Google | ⚡⚡⚡ | 💰 | ⭐⭐⭐⭐ | Research & real-time parity with high recall |
+| GPT-4o-mini | OpenAI | ⚡⚡⚡⚡ | 💰 | ⭐⭐⭐½ | Fast, cost-effective burst processing |
 
 ---
 

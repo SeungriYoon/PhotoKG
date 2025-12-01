@@ -1,0 +1,274 @@
+{
+  "nodes": [
+    {
+      "id": "node1",
+      "label": "Photosynthetically Active Radiation (PAR) (400–700 nm)",
+      "size": 8,
+      "type": "spectral_range",
+      "description": "Traditional definition of PAR encompassing photons from 400 to 700 nm, responsible for driving most photosynthesis measurements.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node2",
+      "label": "Far-red photons (701–750 nm)",
+      "size": 7,
+      "type": "spectral_range",
+      "description": "Photons in the 701–750 nm range, shown to significantly contribute to photosynthesis, especially in shaded environments, accounting for 10–25% of leaf gross photosynthesis.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node3",
+      "label": "Leaf gross photosynthesis",
+      "size": 9,
+      "type": "biochemical_process",
+      "description": "Total photosynthetic carbon fixation rate in leaves, with contributions from various wavelengths, including 24–25% from far-red photons in sunlit conditions and 10–14% in shade.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node4",
+      "label": "Photosystem II (PSII)",
+      "size": 7,
+      "type": "photosynthetic_complex",
+      "description": "Photosystem primarily excited by shorter wavelengths (400–700 nm), involved in water splitting and electron transport during photosynthesis.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node5",
+      "label": "Photosystem I (PSI)",
+      "size": 7,
+      "type": "photosynthetic_complex",
+      "description": "Photosystem preferentially excited by far-red photons (>700 nm), plays a crucial role in cyclic electron flow and NADPH formation.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node6",
+      "label": "Synergistic interaction between far-red and shorter wavelengths",
+      "size": 6,
+      "type": "interaction",
+      "description": "Combined excitation of PSI and PSII enhances overall photosynthetic efficiency, demonstrated in controlled experiments.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node7",
+      "label": "Photosynthetic efficiency",
+      "size": 8,
+      "type": "physiological_parameter",
+      "description": "Measure of how effectively absorbed photons are converted into chemical energy; increased by the synergistic use of far-red and shorter wavelengths.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node8",
+      "label": "Shade environment",
+      "size": 6,
+      "type": "environmental_condition",
+      "description": "Low-light conditions where far-red photons can constitute over 50% of incident photons, significantly influencing photosynthesis.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node9",
+      "label": "Sunlit environment",
+      "size": 6,
+      "type": "environmental_condition",
+      "description": "High-light conditions where far-red photons contribute approximately 24–25% to leaf gross photosynthesis.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node10",
+      "label": "Photon excitation of PSI",
+      "size": 7,
+      "type": "biophysical_process",
+      "description": "Longer-wavelength photons (>700 nm) preferentially excite PSI, facilitating cyclic electron flow and energy distribution.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node11",
+      "label": "Photon excitation of PSII",
+      "size": 7,
+      "type": "biophysical_process",
+      "description": "Shorter-wavelength photons (400–700 nm) primarily excite PSII, initiating water splitting and electron transport.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node12",
+      "label": "Measurement models of photosynthesis",
+      "size": 8,
+      "type": "modeling",
+      "description": "Current models often exclude photons >700 nm, leading to underestimation of actual photosynthesis, especially in canopy and shade conditions.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node13",
+      "label": "Ecosystem productivity",
+      "size": 8,
+      "type": "ecological_parameter",
+      "description": "The rate of biomass production at the ecosystem level, influenced by accurate photosynthesis measurements including far-red photons.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node14",
+      "label": "Global carbon cycle",
+      "size": 8,
+      "type": "biogeochemical_cycle",
+      "description": "The exchange of carbon among the atmosphere, biosphere, and oceans, impacted by plant productivity and photosynthesis efficiency.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node15",
+      "label": "Climate change impacts",
+      "size": 7,
+      "type": "environmental_impact",
+      "description": "Alterations in light quality and quantity affecting photosynthesis, with far-red photons playing a significant role in plant responses.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node16",
+      "label": "Photosynthesis measurement techniques",
+      "size": 8,
+      "type": "methodology",
+      "description": "Methods that should incorporate far-red wavelengths to accurately assess photosynthetic activity under natural conditions.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node17",
+      "label": "Crop improvement strategies",
+      "size": 7,
+      "type": "agricultural_application",
+      "description": "Breeding or engineering crops to optimize utilization of far-red photons for enhanced productivity.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node18",
+      "label": "Ecosystem carbon cycling",
+      "size": 8,
+      "type": "biogeochemical_process",
+      "description": "Process involving photosynthesis, respiration, and decomposition, influenced by the contribution of far-red photons to plant productivity.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node19",
+      "label": "Photosynthetic photon flux density (PPFD)",
+      "size": 7,
+      "type": "measurement_parameter",
+      "description": "Quantitative measure of photon flux in the 400–700 nm range, which should be expanded to include 701–750 nm for accuracy.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node20",
+      "label": "Synergistic excitation of PSI and PSII",
+      "size": 7,
+      "type": "interaction",
+      "description": "Concurrent excitation of both photosystems by different wavelength ranges enhances overall photosynthesis efficiency.",
+      "reference": "Author et al., 20XX"
+    }
+  ],
+  "edges": [
+    {
+      "source": "node1",
+      "target": "node3",
+      "label": "Provides the primary photons driving leaf gross photosynthesis",
+      "weight": 3
+    },
+    {
+      "source": "node2",
+      "target": "node3",
+      "label": "Contributes 10–25% of photosynthesis, especially in shade",
+      "weight": 2
+    },
+    {
+      "source": "node4",
+      "target": "node3",
+      "label": "Excited by photons in the 400–700 nm range to facilitate electron transport",
+      "weight": 2
+    },
+    {
+      "source": "node5",
+      "target": "node3",
+      "label": "Excited by far-red photons (>700 nm) to support cyclic electron flow",
+      "weight": 2
+    },
+    {
+      "source": "node6",
+      "target": "node3",
+      "label": "Synergistic interaction enhances overall photosynthetic efficiency",
+      "weight": 3
+    },
+    {
+      "source": "node8",
+      "target": "node3",
+      "label": "In shaded environments, far-red photons significantly contribute to photosynthesis",
+      "weight": 2
+    },
+    {
+      "source": "node9",
+      "target": "node3",
+      "label": "In sunlit conditions, far-red photons account for ~24–25% of photosynthesis",
+      "weight": 2
+    },
+    {
+      "source": "node10",
+      "target": "node5",
+      "label": "Longer wavelengths preferentially excite PSI",
+      "weight": 2
+    },
+    {
+      "source": "node11",
+      "target": "node4",
+      "label": "Shorter wavelengths primarily excite PSII",
+      "weight": 2
+    },
+    {
+      "source": "node12",
+      "target": "node3",
+      "label": "Current models often exclude photons >700 nm, underestimating photosynthesis",
+      "weight": 3
+    },
+    {
+      "source": "node13",
+      "target": "node3",
+      "label": "Ecosystem productivity depends on accurate photosynthesis estimates including far-red contribution",
+      "weight": 2
+    },
+    {
+      "source": "node14",
+      "target": "node13",
+      "label": "Global carbon cycle is influenced by plant productivity driven by photosynthesis",
+      "weight": 2
+    },
+    {
+      "source": "node15",
+      "target": "node13",
+      "label": "Climate change impacts alter light conditions affecting photosynthesis",
+      "weight": 2
+    },
+    {
+      "source": "node16",
+      "target": "node12",
+      "label": "Measurement techniques should include far-red wavelengths for accuracy",
+      "weight": 3
+    },
+    {
+      "source": "node17",
+      "target": "node13",
+      "label": "Crop strategies can optimize utilization of far-red photons for higher yield",
+      "weight": 2
+    },
+    {
+      "source": "node18",
+      "target": "node14",
+      "label": "Photosynthesis influences ecosystem carbon cycling processes",
+      "weight": 2
+    },
+    {
+      "source": "node19",
+      "target": "node12",
+      "label": "PPFD measurements should be expanded to include 701–750 nm wavelengths",
+      "weight": 2
+    },
+    {
+      "source": "node20",
+      "target": "node6",
+      "label": "Synergistic excitation involves concurrent activation of PSI and PSII",
+      "weight": 2
+    }
+  ]
+}

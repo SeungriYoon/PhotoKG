@@ -1,0 +1,268 @@
+{
+  "nodes": [
+    {
+      "id": "node1",
+      "label": "C3 Photosynthesis",
+      "size": 8,
+      "type": "biochemical_process",
+      "description": "Photosynthetic pathway predominant in many plants, characterized by the Calvin cycle where Rubisco catalyzes CO2 fixation. Sensitive to temperature variations affecting enzymatic activities and regeneration processes.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node2",
+      "label": "C4 Photosynthesis",
+      "size": 8,
+      "type": "biochemical_process",
+      "description": "Photosynthetic pathway involving a CO2 concentrating mechanism that minimizes Rubisco's oxygenation activity, prevalent in warm and tropical species. Its temperature response differs from C3, with limitations shifting based on temperature.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node3",
+      "label": "Rubisco Capacity",
+      "size": 6,
+      "type": "biochemical_parameter",
+      "description": "Maximum carboxylation rate of Rubisco enzyme, dominant limitation in C3 plants at low temperatures and low CO2 levels; its activity declines with increasing temperature due to thermal lability.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node4",
+      "label": "Pi Regeneration",
+      "size": 6,
+      "type": "biochemical_parameter",
+      "description": "Process involving regeneration of inorganic phosphate necessary for ATP synthesis during photosynthesis; becomes a limiting factor at higher temperatures in C3 plants.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node5",
+      "label": "Electron Transport Chain",
+      "size": 7,
+      "type": "biochemical_parameter",
+      "description": "Series of protein complexes facilitating electron flow from water to NADP+, producing ATP and NADPH; limitations increase at elevated temperatures, affecting photosynthetic efficiency.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node6",
+      "label": "Rubisco Activase",
+      "size": 6,
+      "type": "enzyme",
+      "description": "Chaperone enzyme that facilitates Rubisco activation; heat-induced lability reduces its effectiveness at high temperatures, impacting photosynthesis especially in C3 plants.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node7",
+      "label": "Thermal Optimum for Photosynthesis",
+      "size": 5,
+      "type": "environmental_factor",
+      "description": "Temperature at which photosynthetic rate peaks; varies with growth conditions and acclimation, typically between 0–45°C depending on species and habitat.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node8",
+      "label": "Acclimation to Temperature",
+      "size": 7,
+      "type": "physiological_process",
+      "description": "Adaptive adjustments including increased Pi regeneration capacity, electron transport efficiency, and Rubisco activase stability in C3 plants; in C4 plants, increased Rubisco and C4 cycle enzymes when exposed to cooler conditions.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node9",
+      "label": "Chilling Tolerance in C4 Plants",
+      "size": 6,
+      "type": "trait",
+      "description": "Ability of some C4 species to sustain Rubisco activity and photosynthesis below 20°C, indicating species-specific adaptations to cooler environments.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node10",
+      "label": "Global Climate Change",
+      "size": 7,
+      "type": "environmental_factor",
+      "description": "Long-term increase in global temperatures affecting plant physiological processes, leading to shifts in photosynthetic limitations towards electron transport and Rubisco activase constraints.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node11",
+      "label": "Photosynthetic Limitation Shift",
+      "size": 6,
+      "type": "concept",
+      "description": "Change in primary biochemical constraints from Rubisco capacity at low temperatures to electron transport and Rubisco activase limitations at higher temperatures, especially under elevated CO2 conditions.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node12",
+      "label": "Temperature Ranges for Photosynthesis",
+      "size": 6,
+      "type": "environmental_range",
+      "description": "Species-specific temperature windows for safe photosynthesis: 0–30°C in cold-adapted, 7–40°C in warm-season crops, 15–45°C in tropical/desert species.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node13",
+      "label": "Photosynthetic Efficiency",
+      "size": 7,
+      "type": "biological_parameter",
+      "description": "Rate of photosynthesis relative to optimal conditions; influenced by biochemical limitations, acclimation, and environmental factors such as temperature and CO2 levels.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node14",
+      "label": "Modeling and Experimental Methods",
+      "size": 6,
+      "type": "research_approach",
+      "description": "Techniques used to understand temperature responses of photosynthesis, including biochemical assays and computational models, improving predictions under climate change scenarios.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node15",
+      "label": "Acclimation Mechanisms in C3 Plants",
+      "size": 7,
+      "type": "physiological_process",
+      "description": "Enhancement of Pi regeneration, electron transport capacity, and Rubisco activase stability to maintain photosynthesis across temperature ranges.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node16",
+      "label": "Acclimation in C4 Plants",
+      "size": 6,
+      "type": "physiological_process",
+      "description": "Increase in Rubisco and C4 cycle enzyme levels when plants from warm habitats are exposed to cooler temperatures, aiding in temperature adaptation.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node17",
+      "label": "Future Predictions of Photosynthesis Limitations",
+      "size": 6,
+      "type": "concept",
+      "description": "Under global warming and elevated CO2, limitations are expected to shift towards electron transport and Rubisco activase, potentially reducing photosynthetic efficiency.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node18",
+      "label": "Impact of Global Warming",
+      "size": 6,
+      "type": "environmental_factor",
+      "description": "Rising temperatures are projected to alter the biochemical constraints of photosynthesis, emphasizing the importance of acclimation and adaptation strategies.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node19",
+      "label": "Photosynthesis Thermal Range Adaptation",
+      "size": 6,
+      "type": "adaptation_strategy",
+      "description": "Species-specific adjustments in thermal optimum and biochemical capacities to sustain photosynthesis under changing temperature regimes.",
+      "reference": "Author et al., 20XX"
+    },
+    {
+      "id": "node20",
+      "label": "Key Keywords",
+      "size": 4,
+      "type": "concept",
+      "description": "Acclimation, CO2 and temperature interactions, electron transport, global change, Rubisco, Rubisco activase.",
+      "reference": "Author et al., 20XX"
+    }
+  ],
+  "edges": [
+    {
+      "source": "node1",
+      "target": "node3",
+      "label": "Rubisco capacity limits photosynthesis in C3 plants at low temperatures",
+      "weight": 2
+    },
+    {
+      "source": "node2",
+      "target": "node9",
+      "label": "C4 plants from warm habitats exhibit chilling tolerance below 20°C",
+      "weight": 2
+    },
+    {
+      "source": "node3",
+      "target": "node5",
+      "label": "Rubisco capacity interacts with electron transport limitations at higher temperatures",
+      "weight": 2
+    },
+    {
+      "source": "node4",
+      "target": "node5",
+      "label": "Pi regeneration influences electron transport capacity",
+      "weight": 2
+    },
+    {
+      "source": "node6",
+      "target": "node3",
+      "label": "Rubisco activase stability affects Rubisco capacity at elevated temperatures",
+      "weight": 2
+    },
+    {
+      "source": "node7",
+      "target": "node8",
+      "label": "Thermal optimum shifts with acclimation processes",
+      "weight": 2
+    },
+    {
+      "source": "node8",
+      "target": "node11",
+      "label": "Acclimation shifts limitations from Rubisco to electron transport and Rubisco activase",
+      "weight": 3
+    },
+    {
+      "source": "node10",
+      "target": "node17",
+      "label": "Global warming influences the shift in photosynthetic limitations",
+      "weight": 2
+    },
+    {
+      "source": "node12",
+      "target": "node7",
+      "label": "Species-specific temperature ranges define thermal optimum",
+      "weight": 2
+    },
+    {
+      "source": "node13",
+      "target": "node12",
+      "label": "Photosynthetic efficiency depends on temperature and biochemical limitations",
+      "weight": 2
+    },
+    {
+      "source": "node14",
+      "target": "node8",
+      "label": "Modeling and experimental methods inform acclimation understanding",
+      "weight": 2
+    },
+    {
+      "source": "node15",
+      "target": "node8",
+      "label": "C3 acclimation involves increasing Pi regeneration, electron transport, and Rubisco activase stability",
+      "weight": 3
+    },
+    {
+      "source": "node16",
+      "target": "node2",
+      "label": "C4 plants from cooler habitats increase Rubisco and C4 enzymes during acclimation",
+      "weight": 2
+    },
+    {
+      "source": "node17",
+      "target": "node10",
+      "label": "Global warming accelerates shift towards electron transport and Rubisco activase limitations",
+      "weight": 2
+    },
+    {
+      "source": "node18",
+      "target": "node17",
+      "label": "Impact of global warming influences future photosynthetic limitations",
+      "weight": 2
+    },
+    {
+      "source": "node19",
+      "target": "node8",
+      "label": "Photosynthesis thermal range adaptation involves species-specific biochemical adjustments",
+      "weight": 2
+    },
+    {
+      "source": "node20",
+      "target": "node1",
+      "label": "Keywords summarize key concepts related to temperature response and acclimation",
+      "weight": 1
+    }
+  ]
+}

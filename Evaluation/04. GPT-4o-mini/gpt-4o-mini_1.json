@@ -1,0 +1,238 @@
+{
+  "nodes": [
+    {
+      "id": "node_1",
+      "label": "Chlorobium tepidum",
+      "size": 7,
+      "type": "organism",
+      "description": "A green sulfur bacterium analyzed for photosynthesis-related gene sequences.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_2",
+      "label": "Chloroflexus aurantiacus",
+      "size": 7,
+      "type": "organism",
+      "description": "A green nonsulfur bacterium studied for its photosynthetic capabilities.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_3",
+      "label": "Bacteriochlorophyll Biosynthesis",
+      "size": 8,
+      "type": "biochemical_process",
+      "description": "The biosynthetic pathway for bacteriochlorophyll, identified as predating chlorophyll biosynthesis.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_4",
+      "label": "Chlorophyll Biosynthesis",
+      "size": 8,
+      "type": "biochemical_process",
+      "description": "The biosynthetic pathway for chlorophyll, which evolved after bacteriochlorophyll biosynthesis.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_5",
+      "label": "Photosynthetic Electron Transfer",
+      "size": 6,
+      "type": "biochemical_process",
+      "description": "The process of electron transfer during photosynthesis, linked to the identified gene sequences.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_6",
+      "label": "Gene Sequences",
+      "size": 5,
+      "type": "biochemical_parameter",
+      "description": "31 open reading frames related to photosynthesis identified within 100 kb of genomic sequence.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_7",
+      "label": "Phylogenetic Analysis",
+      "size": 6,
+      "type": "methodology",
+      "description": "Analytical methods used to determine evolutionary relationships among photosynthetic organisms.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_8",
+      "label": "Heliobacteria",
+      "size": 7,
+      "type": "organism",
+      "description": "Bacteria identified as closest to the last common ancestor of all oxygenic photosynthetic lineages.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_9",
+      "label": "Purple Bacteria",
+      "size": 7,
+      "type": "organism",
+      "description": "Identified as the earliest emerging photosynthetic lineage in the study.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_10",
+      "label": "Green Sulfur Bacteria",
+      "size": 6,
+      "type": "organism",
+      "description": "Bacteria that are closely related to green nonsulfur bacteria, according to phylogenetic analyses.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_11",
+      "label": "Green Nonsulfur Bacteria",
+      "size": 6,
+      "type": "organism",
+      "description": "Bacteria that are closely related to green sulfur bacteria, as indicated by phylogenetic studies.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_12",
+      "label": "16S rRNA Analysis",
+      "size": 5,
+      "type": "methodology",
+      "description": "Previous method used to analyze evolutionary relationships among phototrophic organisms.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_13",
+      "label": "Hsp60/Hsp70 Analysis",
+      "size": 5,
+      "type": "methodology",
+      "description": "Previous analysis method that suggested alternative evolutionary relationships among bacteria.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_14",
+      "label": "Granick Hypothesis",
+      "size": 5,
+      "type": "theory",
+      "description": "Hypothesis suggesting chlorophyll biosynthesis predates bacteriochlorophyll biosynthesis, challenged by this study.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_15",
+      "label": "Oxygenic Photosynthesis",
+      "size": 6,
+      "type": "biochemical_process",
+      "description": "Photosynthesis process that produces oxygen, linked to the evolutionary history explored in the study.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_16",
+      "label": "Evolutionary History of Photosynthesis",
+      "size": 7,
+      "type": "scientific_concept",
+      "description": "The study's focus on the early evolution of photosynthesis and its key pathways.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_17",
+      "label": "Molecular Evidence",
+      "size": 6,
+      "type": "scientific_concept",
+      "description": "Evidence derived from gene sequences that reshapes understanding of photosynthesis evolution.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_18",
+      "label": "Photosynthetic Life Development",
+      "size": 5,
+      "type": "scientific_concept",
+      "description": "Insights into the development of photosynthetic organisms on Earth based on the study's findings.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_19",
+      "label": "Common Ancestor of Photosynthetic Lineages",
+      "size": 6,
+      "type": "scientific_concept",
+      "description": "The last common ancestor from which all oxygenic photosynthetic lineages evolved.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_20",
+      "label": "Evolutionary Relationships",
+      "size": 6,
+      "type": "scientific_concept",
+      "description": "The connections and lineage divergences among various photosynthetic organisms.",
+      "reference": "Author et al., Year"
+    }
+  ],
+  "edges": [
+    {
+      "source": "node_1",
+      "target": "node_6",
+      "label": "contains gene sequences related to",
+      "weight": 2
+    },
+    {
+      "source": "node_2",
+      "target": "node_6",
+      "label": "contains gene sequences related to",
+      "weight": 2
+    },
+    {
+      "source": "node_3",
+      "target": "node_4",
+      "label": "predates",
+      "weight": 3
+    },
+    {
+      "source": "node_8",
+      "target": "node_19",
+      "label": "is closest to the common ancestor of",
+      "weight": 2
+    },
+    {
+      "source": "node_10",
+      "target": "node_11",
+      "label": "are each other's closest relatives",
+      "weight": 3
+    },
+    {
+      "source": "node_9",
+      "target": "node_20",
+      "label": "is the earliest emerging lineage among",
+      "weight": 2
+    },
+    {
+      "source": "node_7",
+      "target": "node_16",
+      "label": "used to analyze",
+      "weight": 2
+    },
+    {
+      "source": "node_12",
+      "target": "node_20",
+      "label": "previously suggested relationships among",
+      "weight": 1
+    },
+    {
+      "source": "node_13",
+      "target": "node_20",
+      "label": "previously suggested relationships among",
+      "weight": 1
+    },
+    {
+      "source": "node_14",
+      "target": "node_3",
+      "label": "is challenged by",
+      "weight": 2
+    },
+    {
+      "source": "node_17",
+      "target": "node_18",
+      "label": "provides insights into",
+      "weight": 2
+    },
+    {
+      "source": "node_15",
+      "target": "node_19",
+      "label": "is linked to the evolutionary history of",
+      "weight": 2
+    }
+  ]
+}

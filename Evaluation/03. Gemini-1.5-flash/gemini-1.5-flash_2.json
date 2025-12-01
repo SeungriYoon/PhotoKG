@@ -1,0 +1,294 @@
+{
+  "nodes": [
+    {
+      "id": "node1",
+      "label": "C3 Photosynthesis Enhancement",
+      "size": 10,
+      "type": "research_goal",
+      "description": "Strategies to improve C3 photosynthesis for increased crop yields.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node2",
+      "label": "Increased Crop Yields",
+      "size": 9,
+      "type": "research_outcome",
+      "description": "Global demand for increased crop production.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node3",
+      "label": "CO2 Enrichment Studies",
+      "size": 7,
+      "type": "experimental_method",
+      "description": "Studies showing increased photosynthesis with elevated CO2 levels.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node4",
+      "label": "C4 Plants",
+      "size": 6,
+      "type": "plant_type",
+      "description": "Comparison with C4 plants to understand photosynthetic efficiency.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node5",
+      "label": "CO2 Diffusion",
+      "size": 8,
+      "type": "physiological_process",
+      "description": "Improving CO2 delivery to Rubisco.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node6",
+      "label": "Stomatal Conductance",
+      "size": 7,
+      "type": "physiological_parameter",
+      "description": "Regulation of CO2 entry into leaves.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node7",
+      "label": "Membrane Permeability",
+      "size": 6,
+      "type": "physiological_parameter",
+      "description": "CO2 passage across cell membranes.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node8",
+      "label": "Leaf Anatomy",
+      "size": 7,
+      "type": "plant_structure",
+      "description": "Modifications to leaf structure for better CO2 diffusion.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node9",
+      "label": "Aquaporins",
+      "size": 6,
+      "type": "protein",
+      "description": "Role in water transport and potential impact on CO2 diffusion.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node10",
+      "label": "Mesophyll Conductance",
+      "size": 7,
+      "type": "physiological_parameter",
+      "description": "CO2 diffusion within the leaf.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node11",
+      "label": "Rubisco",
+      "size": 9,
+      "type": "enzyme",
+      "description": "Key enzyme in carbon fixation.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node12",
+      "label": "Rubisco Specificity",
+      "size": 7,
+      "type": "enzyme_property",
+      "description": "Improving Rubisco's preference for CO2 over O2.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node13",
+      "label": "Rubisco Catalytic Turnover",
+      "size": 7,
+      "type": "enzyme_property",
+      "description": "Enhancing the rate of CO2 fixation.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node14",
+      "label": "Photorespiration",
+      "size": 8,
+      "type": "physiological_process",
+      "description": "Reducing energy loss due to oxygenation of Rubisco.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node15",
+      "label": "Alternative Pathways",
+      "size": 7,
+      "type": "metabolic_pathway",
+      "description": "Engineering alternative pathways to reduce photorespiration.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node16",
+      "label": "NADPH Consumption",
+      "size": 6,
+      "type": "metabolic_process",
+      "description": "Reducing NADPH usage in photorespiration.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node17",
+      "label": "Chloroplast CO2 Levels",
+      "size": 7,
+      "type": "biochemical_parameter",
+      "description": "Increasing CO2 concentration in chloroplasts.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node18",
+      "label": "Rubisco Assembly",
+      "size": 6,
+      "type": "biochemical_process",
+      "description": "Understanding and improving Rubisco assembly.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node19",
+      "label": "Genetic Engineering",
+      "size": 8,
+      "type": "technique",
+      "description": "Techniques for modifying photosynthetic genes.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node20",
+      "label": "Sink Capacity",
+      "size": 7,
+      "type": "physiological_process",
+      "description": "The capacity of plant tissues to utilize photosynthates.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node21",
+      "label": "Overall Crop Productivity",
+      "size": 8,
+      "type": "research_outcome",
+      "description": "The final yield of the crop.",
+      "reference": "Author et al., Year"
+    }
+  ],
+  "edges": [
+    {
+      "source": "node1",
+      "target": "node2",
+      "label": "leads to",
+      "weight": 3
+    },
+    {
+      "source": "node1",
+      "target": "node5",
+      "label": "involves improving",
+      "weight": 2
+    },
+    {
+      "source": "node1",
+      "target": "node14",
+      "label": "involves mitigating",
+      "weight": 2
+    },
+    {
+      "source": "node1",
+      "target": "node11",
+      "label": "focuses on improving",
+      "weight": 3
+    },
+    {
+      "source": "node3",
+      "target": "node1",
+      "label": "supports",
+      "weight": 2
+    },
+    {
+      "source": "node4",
+      "target": "node1",
+      "label": "provides comparison with",
+      "weight": 1
+    },
+    {
+      "source": "node5",
+      "target": "node6",
+      "label": "involves modifying",
+      "weight": 1
+    },
+    {
+      "source": "node5",
+      "target": "node7",
+      "label": "involves modifying",
+      "weight": 1
+    },
+    {
+      "source": "node5",
+      "target": "node8",
+      "label": "involves modifying",
+      "weight": 1
+    },
+    {
+      "source": "node5",
+      "target": "node9",
+      "label": "involves manipulating",
+      "weight": 1
+    },
+    {
+      "source": "node5",
+      "target": "node10",
+      "label": "involves manipulating",
+      "weight": 1
+    },
+    {
+      "source": "node11",
+      "target": "node12",
+      "label": "improving",
+      "weight": 2
+    },
+    {
+      "source": "node11",
+      "target": "node13",
+      "label": "improving",
+      "weight": 2
+    },
+    {
+      "source": "node14",
+      "target": "node15",
+      "label": "can be mitigated by",
+      "weight": 2
+    },
+    {
+      "source": "node14",
+      "target": "node16",
+      "label": "reduces",
+      "weight": 1
+    },
+    {
+      "source": "node14",
+      "target": "node17",
+      "label": "elevates",
+      "weight": 1
+    },
+    {
+      "source": "node18",
+      "target": "node11",
+      "label": "improves understanding of",
+      "weight": 1
+    },
+    {
+      "source": "node19",
+      "target": "node1",
+      "label": "is key to",
+      "weight": 3
+    },
+    {
+      "source": "node20",
+      "target": "node21",
+      "label": "affects",
+      "weight": 2
+    },
+    {
+      "source": "node1",
+      "target": "node21",
+      "label": "aims to increase",
+      "weight": 3
+    }
+  ]
+}

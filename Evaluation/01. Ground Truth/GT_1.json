@@ -1,0 +1,258 @@
+{
+  "nodes": [
+    {
+      "id": "chlorobium_tepidum",
+      "label": "Chlorobium tepidum (Green sulfur bacterium)",
+      "size": 8,
+      "type": "bacterial_species",
+      "description": "Green sulfur bacterium studied for photosynthesis evolution, source of genomic sequences containing photosynthesis-related genes",
+      "reference": "Xiong et al., 2000"
+    },
+    {
+      "id": "chloroflexus_aurantiacus",
+      "label": "Chloroflexus aurantiacus (Green nonsulfur bacterium)",
+      "size": 8,
+      "type": "bacterial_species",
+      "description": "Green nonsulfur bacterium analyzed for early photosynthesis evolution, source of genomic sequences with photosynthetic genes",
+      "reference": "Xiong et al., 2000"
+    },
+    {
+      "id": "photosynthesis_genes",
+      "label": "31 Photosynthesis-related genes",
+      "size": 9,
+      "type": "genetic_elements",
+      "description": "31 open reading frames related to bacteriochlorophyll/porphyrin biosynthesis, carotenoid biosynthesis, and photosynthetic electron transfer identified within ~100 kb genomic sequence",
+      "reference": "Xiong et al., 2000"
+    },
+    {
+      "id": "bacteriochlorophyll_biosynthesis",
+      "label": "Bacteriochlorophyll biosynthesis pathway",
+      "size": 8,
+      "type": "biochemical_pathway",
+      "description": "Biosynthetic pathway for bacteriochlorophyll production, found to evolutionarily predate chlorophyll biosynthesis based on phylogenetic analyses",
+      "reference": "Xiong et al., 2000"
+    },
+    {
+      "id": "carotenoid_biosynthesis",
+      "label": "Carotenoid biosynthesis pathway",
+      "size": 7,
+      "type": "biochemical_pathway",
+      "description": "Biosynthetic pathway for carotenoid pigments involved in photosynthetic light harvesting and photoprotection",
+      "reference": "Xiong et al., 2000"
+    },
+    {
+      "id": "electron_transfer",
+      "label": "Photosynthetic electron transfer",
+      "size": 7,
+      "type": "physiological_process",
+      "description": "Electron transport processes in photosynthetic systems, one of the three major categories of photosynthesis-related genes identified",
+      "reference": "Xiong et al., 2000"
+    },
+    {
+      "id": "heliobacteria",
+      "label": "Heliobacteria",
+      "size": 9,
+      "type": "bacterial_group",
+      "description": "Photosynthetic bacterial lineage identified as closest to the last common ancestor of all oxygenic photosynthetic lineages based on phylogenetic analyses",
+      "reference": "Xiong et al., 2000"
+    },
+    {
+      "id": "purple_bacteria",
+      "label": "Purple bacteria",
+      "size": 9,
+      "type": "bacterial_group",
+      "description": "Photosynthetic bacterial lineage identified as the earliest emerging phototrophic lineage, challenging previous evolutionary hypotheses",
+      "reference": "Xiong et al., 2000"
+    },
+    {
+      "id": "oxygenic_photosynthesis",
+      "label": "Oxygenic photosynthetic lineages",
+      "size": 8,
+      "type": "evolutionary_lineage",
+      "description": "Photosynthetic organisms that produce oxygen as a byproduct, with heliobacteria identified as closest to their common ancestor",
+      "reference": "Xiong et al., 2000"
+    },
+    {
+      "id": "phylogenetic_analysis",
+      "label": "Phylogenetic analyses",
+      "size": 8,
+      "type": "analytical_method",
+      "description": "Multiple phylogenetic methods used to reconstruct evolutionary relationships among photosynthetic bacteria and determine ancestry patterns",
+      "reference": "Xiong et al., 2000"
+    },
+    {
+      "id": "chlorophyll_biosynthesis",
+      "label": "Chlorophyll biosynthesis pathway",
+      "size": 7,
+      "type": "biochemical_pathway",
+      "description": "Biosynthetic pathway for chlorophyll production, found to evolutionarily postdate bacteriochlorophyll biosynthesis, opposing the Granick hypothesis",
+      "reference": "Xiong et al., 2000"
+    },
+    {
+      "id": "granick_hypothesis",
+      "label": "Granick hypothesis",
+      "size": 7,
+      "type": "scientific_hypothesis",
+      "description": "Previous hypothesis about the evolutionary order of photosynthetic pigment biosynthesis, challenged by findings showing bacteriochlorophyll biosynthesis predates chlorophyll biosynthesis",
+      "reference": "Xiong et al., 2000"
+    },
+    {
+      "id": "16s_rrna_analysis",
+      "label": "16S rRNA phylogenetic analysis",
+      "size": 6,
+      "type": "analytical_method",
+      "description": "Previous phylogenetic approach using 16S ribosomal RNA sequences that suggested different evolutionary relationships than current gene-based analyses",
+      "reference": "Woose, 1987"
+    },
+    {
+      "id": "hsp_analysis",
+      "label": "Hsp60/Hsp70 phylogenetic analysis",
+      "size": 6,
+      "type": "analytical_method",
+      "description": "Previous phylogenetic approach using heat shock protein sequences that suggested green nonsulfur bacteria or heliobacteria as earliest phototrophs",
+      "reference": "Woose, 1987"
+    },
+    {
+      "id": "genomic_sequence",
+      "label": "100 kb genomic sequence region",
+      "size": 6,
+      "type": "genetic_region",
+      "description": "Approximately 100 kilobase genomic region analyzed containing the 31 photosynthesis-related open reading frames",
+      "reference": "Xiong et al., 2000"
+    },
+    {
+      "id": "porphyrin_biosynthesis",
+      "label": "Porphyrin biosynthesis pathway",
+      "size": 6,
+      "type": "biochemical_pathway",
+      "description": "Biosynthetic pathway for porphyrin compounds, precursors to photosynthetic pigments, identified among the 31 photosynthesis-related genes",
+      "reference": "Xiong et al., 2000"
+    },
+    {
+      "id": "photosynthesis_evolution",
+      "label": "Early evolution of photosynthesis",
+      "size": 10,
+      "type": "evolutionary_process",
+      "description": "The evolutionary development of photosynthetic capabilities in early Earth organisms, with new molecular evidence reshaping understanding of lineage emergence and biosynthetic pathway evolution",
+      "reference": "Xiong et al., 2000"
+    },
+    {
+      "id": "common_ancestor_oxygenic",
+      "label": "Last common ancestor of oxygenic photosynthesis",
+      "size": 7,
+      "type": "evolutionary_ancestor",
+      "description": "Hypothetical ancestral organism from which all oxygen-producing photosynthetic lineages evolved, with heliobacteria identified as most closely related",
+      "reference": "Xiong et al., 2000"
+    }
+  ],
+  "edges": [
+    {
+      "source": "chlorobium_tepidum",
+      "target": "photosynthesis_genes",
+      "label": "contains genomic sequences with",
+      "weight": 3
+    },
+    {
+      "source": "chloroflexus_aurantiacus",
+      "target": "photosynthesis_genes",
+      "label": "contains genomic sequences with",
+      "weight": 3
+    },
+    {
+      "source": "photosynthesis_genes",
+      "target": "bacteriochlorophyll_biosynthesis",
+      "label": "includes genes for",
+      "weight": 3
+    },
+    {
+      "source": "photosynthesis_genes",
+      "target": "carotenoid_biosynthesis",
+      "label": "includes genes for",
+      "weight": 3
+    },
+    {
+      "source": "photosynthesis_genes",
+      "target": "electron_transfer",
+      "label": "includes genes for",
+      "weight": 3
+    },
+    {
+      "source": "photosynthesis_genes",
+      "target": "porphyrin_biosynthesis",
+      "label": "includes genes for",
+      "weight": 3
+    },
+    {
+      "source": "phylogenetic_analysis",
+      "target": "heliobacteria",
+      "label": "identifies as closest to oxygenic ancestor",
+      "weight": 3
+    },
+    {
+      "source": "heliobacteria",
+      "target": "common_ancestor_oxygenic",
+      "label": "closest to",
+      "weight": 3
+    },
+    {
+      "source": "phylogenetic_analysis",
+      "target": "purple_bacteria",
+      "label": "identifies as earliest phototrophic lineage",
+      "weight": 3
+    },
+    {
+      "source": "chlorobium_tepidum",
+      "target": "chloroflexus_aurantiacus",
+      "label": "closest relatives according to phylogenetic analysis",
+      "weight": 2
+    },
+    {
+      "source": "bacteriochlorophyll_biosynthesis",
+      "target": "chlorophyll_biosynthesis",
+      "label": "evolutionarily predates",
+      "weight": 3
+    },
+    {
+      "source": "bacteriochlorophyll_biosynthesis",
+      "target": "granick_hypothesis",
+      "label": "challenges predictions of",
+      "weight": 2
+    },
+    {
+      "source": "phylogenetic_analysis",
+      "target": "16s_rrna_analysis",
+      "label": "challenges conclusions of",
+      "weight": 2
+    },
+    {
+      "source": "phylogenetic_analysis",
+      "target": "hsp_analysis",
+      "label": "challenges conclusions of",
+      "weight": 2
+    },
+    {
+      "source": "photosynthesis_genes",
+      "target": "genomic_sequence",
+      "label": "identified within",
+      "weight": 2
+    },
+    {
+      "source": "photosynthesis_genes",
+      "target": "photosynthesis_evolution",
+      "label": "provides molecular evidence for",
+      "weight": 3
+    },
+    {
+      "source": "purple_bacteria",
+      "target": "photosynthesis_evolution",
+      "label": "earliest lineage in",
+      "weight": 3
+    },
+    {
+      "source": "common_ancestor_oxygenic",
+      "target": "oxygenic_photosynthesis",
+      "label": "ancestral to all",
+      "weight": 3
+    }
+  ]
+}

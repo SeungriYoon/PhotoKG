@@ -236,6 +236,16 @@ cd backend && npm run dev
 
 - [Installation Guide](INSTALLATION_GUIDE.md) - Detailed setup instructions
 - [API Guide](API_Guide.md) - Complete API documentation
+- `Evaluation/` - Ground truth and model-specific extraction logs for benchmarking
+
+## 📈 Evaluation Assets
+
+The `Evaluation/` folder bundles the datasets we used to benchmark GPT-4.1-nano, GPT-4o-mini, Gemini-1.5-flash, and Gemini-2.5-flash:
+
+- `01. Ground Truth/` — Human-curated entity/relationship annotations.
+- `02.~05.` — Model outputs (five samples each) aligned with ground truth IDs for quick diffing.
+
+You can plug these JSON files into your own scoring scripts or extend them with additional model runs.
 
 ## 🤝 Contributing
 

@@ -1,0 +1,252 @@
+{
+  "nodes": [
+    {
+      "id": "traditional_par",
+      "label": "Traditional PAR (400-700 nm)",
+      "size": 8,
+      "type": "radiation_parameter",
+      "description": "Photosynthetically active radiation traditionally defined as wavelengths from 400 to 700 nanometers, excluding far-red photons which this study shows significantly underestimates photosynthetic capacity",
+      "reference": "Zhen et al., 2022"
+    },
+    {
+      "id": "far_red_photons",
+      "label": "Far-red photons (701-750 nm)",
+      "size": 9,
+      "type": "radiation_parameter",
+      "description": "Photons in the 701-750 nm wavelength range that contribute significantly to photosynthesis, especially in shaded environments where they can constitute over 50% of incident photons",
+      "reference": "Zhen et al., 2022"
+    },
+    {
+      "id": "psi_excitation",
+      "label": "PSI preferential excitation",
+      "size": 7,
+      "type": "physiological_process",
+      "description": "Longer-wavelength far-red photons preferentially excite Photosystem I, complementing PSII excitation by shorter wavelengths and leading to increased photosynthetic efficiency through balanced excitation",
+      "reference": "Zhen et al., 2022"
+    },
+    {
+      "id": "psii_efficiency",
+      "label": "PSII efficiency enhancement",
+      "size": 6,
+      "type": "physiological_process",
+      "description": "Enhancement of Photosystem II efficiency through synergistic interactions between far-red and shorter-wavelength photons, demonstrated in controlled experimental settings",
+      "reference": "Zhen et al., 2022"
+    },
+    {
+      "id": "sunlit_contribution",
+      "label": "Sunlit photosynthesis contribution (24-25%)",
+      "size": 8,
+      "type": "quantitative_measurement",
+      "description": "Far-red photons account for approximately 24-25% of leaf gross photosynthesis under full sun conditions, representing a substantial contribution to total photosynthetic output",
+      "reference": "Zhen et al., 2022"
+    },
+    {
+      "id": "shade_contribution",
+      "label": "Shade photosynthesis contribution (10-14%)",
+      "size": 7,
+      "type": "quantitative_measurement",
+      "description": "Far-red photons contribute 10-14% of leaf gross photosynthesis in deep shade conditions, despite their high relative abundance in shaded environments",
+      "reference": "Zhen et al., 2022"
+    },
+    {
+      "id": "shaded_environments",
+      "label": "Shaded environments",
+      "size": 7,
+      "type": "environmental_condition",
+      "description": "Environmental conditions where far-red photons can constitute over 50% of incident photons and are utilized efficiently for photosynthesis, particularly important for understory vegetation",
+      "reference": "Zhen et al., 2022"
+    },
+    {
+      "id": "photosynthetic_synergy",
+      "label": "Wavelength synergistic interactions",
+      "size": 8,
+      "type": "physiological_process",
+      "description": "Synergistic interactions between far-red photons and shorter-wavelength photons that significantly enhance photosynthesis beyond what would be expected from individual wavelength contributions",
+      "reference": "Zhen et al., 2022"
+    },
+    {
+      "id": "filter_experiments",
+      "label": "Filter removal experiments",
+      "size": 6,
+      "type": "experimental_method",
+      "description": "Experimental methodology using filters to remove photons above 700 nm to demonstrate the significant contribution of far-red photons to photosynthetic processes",
+      "reference": "Zhen et al., 2022"
+    },
+    {
+      "id": "leaf_gross_photosynthesis",
+      "label": "Leaf gross photosynthesis",
+      "size": 7,
+      "type": "physiological_process",
+      "description": "Overall photosynthetic carbon fixation at the leaf level, measured to quantify the specific contributions of far-red photons under different light conditions",
+      "reference": "Zhen et al., 2022"
+    },
+    {
+      "id": "canopy_environments",
+      "label": "Canopy environments",
+      "size": 6,
+      "type": "environmental_condition",
+      "description": "Forest canopy conditions where current models excluding photons >700 nm may significantly underestimate actual photosynthetic rates due to high far-red photon availability",
+      "reference": "Zhen et al., 2022"
+    },
+    {
+      "id": "photosynthesis_models",
+      "label": "Photosynthesis measurement models",
+      "size": 7,
+      "type": "scientific_methodology",
+      "description": "Current photosynthetic models and measurement techniques that exclude photons >700 nm and may underestimate actual photosynthesis, particularly in canopy and shade environments",
+      "reference": "Zhen et al., 2022"
+    },
+    {
+      "id": "plant_productivity",
+      "label": "Plant productivity assessment",
+      "size": 6,
+      "type": "ecological_parameter",
+      "description": "Measurement and understanding of plant productivity that requires inclusion of far-red photon contributions for accurate assessment at various ecological scales",
+      "reference": "Zhen et al., 2022"
+    },
+    {
+      "id": "carbon_cycling",
+      "label": "Global carbon cycle",
+      "size": 7,
+      "type": "biogeochemical_process",
+      "description": "Global carbon cycling processes that may be better understood by incorporating far-red photon contributions to photosynthesis, affecting climate change impact assessments",
+      "reference": "Zhen et al., 2022"
+    },
+    {
+      "id": "ecosystem_dynamics",
+      "label": "Ecosystem dynamics modeling",
+      "size": 6,
+      "type": "ecological_modeling",
+      "description": "Ecosystem-scale dynamic modeling that should incorporate far-red photons to better understand plant productivity and ecosystem functioning under natural light conditions",
+      "reference": "Zhen et al., 2022"
+    },
+    {
+      "id": "crop_improvement",
+      "label": "Crop improvement applications",
+      "size": 5,
+      "type": "agricultural_application",
+      "description": "Agricultural applications for crop improvement that could benefit from understanding and utilizing far-red photon contributions to enhance crop photosynthetic efficiency",
+      "reference": "Zhen et al., 2022"
+    },
+    {
+      "id": "natural_light_conditions",
+      "label": "Natural light conditions",
+      "size": 6,
+      "type": "environmental_condition",
+      "description": "Real-world natural light conditions where far-red photons play a significant role in photosynthesis, contrasting with controlled laboratory conditions that may exclude these wavelengths",
+      "reference": "Zhen et al., 2022"
+    },
+    {
+      "id": "par_redefinition",
+      "label": "PAR definition revision",
+      "size": 8,
+      "type": "scientific_paradigm",
+      "description": "Proposed revision of the photosynthetically active radiation definition to include far-red wavelengths (701-750 nm) for more accurate photosynthetic measurements and modeling",
+      "reference": "Zhen et al., 2022"
+    }
+  ],
+  "edges": [
+    {
+      "source": "far_red_photons",
+      "target": "psi_excitation",
+      "label": "preferentially excite",
+      "weight": 3
+    },
+    {
+      "source": "far_red_photons",
+      "target": "sunlit_contribution",
+      "label": "contribute to photosynthesis",
+      "weight": 3
+    },
+    {
+      "source": "far_red_photons",
+      "target": "shade_contribution",
+      "label": "contribute to photosynthesis",
+      "weight": 3
+    },
+    {
+      "source": "far_red_photons",
+      "target": "shaded_environments",
+      "label": "constitute >50% of incident photons in",
+      "weight": 2
+    },
+    {
+      "source": "photosynthetic_synergy",
+      "target": "psii_efficiency",
+      "label": "enhances",
+      "weight": 3
+    },
+    {
+      "source": "psi_excitation",
+      "target": "psii_efficiency",
+      "label": "complements for balanced excitation",
+      "weight": 2
+    },
+    {
+      "source": "filter_experiments",
+      "target": "far_red_photons",
+      "label": "demonstrates contribution of",
+      "weight": 2
+    },
+    {
+      "source": "sunlit_contribution",
+      "target": "leaf_gross_photosynthesis",
+      "label": "comprises 24-25% of",
+      "weight": 3
+    },
+    {
+      "source": "shade_contribution",
+      "target": "leaf_gross_photosynthesis",
+      "label": "comprises 10-14% of",
+      "weight": 3
+    },
+    {
+      "source": "traditional_par",
+      "target": "far_red_photons",
+      "label": "excludes",
+      "weight": 2
+    },
+    {
+      "source": "photosynthesis_models",
+      "target": "canopy_environments",
+      "label": "underestimate photosynthesis in",
+      "weight": 2
+    },
+    {
+      "source": "photosynthesis_models",
+      "target": "shaded_environments",
+      "label": "underestimate photosynthesis in",
+      "weight": 2
+    },
+    {
+      "source": "par_redefinition",
+      "target": "far_red_photons",
+      "label": "should include",
+      "weight": 3
+    },
+    {
+      "source": "par_redefinition",
+      "target": "plant_productivity",
+      "label": "improves assessment of",
+      "weight": 2
+    },
+    {
+      "source": "par_redefinition",
+      "target": "carbon_cycling",
+      "label": "improves understanding of",
+      "weight": 2
+    },
+    {
+      "source": "ecosystem_dynamics",
+      "target": "natural_light_conditions",
+      "label": "should account for",
+      "weight": 2
+    },
+    {
+      "source": "crop_improvement",
+      "target": "far_red_photons",
+      "label": "could utilize",
+      "weight": 1
+    }
+  ]
+}

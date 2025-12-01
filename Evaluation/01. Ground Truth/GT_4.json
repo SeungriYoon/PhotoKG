@@ -1,0 +1,252 @@
+{
+  "nodes": [
+    {
+      "id": "c3_photosynthesis",
+      "label": "C3 Photosynthesis",
+      "size": 9,
+      "type": "physiological_process",
+      "description": "Carbon fixation pathway using Rubisco enzyme directly, with temperature-dependent limitations involving Rubisco capacity, RuBP regeneration, and Pi regeneration",
+      "reference": "Sage and Kubien, 2007"
+    },
+    {
+      "id": "c4_photosynthesis",
+      "label": "C4 Photosynthesis",
+      "size": 9,
+      "type": "physiological_process",
+      "description": "Carbon fixation pathway with CO2 concentrating mechanism, showing Rubisco limitations below 20°C in chilling-tolerant species",
+      "reference": "Sage and Kubien, 2007"
+    },
+    {
+      "id": "rubisco",
+      "label": "Rubisco Enzyme",
+      "size": 8,
+      "type": "biochemical_parameter",
+      "description": "Key carbon-fixing enzyme that dominates photosynthetic limitations at low temperatures and low CO2 conditions, particularly below 20°C in C4 plants",
+      "reference": "Sage and Kubien, 2007"
+    },
+    {
+      "id": "rubisco_activase",
+      "label": "Rubisco Activase",
+      "size": 7,
+      "type": "biochemical_parameter",
+      "description": "Heat-labile regulatory enzyme that becomes a major limitation at elevated temperatures, with stability enhanced through acclimation mechanisms",
+      "reference": "Sage and Kubien, 2007"
+    },
+    {
+      "id": "rubp_regeneration",
+      "label": "RuBP Regeneration",
+      "size": 6,
+      "type": "biochemical_parameter",
+      "description": "Process of regenerating ribulose-1,5-bisphosphate, one of the three main limitations in C3 photosynthesis along with Rubisco capacity and Pi regeneration",
+      "reference": "Sage and Kubien, 2007"
+    },
+    {
+      "id": "pi_regeneration",
+      "label": "Pi Regeneration",
+      "size": 7,
+      "type": "biochemical_parameter",
+      "description": "Inorganic phosphate regeneration process that becomes a dominant limitation at higher temperatures, enhanced through acclimation in C3 plants",
+      "reference": "Sage and Kubien, 2007"
+    },
+    {
+      "id": "electron_transport",
+      "label": "Electron Transport",
+      "size": 7,
+      "type": "biochemical_parameter",
+      "description": "Photosynthetic electron transport chain that becomes limiting at higher temperatures and is enhanced through acclimation, expected to be more limiting under global warming",
+      "reference": "Sage and Kubien, 2007"
+    },
+    {
+      "id": "thermal_optimum",
+      "label": "Thermal Optimum",
+      "size": 6,
+      "type": "environmental_factor",
+      "description": "Temperature at which photosynthesis is maximized, shifts with growth conditions and can be adjusted through acclimation mechanisms",
+      "reference": "Sage and Kubien, 2007"
+    },
+    {
+      "id": "cold_adapted_range",
+      "label": "Cold-Adapted Temperature Range (0-30°C)",
+      "size": 5,
+      "type": "environmental_factor",
+      "description": "Species-specific safe operating temperature range for cold-adapted plants, typically between 0°C and 30°C",
+      "reference": "Sage and Kubien, 2007"
+    },
+    {
+      "id": "warm_crop_range",
+      "label": "Warm-Season Crop Range (7-40°C)",
+      "size": 5,
+      "type": "environmental_factor",
+      "description": "Species-specific safe operating temperature range for warm-season crops, typically between 7°C and 40°C",
+      "reference": "Sage and Kubien, 2007"
+    },
+    {
+      "id": "tropical_range",
+      "label": "Tropical/Desert Range (15-45°C)",
+      "size": 5,
+      "type": "environmental_factor",
+      "description": "Species-specific safe operating temperature range for tropical or desert species, typically between 15°C and 45°C",
+      "reference": "Sage and Kubien, 2007"
+    },
+    {
+      "id": "temperature_acclimation",
+      "label": "Temperature Acclimation",
+      "size": 8,
+      "type": "physiological_process",
+      "description": "Adaptive process that adjusts thermal optimum and enhances assimilation rates, with different mechanisms in C3 and C4 plants",
+      "reference": "Sage and Kubien, 2007"
+    },
+    {
+      "id": "c4_cycle_enzymes",
+      "label": "C4 Cycle Enzymes",
+      "size": 6,
+      "type": "biochemical_parameter",
+      "description": "Enzymes involved in C4 carbon fixation pathway that are increased in C4 plants from warm habitats when acclimating to cooler conditions",
+      "reference": "Sage and Kubien, 2007"
+    },
+    {
+      "id": "low_co2_conditions",
+      "label": "Low CO2 Conditions",
+      "size": 5,
+      "type": "environmental_factor",
+      "description": "Environmental condition where Rubisco capacity dominates photosynthetic limitations across various temperatures in C3 plants",
+      "reference": "Sage and Kubien, 2007"
+    },
+    {
+      "id": "high_co2_conditions",
+      "label": "High CO2 Conditions",
+      "size": 5,
+      "type": "environmental_factor",
+      "description": "Environmental condition expected under global change that will shift limitations toward electron transport and Rubisco activase constraints",
+      "reference": "Sage and Kubien, 2007"
+    },
+    {
+      "id": "global_warming",
+      "label": "Global Warming",
+      "size": 7,
+      "type": "environmental_factor",
+      "description": "Climate change factor expected to shift photosynthetic limitations toward electron transport and Rubisco activase constraints under warmer, high CO2 conditions",
+      "reference": "Sage and Kubien, 2007"
+    },
+    {
+      "id": "chilling_tolerance",
+      "label": "Chilling Tolerance",
+      "size": 5,
+      "type": "physiological_trait",
+      "description": "Plant characteristic that determines sensitivity to low temperatures, with chilling-tolerant C4 species showing Rubisco limitations below 20°C",
+      "reference": "Sage and Kubien, 2007"
+    },
+    {
+      "id": "photosynthetic_efficiency",
+      "label": "Photosynthetic Efficiency",
+      "size": 6,
+      "type": "physiological_parameter",
+      "description": "Overall measure of photosynthetic performance that is affected by temperature limitations and expected to decline under future thermal environments",
+      "reference": "Sage and Kubien, 2007"
+    }
+  ],
+  "edges": [
+    {
+      "source": "c3_photosynthesis",
+      "target": "rubisco",
+      "label": "limited_by_at_low_temperatures",
+      "weight": 3
+    },
+    {
+      "source": "c3_photosynthesis",
+      "target": "pi_regeneration",
+      "label": "limited_by_at_higher_temperatures",
+      "weight": 3
+    },
+    {
+      "source": "c3_photosynthesis",
+      "target": "rubp_regeneration",
+      "label": "involves_limitation_process",
+      "weight": 2
+    },
+    {
+      "source": "c3_photosynthesis",
+      "target": "rubisco_activase",
+      "label": "limited_by_at_elevated_temperatures",
+      "weight": 3
+    },
+    {
+      "source": "c4_photosynthesis",
+      "target": "rubisco",
+      "label": "limited_by_below_20C",
+      "weight": 3
+    },
+    {
+      "source": "c4_photosynthesis",
+      "target": "c4_cycle_enzymes",
+      "label": "utilizes_pathway_enzymes",
+      "weight": 2
+    },
+    {
+      "source": "rubisco",
+      "target": "low_co2_conditions",
+      "label": "dominates_limitation_under",
+      "weight": 3
+    },
+    {
+      "source": "rubisco_activase",
+      "target": "global_warming",
+      "label": "becomes_more_limiting_under",
+      "weight": 2
+    },
+    {
+      "source": "electron_transport",
+      "target": "global_warming",
+      "label": "becomes_more_limiting_under",
+      "weight": 2
+    },
+    {
+      "source": "temperature_acclimation",
+      "target": "pi_regeneration",
+      "label": "enhances_capacity_in_C3",
+      "weight": 2
+    },
+    {
+      "source": "temperature_acclimation",
+      "target": "electron_transport",
+      "label": "enhances_capacity",
+      "weight": 2
+    },
+    {
+      "source": "temperature_acclimation",
+      "target": "rubisco_activase",
+      "label": "improves_stability",
+      "weight": 2
+    },
+    {
+      "source": "temperature_acclimation",
+      "target": "thermal_optimum",
+      "label": "adjusts_temperature_response",
+      "weight": 2
+    },
+    {
+      "source": "high_co2_conditions",
+      "target": "electron_transport",
+      "label": "shifts_limitation_toward",
+      "weight": 2
+    },
+    {
+      "source": "high_co2_conditions",
+      "target": "rubisco_activase",
+      "label": "shifts_limitation_toward",
+      "weight": 2
+    },
+    {
+      "source": "chilling_tolerance",
+      "target": "rubisco",
+      "label": "determines_low_temperature_limitation",
+      "weight": 2
+    },
+    {
+      "source": "global_warming",
+      "target": "photosynthetic_efficiency",
+      "label": "expected_to_affect",
+      "weight": 2
+    }
+  ]
+}

@@ -1,0 +1,348 @@
+{
+  "nodes": [
+    {
+      "id": "node1",
+      "label": "C3 Photosynthesis",
+      "size": 8,
+      "type": "physiological_process",
+      "description": "The photosynthetic process in C3 plants, characterized by the initial fixation of CO2 into a 3-carbon compound.  Limitations include Rubisco capacity, RuBP regeneration, and Pi regeneration at different temperatures.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node2",
+      "label": "C4 Photosynthesis",
+      "size": 8,
+      "type": "physiological_process",
+      "description": "The photosynthetic process in C4 plants, involving an initial CO2 fixation step in mesophyll cells followed by a second fixation in bundle sheath cells. Rubisco limitations are more pronounced at lower temperatures in some species.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node3",
+      "label": "Rubisco",
+      "size": 9,
+      "type": "enzyme",
+      "description": "Ribulose-1,5-bisphosphate carboxylase/oxygenase; the key enzyme in carbon fixation. Its capacity is a major limitation of photosynthesis, especially at low temperatures and CO2 concentrations in C3 plants.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node4",
+      "label": "Rubisco Activase",
+      "size": 7,
+      "type": "enzyme",
+      "description": "Enzyme that activates Rubisco. Its heat lability becomes a significant limitation at higher temperatures in C3 plants.  Global warming may increase its importance as a limiting factor.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node5",
+      "label": "RuBP Regeneration",
+      "size": 7,
+      "type": "biochemical_process",
+      "description": "The regeneration of ribulose-1,5-bisphosphate (RuBP), a crucial substrate for Rubisco.  A limitation at higher temperatures in C3 photosynthesis.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node6",
+      "label": "Pi Regeneration",
+      "size": 7,
+      "type": "biochemical_process",
+      "description": "The regeneration of inorganic phosphate (Pi), essential for ATP synthesis and RuBP regeneration. A limitation at higher temperatures in C3 photosynthesis.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node7",
+      "label": "Electron Transport",
+      "size": 7,
+      "type": "biochemical_process",
+      "description": "The flow of electrons during photosynthesis, crucial for ATP and NADPH production.  Becomes a more significant limitation at higher temperatures and under high CO2 conditions.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node8",
+      "label": "Temperature",
+      "size": 9,
+      "type": "environmental_factor",
+      "description": "Ambient temperature significantly impacts photosynthetic rates. Optimal temperature ranges vary among species (0–30°C in cold-adapted, 7–40°C in warm-season crops, 15–45°C in tropical/desert species).",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node9",
+      "label": "CO2 Concentration",
+      "size": 7,
+      "type": "environmental_factor",
+      "description": "The concentration of carbon dioxide in the atmosphere affects photosynthetic rates. Low CO2 accentuates Rubisco limitations in C3 plants. High CO2 may exacerbate electron transport and Rubisco activase limitations.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node10",
+      "label": "Acclimation",
+      "size": 7,
+      "type": "physiological_process",
+      "description": "The adjustment of photosynthetic processes in response to changing environmental conditions, such as temperature.  Mechanisms include enhancing Pi regeneration, electron transport, and Rubisco activase stability in C3 plants, and increasing Rubisco and C4 cycle enzymes in C4 plants.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node11",
+      "label": "Thermal Optimum",
+      "size": 6,
+      "type": "physiological_parameter",
+      "description": "The temperature at which photosynthesis operates most efficiently. This shifts with growth conditions and acclimation.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node12",
+      "label": "Photosynthetic Assimilation Rate",
+      "size": 7,
+      "type": "measurement",
+      "description": "The rate of carbon fixation during photosynthesis. Acclimation can enhance this rate.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node13",
+      "label": "C4 Cycle Enzymes",
+      "size": 6,
+      "type": "enzyme",
+      "description": "Enzymes involved in the C4 photosynthetic pathway. Increased levels are observed in C4 plants acclimated to cooler conditions.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node14",
+      "label": "Global Change",
+      "size": 8,
+      "type": "environmental_factor",
+      "description": "Climate change, particularly global warming and increased CO2 concentrations, is expected to alter photosynthetic limitations and plant productivity.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node15",
+      "label": "Low Temperature Limitation",
+      "size": 6,
+      "type": "physiological_process",
+      "description": "Limitations in photosynthesis at low temperatures, primarily due to Rubisco capacity in C3 plants and Rubisco in some C4 plants.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node16",
+      "label": "High Temperature Limitation",
+      "size": 6,
+      "type": "physiological_process",
+      "description": "Limitations in photosynthesis at high temperatures, primarily due to Rubisco activase, electron transport, and Pi regeneration in C3 plants.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node17",
+      "label": "Chilling Tolerance",
+      "size": 6,
+      "type": "physiological_trait",
+      "description": "The ability of plants to tolerate low temperatures without significant damage to photosynthetic processes.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node18",
+      "label": "Warm Habitat",
+      "size": 6,
+      "type": "environmental_factor",
+      "description": "Habitats characterized by consistently warm temperatures. C4 plants from these habitats show different acclimation responses compared to those from cooler habitats.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node19",
+      "label": "Cooler Habitat",
+      "size": 6,
+      "type": "environmental_factor",
+      "description": "Habitats characterized by cooler temperatures. C4 plants from these habitats show increased Rubisco and C4 cycle enzymes upon acclimation to cooler conditions.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node20",
+      "label": "Photosynthetic Efficiency",
+      "size": 7,
+      "type": "physiological_parameter",
+      "description": "The overall efficiency of the photosynthetic process in converting light energy into chemical energy.  Affected by limitations in electron transport and Rubisco activase under global warming.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node21",
+      "label": "Plant Productivity",
+      "size": 7,
+      "type": "physiological_parameter",
+      "description": "The rate at which plants produce biomass.  Influenced by photosynthetic efficiency and limitations under climate change.",
+      "reference": "Author et al., Year"
+    }
+  ],
+  "edges": [
+    {
+      "source": "node1",
+      "target": "node3",
+      "label": "limited by",
+      "weight": 3
+    },
+    {
+      "source": "node1",
+      "target": "node5",
+      "label": "limited by",
+      "weight": 2
+    },
+    {
+      "source": "node1",
+      "target": "node6",
+      "label": "limited by",
+      "weight": 2
+    },
+    {
+      "source": "node1",
+      "target": "node4",
+      "label": "limited by at high temperatures",
+      "weight": 2
+    },
+    {
+      "source": "node1",
+      "target": "node7",
+      "label": "limited by at high temperatures",
+      "weight": 2
+    },
+    {
+      "source": "node1",
+      "target": "node8",
+      "label": "affected by",
+      "weight": 3
+    },
+    {
+      "source": "node1",
+      "target": "node9",
+      "label": "affected by",
+      "weight": 2
+    },
+    {
+      "source": "node1",
+      "target": "node10",
+      "label": "undergoes",
+      "weight": 2
+    },
+    {
+      "source": "node2",
+      "target": "node3",
+      "label": "limited by at low temperatures",
+      "weight": 2
+    },
+    {
+      "source": "node2",
+      "target": "node8",
+      "label": "affected by",
+      "weight": 3
+    },
+    {
+      "source": "node2",
+      "target": "node9",
+      "label": "affected by",
+      "weight": 2
+    },
+    {
+      "source": "node2",
+      "target": "node10",
+      "label": "undergoes",
+      "weight": 2
+    },
+    {
+      "source": "node2",
+      "target": "node13",
+      "label": "contains",
+      "weight": 2
+    },
+    {
+      "source": "node10",
+      "target": "node6",
+      "label": "enhances",
+      "weight": 2
+    },
+    {
+      "source": "node10",
+      "target": "node7",
+      "label": "enhances",
+      "weight": 2
+    },
+    {
+      "source": "node10",
+      "target": "node4",
+      "label": "enhances stability of",
+      "weight": 2
+    },
+    {
+      "source": "node10",
+      "target": "node3",
+      "label": "increases",
+      "weight": 2
+    },
+    {
+      "source": "node10",
+      "target": "node13",
+      "label": "increases",
+      "weight": 2
+    },
+    {
+      "source": "node14",
+      "target": "node7",
+      "label": "increases limitation in",
+      "weight": 2
+    },
+    {
+      "source": "node14",
+      "target": "node4",
+      "label": "increases limitation in",
+      "weight": 2
+    },
+    {
+      "source": "node14",
+      "target": "node20",
+      "label": "reduces",
+      "weight": 2
+    },
+    {
+      "source": "node14",
+      "target": "node21",
+      "label": "reduces",
+      "weight": 2
+    },
+    {
+      "source": "node15",
+      "target": "node3",
+      "label": "due to",
+      "weight": 3
+    },
+    {
+      "source": "node16",
+      "target": "node4",
+      "label": "due to",
+      "weight": 3
+    },
+    {
+      "source": "node16",
+      "target": "node7",
+      "label": "due to",
+      "weight": 2
+    },
+    {
+      "source": "node16",
+      "target": "node6",
+      "label": "due to",
+      "weight": 2
+    },
+    {
+      "source": "node17",
+      "target": "node15",
+      "label": "resistant to",
+      "weight": 2
+    },
+    {
+      "source": "node18",
+      "target": "node10",
+      "label": "shows different acclimation in",
+      "weight": 2
+    },
+    {
+      "source": "node19",
+      "target": "node10",
+      "label": "shows different acclimation in",
+      "weight": 2
+    }
+  ]
+}

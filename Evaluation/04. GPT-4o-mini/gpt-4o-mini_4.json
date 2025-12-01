@@ -1,0 +1,262 @@
+{
+  "nodes": [
+    {
+      "id": "node_1",
+      "label": "C3 Photosynthesis",
+      "size": 8,
+      "type": "physiological_process",
+      "description": "Photosynthesis pathway in plants where CO2 is fixed into a 3-carbon compound. Dominated by Rubisco capacity at low temperatures and low CO2.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_2",
+      "label": "C4 Photosynthesis",
+      "size": 8,
+      "type": "physiological_process",
+      "description": "Photosynthesis pathway in plants that efficiently fix CO2 into a 4-carbon compound. Rubisco limits photosynthesis below 20°C in some species.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_3",
+      "label": "Rubisco",
+      "size": 7,
+      "type": "biochemical_parameter",
+      "description": "Ribulose-1,5-bisphosphate carboxylase/oxygenase, an enzyme critical for carbon fixation in photosynthesis. Its capacity limits photosynthesis at low temperatures.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_4",
+      "label": "Rubisco Activase",
+      "size": 6,
+      "type": "biochemical_parameter",
+      "description": "An enzyme that activates Rubisco. Its stability is affected by temperature, influencing photosynthetic efficiency.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_5",
+      "label": "Pi Regeneration",
+      "size": 5,
+      "type": "biochemical_process",
+      "description": "The process of regenerating inorganic phosphate (Pi) necessary for the Calvin cycle. Becomes a limitation at higher temperatures.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_6",
+      "label": "Electron Transport",
+      "size": 5,
+      "type": "biochemical_process",
+      "description": "The process of transferring electrons through a series of proteins in the thylakoid membrane, crucial for ATP and NADPH production.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_7",
+      "label": "Thermal Optimum",
+      "size": 6,
+      "type": "environmental_factor",
+      "description": "The temperature range at which photosynthesis is maximized. Varies with species and acclimation conditions.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_8",
+      "label": "Acclimation",
+      "size": 7,
+      "type": "physiological_process",
+      "description": "The process by which plants adjust their physiological processes to cope with changing environmental conditions, such as temperature.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_9",
+      "label": "Cold-adapted Plants",
+      "size": 5,
+      "type": "biological_category",
+      "description": "Plants that thrive in cooler temperatures, typically showing optimal photosynthesis between 0–30°C.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_10",
+      "label": "Warm-season Crops",
+      "size": 5,
+      "type": "biological_category",
+      "description": "Crops that grow best in warmer temperatures, with optimal photosynthesis between 7–40°C.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_11",
+      "label": "Tropical/Desert Species",
+      "size": 5,
+      "type": "biological_category",
+      "description": "Plants adapted to hot climates, with optimal photosynthesis between 15–45°C.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_12",
+      "label": "Global Change",
+      "size": 6,
+      "type": "environmental_factor",
+      "description": "Changes in climate patterns affecting ecosystems, expected to shift photosynthetic limitations towards electron transport and Rubisco activase.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_13",
+      "label": "High CO2 Conditions",
+      "size": 5,
+      "type": "environmental_factor",
+      "description": "Increased atmospheric CO2 levels, which can influence photosynthetic processes and limitations.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_14",
+      "label": "Photosynthetic Limitations",
+      "size": 7,
+      "type": "biochemical_parameter",
+      "description": "Factors that restrict the rate of photosynthesis, including Rubisco capacity, Pi regeneration, and electron transport.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_15",
+      "label": "Chilling-tolerant Species",
+      "size": 5,
+      "type": "biological_category",
+      "description": "Plant species that can tolerate low temperatures, where Rubisco limits photosynthesis below 20°C.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_16",
+      "label": "Rubisco and C4 Cycle Enzymes",
+      "size": 6,
+      "type": "biochemical_parameter",
+      "description": "Enzymes involved in the C4 photosynthetic pathway that increase in response to cooler acclimation conditions.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_17",
+      "label": "Photosynthetic Efficiency",
+      "size": 6,
+      "type": "biochemical_parameter",
+      "description": "The effectiveness of photosynthesis in converting light energy into chemical energy, influenced by temperature and acclimation.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_18",
+      "label": "Plant Productivity",
+      "size": 6,
+      "type": "biological_parameter",
+      "description": "The overall yield of biomass produced by plants, affected by photosynthetic efficiency and environmental conditions.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_19",
+      "label": "Temperature Response",
+      "size": 7,
+      "type": "physiological_process",
+      "description": "The reaction of plants to changes in temperature, crucial for understanding photosynthesis under climate change.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_20",
+      "label": "Modeling and Experimental Methods",
+      "size": 5,
+      "type": "methodology",
+      "description": "Techniques used to study plant responses to temperature, improving understanding of photosynthesis under varying conditions.",
+      "reference": "Author et al., Year"
+    }
+  ],
+  "edges": [
+    {
+      "source": "node_1",
+      "target": "node_3",
+      "label": "Rubisco capacity limits photosynthesis at low temperatures",
+      "weight": 2
+    },
+    {
+      "source": "node_1",
+      "target": "node_5",
+      "label": "Pi regeneration becomes limiting at higher temperatures",
+      "weight": 2
+    },
+    {
+      "source": "node_1",
+      "target": "node_6",
+      "label": "Electron transport limitations occur at high temperatures",
+      "weight": 2
+    },
+    {
+      "source": "node_2",
+      "target": "node_3",
+      "label": "Rubisco limits photosynthesis below 20°C in chilling-tolerant C4 species",
+      "weight": 2
+    },
+    {
+      "source": "node_2",
+      "target": "node_16",
+      "label": "C4 plants increase Rubisco and C4 cycle enzymes when acclimating",
+      "weight": 2
+    },
+    {
+      "source": "node_1",
+      "target": "node_8",
+      "label": "C3 plants acclimate by enhancing Pi regeneration and electron transport",
+      "weight": 2
+    },
+    {
+      "source": "node_12",
+      "target": "node_14",
+      "label": "Global change shifts photosynthetic limitations towards electron transport",
+      "weight": 2
+    },
+    {
+      "source": "node_13",
+      "target": "node_14",
+      "label": "High CO2 conditions influence photosynthetic limitations",
+      "weight": 2
+    },
+    {
+      "source": "node_19",
+      "target": "node_1",
+      "label": "Temperature response affects C3 photosynthesis",
+      "weight": 2
+    },
+    {
+      "source": "node_19",
+      "target": "node_2",
+      "label": "Temperature response affects C4 photosynthesis",
+      "weight": 2
+    },
+    {
+      "source": "node_17",
+      "target": "node_1",
+      "label": "Photosynthetic efficiency is influenced by C3 photosynthesis",
+      "weight": 2
+    },
+    {
+      "source": "node_18",
+      "target": "node_17",
+      "label": "Plant productivity is affected by photosynthetic efficiency",
+      "weight": 2
+    },
+    {
+      "source": "node_8",
+      "target": "node_19",
+      "label": "Acclimation strategies are part of temperature response",
+      "weight": 2
+    },
+    {
+      "source": "node_7",
+      "target": "node_1",
+      "label": "Thermal optimum varies for C3 photosynthesis",
+      "weight": 2
+    },
+    {
+      "source": "node_7",
+      "target": "node_2",
+      "label": "Thermal optimum varies for C4 photosynthesis",
+      "weight": 2
+    },
+    {
+      "source": "node_20",
+      "target": "node_19",
+      "label": "Modeling methods improve understanding of temperature response",
+      "weight": 2
+    }
+  ]
+}

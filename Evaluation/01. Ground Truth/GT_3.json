@@ -1,0 +1,280 @@
+{
+  "nodes": [
+    {
+      "id": "rubisco_enzyme",
+      "label": "Rubisco enzyme",
+      "size": 8,
+      "type": "biochemical_parameter",
+      "description": "The primary carbon-fixing enzyme in C3 photosynthesis, characterized by slow catalytic rate and dual carboxylase/oxygenase activity leading to photorespiration and energy loss",
+      "reference": "C4 Rice Consortium research"
+    },
+    {
+      "id": "c3_photosynthesis",
+      "label": "C3 photosynthesis in rice",
+      "size": 7,
+      "type": "physiological_process",
+      "description": "Current photosynthetic mechanism in rice, primarily driven by Rubisco, with inefficiencies due to photorespiration and limited CO2 concentration around the enzyme",
+      "reference": "C4 Rice Consortium research"
+    },
+    {
+      "id": "c4_photosynthesis",
+      "label": "C4 photosynthesis",
+      "size": 9,
+      "type": "physiological_process",
+      "description": "Advanced photosynthetic pathway that concentrates CO2 around Rubisco, resulting in higher yields and improved water and nitrogen use efficiency, especially under warm, semi-arid conditions",
+      "reference": "C4 Rice Consortium research"
+    },
+    {
+      "id": "photorespiration",
+      "label": "Photorespiration",
+      "size": 6,
+      "type": "physiological_process",
+      "description": "Energy-wasteful process in C3 plants caused by Rubisco's oxygenase activity, leading to reduced photosynthetic efficiency",
+      "reference": "von Caemmerer et al. 2012"
+    },
+    {
+      "id": "c4_evolution",
+      "label": "C4 pathway evolution",
+      "size": 7,
+      "type": "evolutionary_process",
+      "description": "C4 photosynthesis has independently evolved over 60 times in different plant taxa, demonstrating convergent evolution of specialized leaf anatomy and biochemistry",
+      "reference": "von Caemmerer et al. 2012"
+    },
+    {
+      "id": "maize_sorghum",
+      "label": "Maize and sorghum",
+      "size": 6,
+      "type": "plant_species",
+      "description": "Natural C4 plants used as model species for understanding C4 photosynthetic mechanisms and higher resource use efficiency",
+      "reference": "von Caemmerer et al. 2012"
+    },
+    {
+      "id": "rice_species",
+      "label": "Rice (C3 crop)",
+      "size": 8,
+      "type": "plant_species",
+      "description": "Target crop for C4 engineering to enhance yields through improved photosynthetic capacity and resource use efficiency",
+      "reference": "von Caemmerer et al. 2012"
+    },
+    {
+      "id": "c4_leaf_anatomy",
+      "label": "C4 leaf anatomy",
+      "size": 7,
+      "type": "anatomical_structure",
+      "description": "Specialized leaf structure in C4 plants featuring modified vein spacing, chloroplast distribution, and cell specialization necessary for efficient C4 function",
+      "reference": "von Caemmerer et al. 2012"
+    },
+    {
+      "id": "vein_density",
+      "label": "Vein density modification",
+      "size": 6,
+      "type": "anatomical_parameter",
+      "description": "Critical anatomical feature requiring modification in rice to support C4 photosynthesis, involving changes to vascular bundle spacing and distribution",
+      "reference": "von Caemmerer et al. 2012"
+    },
+    {
+      "id": "chloroplast_distribution",
+      "label": "Chloroplast distribution",
+      "size": 6,
+      "type": "cellular_structure",
+      "description": "Specialized arrangement of chloroplasts in C4 plants that differs from C3 plants and poses engineering challenges for C4 rice development",
+      "reference": "von Caemmerer et al. 2012"
+    },
+    {
+      "id": "c4_genes",
+      "label": "C4 pathway genes",
+      "size": 7,
+      "type": "genetic_element",
+      "description": "Genes responsible for C4 photosynthetic enzymes and regulatory mechanisms that have been cloned and expressed in rice with varying degrees of success",
+      "reference": "von Caemmerer et al. 2012"
+    },
+    {
+      "id": "setaria_viridis",
+      "label": "Setaria viridis",
+      "size": 5,
+      "type": "plant_species",
+      "description": "Model C4 species used in mutagenesis and activation tagging studies to identify regulatory genes specific to C4 traits",
+      "reference": "von Caemmerer et al. 2012"
+    },
+    {
+      "id": "mutagenesis_studies",
+      "label": "Mutagenesis and activation tagging",
+      "size": 6,
+      "type": "research_method",
+      "description": "Genetic research approaches used in model C4 species to identify regulatory genes and understand C4 pathway development",
+      "reference": "von Caemmerer et al. 2012"
+    },
+    {
+      "id": "metabolite_transport",
+      "label": "Metabolite transport mechanisms",
+      "size": 6,
+      "type": "biochemical_process",
+      "description": "Enhanced transport systems required for C4 function that need to be engineered into rice for optimal C4 pathway operation",
+      "reference": "von Caemmerer et al. 2012"
+    },
+    {
+      "id": "water_use_efficiency",
+      "label": "Water use efficiency improvement",
+      "size": 6,
+      "type": "physiological_parameter",
+      "description": "One of the target benefits of C4 rice development, representing improved plant performance under water-limited conditions",
+      "reference": "von Caemmerer et al. 2012"
+    },
+    {
+      "id": "nitrogen_use_efficiency",
+      "label": "Nitrogen use efficiency improvement",
+      "size": 6,
+      "type": "physiological_parameter",
+      "description": "Expected benefit of C4 rice engineering, representing more efficient utilization of nitrogen resources for growth and yield",
+      "reference": "von Caemmerer et al. 2012"
+    },
+    {
+      "id": "co2_concentration",
+      "label": "CO2 concentration mechanism",
+      "size": 7,
+      "type": "biochemical_mechanism",
+      "description": "Core advantage of C4 photosynthesis involving specialized mechanisms to concentrate CO2 around Rubisco, reducing photorespiration",
+      "reference": "von Caemmerer et al. 2012"
+    },
+    {
+      "id": "yield_enhancement",
+      "label": "Rice yield enhancement",
+      "size": 8,
+      "type": "agricultural_outcome",
+      "description": "Primary goal of C4 rice development, aiming for increased crop productivity through improved photosynthetic efficiency",
+      "reference": "von Caemmerer et al. 2012"
+    },
+    {
+      "id": "warm_semiarid_conditions",
+      "label": "Warm semi-arid environmental conditions",
+      "size": 6,
+      "type": "environmental_factor",
+      "description": "Specific environmental conditions where C4 photosynthesis provides the greatest advantages over C3 photosynthesis",
+      "reference": "von Caemmerer et al. 2012"
+    },
+    {
+      "id": "cell_specialization",
+      "label": "Cell specialization for C4",
+      "size": 6,
+      "type": "cellular_process",
+      "description": "Required cellular differentiation and specialization in leaf tissues to support the compartmentalized C4 photosynthetic pathway",
+      "reference": "von Caemmerer et al. 2012"
+    }
+  ],
+  "edges": [
+    {
+      "source": "c3_photosynthesis",
+      "target": "rubisco_enzyme",
+      "label": "primarily driven by",
+      "weight": 3
+    },
+    {
+      "source": "rubisco_enzyme",
+      "target": "photorespiration",
+      "label": "causes through oxygenase activity",
+      "weight": 3
+    },
+    {
+      "source": "photorespiration",
+      "target": "yield_enhancement",
+      "label": "limits through energy loss",
+      "weight": 2
+    },
+    {
+      "source": "c4_photosynthesis",
+      "target": "co2_concentration",
+      "label": "utilizes mechanism for",
+      "weight": 3
+    },
+    {
+      "source": "co2_concentration",
+      "target": "rubisco_enzyme",
+      "label": "enhances efficiency of",
+      "weight": 2
+    },
+    {
+      "source": "c4_photosynthesis",
+      "target": "water_use_efficiency",
+      "label": "improves",
+      "weight": 2
+    },
+    {
+      "source": "c4_photosynthesis",
+      "target": "nitrogen_use_efficiency",
+      "label": "improves",
+      "weight": 2
+    },
+    {
+      "source": "maize_sorghum",
+      "target": "c4_photosynthesis",
+      "label": "naturally utilize",
+      "weight": 2
+    },
+    {
+      "source": "c4_evolution",
+      "target": "c4_leaf_anatomy",
+      "label": "led to development of",
+      "weight": 2
+    },
+    {
+      "source": "c4_leaf_anatomy",
+      "target": "vein_density",
+      "label": "requires modification of",
+      "weight": 2
+    },
+    {
+      "source": "c4_leaf_anatomy",
+      "target": "chloroplast_distribution",
+      "label": "involves specialized",
+      "weight": 2
+    },
+    {
+      "source": "c4_genes",
+      "target": "rice_species",
+      "label": "cloned and expressed in",
+      "weight": 2
+    },
+    {
+      "source": "setaria_viridis",
+      "target": "mutagenesis_studies",
+      "label": "used in",
+      "weight": 2
+    },
+    {
+      "source": "mutagenesis_studies",
+      "target": "c4_genes",
+      "label": "identifies",
+      "weight": 2
+    },
+    {
+      "source": "c4_photosynthesis",
+      "target": "metabolite_transport",
+      "label": "requires enhanced",
+      "weight": 2
+    },
+    {
+      "source": "c4_photosynthesis",
+      "target": "warm_semiarid_conditions",
+      "label": "most advantageous under",
+      "weight": 2
+    },
+    {
+      "source": "c4_leaf_anatomy",
+      "target": "cell_specialization",
+      "label": "requires",
+      "weight": 2
+    },
+    {
+      "source": "rice_species",
+      "target": "yield_enhancement",
+      "label": "target for",
+      "weight": 3
+    },
+    {
+      "source": "c4_photosynthesis",
+      "target": "yield_enhancement",
+      "label": "enables",
+      "weight": 3
+    }
+  ]
+}

@@ -1,0 +1,274 @@
+{
+  "nodes": [
+    {
+      "id": "node_1",
+      "label": "Photosynthetically Active Radiation (PAR)",
+      "size": 8,
+      "type": "biochemical_parameter",
+      "description": "Traditional definition includes photons from 400 to 700 nm, excluding far-red photons.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_2",
+      "label": "Far-red photons",
+      "size": 7,
+      "type": "biochemical_parameter",
+      "description": "Photons in the range of 701–750 nm that significantly contribute to photosynthesis, especially in shaded environments.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_3",
+      "label": "Leaf Gross Photosynthesis",
+      "size": 9,
+      "type": "physiological_process",
+      "description": "Total photosynthesis occurring in leaves, measured as a percentage contribution from far-red photons.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_4",
+      "label": "Photosystem II (PSII)",
+      "size": 6,
+      "type": "biochemical_parameter",
+      "description": "A protein complex in plants that plays a crucial role in the light-dependent reactions of photosynthesis.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_5",
+      "label": "Photosystem I (PSI)",
+      "size": 6,
+      "type": "biochemical_parameter",
+      "description": "A protein complex that absorbs light and drives the production of NADPH in the light-dependent reactions.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_6",
+      "label": "Sunlit Conditions",
+      "size": 5,
+      "type": "environmental_factor",
+      "description": "Conditions where plants receive direct sunlight, allowing for higher photosynthetic rates.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_7",
+      "label": "Deep Shade",
+      "size": 5,
+      "type": "environmental_factor",
+      "description": "Conditions where plants receive minimal light, impacting photosynthetic efficiency.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_8",
+      "label": "Photosynthetic Efficiency",
+      "size": 7,
+      "type": "biochemical_parameter",
+      "description": "The effectiveness of plants in converting light energy into chemical energy during photosynthesis.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_9",
+      "label": "Synergistic Interactions",
+      "size": 6,
+      "type": "biochemical_parameter",
+      "description": "Interactions between far-red and shorter-wavelength photons that enhance overall photosynthetic rates.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_10",
+      "label": "Carbon Cycling",
+      "size": 6,
+      "type": "ecological_process",
+      "description": "The process by which carbon is exchanged among the biosphere, atmosphere, oceans, and geosphere, influenced by photosynthesis.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_11",
+      "label": "Climate Change Impacts",
+      "size": 6,
+      "type": "environmental_factor",
+      "description": "Effects of climate change on ecosystems, including alterations in photosynthetic processes due to changing light conditions.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_12",
+      "label": "Canopy Environments",
+      "size": 5,
+      "type": "environmental_factor",
+      "description": "The upper layer of a forest where light availability and photosynthetic activity can vary significantly.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_13",
+      "label": "Experimental Conditions",
+      "size": 5,
+      "type": "experimental_setup",
+      "description": "Conditions under which the study was conducted, including the use of filters to isolate far-red photons.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_14",
+      "label": "Photosynthetic Models",
+      "size": 6,
+      "type": "biochemical_parameter",
+      "description": "Mathematical representations of photosynthesis that may underestimate actual rates by excluding far-red photons.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_15",
+      "label": "Crop Improvement",
+      "size": 5,
+      "type": "agricultural_process",
+      "description": "Strategies aimed at enhancing crop yield and resilience, influenced by understanding of photosynthesis.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_16",
+      "label": "Ecosystem Productivity",
+      "size": 6,
+      "type": "ecological_process",
+      "description": "The rate at which energy is converted by photosynthetic and chemosynthetic autotrophs to organic substances.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_17",
+      "label": "Global Carbon Cycle",
+      "size": 7,
+      "type": "ecological_process",
+      "description": "The movement of carbon through the Earth's systems, significantly influenced by photosynthesis.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_18",
+      "label": "Photosynthetic Potential",
+      "size": 6,
+      "type": "biochemical_parameter",
+      "description": "The maximum capacity of plants to perform photosynthesis under optimal conditions, including far-red light.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_19",
+      "label": "Incident Photons",
+      "size": 5,
+      "type": "biochemical_parameter",
+      "description": "Photons that reach the plant surface, with far-red photons constituting over 50% in shaded environments.",
+      "reference": "Author et al., Year"
+    },
+    {
+      "id": "node_20",
+      "label": "Photosynthetic Rate Enhancement",
+      "size": 6,
+      "type": "physiological_process",
+      "description": "Increase in photosynthetic rates due to the presence of far-red photons, particularly in shaded conditions.",
+      "reference": "Author et al., Year"
+    }
+  ],
+  "edges": [
+    {
+      "source": "node_1",
+      "target": "node_2",
+      "label": "Far-red photons are excluded from traditional PAR definition",
+      "weight": 2
+    },
+    {
+      "source": "node_2",
+      "target": "node_3",
+      "label": "Far-red photons contribute to leaf gross photosynthesis",
+      "weight": 3
+    },
+    {
+      "source": "node_3",
+      "target": "node_6",
+      "label": "Leaf gross photosynthesis is higher in sunlit conditions",
+      "weight": 2
+    },
+    {
+      "source": "node_3",
+      "target": "node_7",
+      "label": "Leaf gross photosynthesis is lower in deep shade",
+      "weight": 2
+    },
+    {
+      "source": "node_4",
+      "target": "node_8",
+      "label": "PSII efficiency is enhanced by far-red photons",
+      "weight": 2
+    },
+    {
+      "source": "node_5",
+      "target": "node_8",
+      "label": "PSI excitation complements PSII excitation",
+      "weight": 2
+    },
+    {
+      "source": "node_9",
+      "target": "node_8",
+      "label": "Synergistic interactions enhance photosynthetic efficiency",
+      "weight": 3
+    },
+    {
+      "source": "node_10",
+      "target": "node_3",
+      "label": "Photosynthesis influences carbon cycling",
+      "weight": 2
+    },
+    {
+      "source": "node_11",
+      "target": "node_3",
+      "label": "Photosynthesis is affected by climate change impacts",
+      "weight": 2
+    },
+    {
+      "source": "node_12",
+      "target": "node_3",
+      "label": "Canopy environments affect leaf gross photosynthesis",
+      "weight": 2
+    },
+    {
+      "source": "node_13",
+      "target": "node_2",
+      "label": "Experimental conditions included filters for far-red photons",
+      "weight": 2
+    },
+    {
+      "source": "node_14",
+      "target": "node_3",
+      "label": "Photosynthetic models may underestimate photosynthesis",
+      "weight": 3
+    },
+    {
+      "source": "node_15",
+      "target": "node_3",
+      "label": "Understanding photosynthesis aids in crop improvement",
+      "weight": 2
+    },
+    {
+      "source": "node_16",
+      "target": "node_3",
+      "label": "Ecosystem productivity is driven by photosynthesis",
+      "weight": 2
+    },
+    {
+      "source": "node_17",
+      "target": "node_10",
+      "label": "Photosynthesis is a key component of the global carbon cycle",
+      "weight": 3
+    },
+    {
+      "source": "node_18",
+      "target": "node_3",
+      "label": "Photosynthetic potential includes far-red light",
+      "weight": 2
+    },
+    {
+      "source": "node_19",
+      "target": "node_2",
+      "label": "Incident photons include far-red photons in shaded environments",
+      "weight": 3
+    },
+    {
+      "source": "node_20",
+      "target": "node_3",
+      "label": "Far-red photons enhance photosynthetic rate",
+      "weight": 3
+    }
+  ]
+}
