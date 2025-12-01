@@ -191,9 +191,9 @@ The system supports multiple AI models optimized for different use cases:
 
 | Model | Provider | Speed | Quality | Best For |
 |-------|----------|--------|---------|----------|
-| GPT-4.1-nano | OpenAI | ⚡⚡⚡ | ⭐⭐⭐⭐ | Production/Real-time |
-| Gemini-2.5-flash | Google | ⚡ | ⭐⭐⭐⭐⭐ | Research/Max extraction |
-| GPT-4o-mini | OpenAI | ⚡⚡⚡⚡ | ⭐⭐⭐⭐ | Fast processing |
+| GPT-4.1-nano | OpenAI | ⚡⚡⚡ | ⭐⭐⭐⭐ | Primary engine for large-scale indexing; pair with Gemini-2.5-flash for on-demand deep reasoning on high-impact papers |
+| Gemini-1.5-flash | Google | ⚡⚡⚡ | ⭐⭐⭐⭐ | Research & real-time parity |
+| GPT-4o-mini | OpenAI | ⚡⚡⚡⚡ | ⭐⭐⭐½ | Fast processing |
 
 ### Performance Tuning
 ```javascript
