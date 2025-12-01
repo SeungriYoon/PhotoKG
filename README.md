@@ -237,6 +237,7 @@ cd backend && npm run dev
 
 - [Installation Guide](INSTALLATION_GUIDE.md) - Detailed setup instructions
 - [API Guide](API_Guide.md) - Complete API documentation
+- [Domain Prompt Playbook](docs/Domain_Prompt_Playbook.md) - Additional domain-specific system prompts
 - `Evaluation/` - Ground truth and model-specific extraction logs for benchmarking
 
 ## 📈 Evaluation Assets

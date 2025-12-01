@@ -326,6 +326,7 @@ You can extend these sets with your own runs and compare against ground truth in
 - **Backend API**: `http://localhost:3015/api/health`
 - **Graph Endpoints**: `http://localhost:3015/api/graph`
 - **Analysis Endpoints**: `http://localhost:3015/api/analysis`
+- **Domain Prompts**: See `docs/Domain_Prompt_Playbook.md` for additional system prompts.
 
 ### Sample Data
 - Use the provided `frontend_test.csv` for testing
