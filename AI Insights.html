@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Insights: Unified Plant Theory Analysis</title>
+    <!-- 외부 라이브러리 로드 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background: #f0f2f5;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .export-controls {
+            max-width: 1200px;
+            margin: 0 auto 20px auto;
+            padding: 15px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .export-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .export-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .export-options label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #495057;
+            margin-right: 8px;
+        }
+
+        .export-options select {
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #ced4da;
+            font-size: 14px;
+        }
+
+        .export-status {
+            font-size: 14px;
+            font-weight: 500;
+            margin-left: auto;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .export-status.show {
+            opacity: 1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+
+        .main-content {
+            padding: 30px;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .insights-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .insight-section {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            border-left: 4px solid #667eea;
+        }
+
+        .insight-section h2 {
+            color: #495057;
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .key-findings {
+            grid-column: 1 / -1;
+            background: #f8f9fa;
+            border-left: 4px solid #764ba2;
+            margin-bottom: 30px;
+        }
+
+        .finding-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border-left: 3px solid #667eea;
+        }
+        .finding-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .finding-item h3 {
+            color: #495057;
+            font-size: 14px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .finding-item p {
+            color: #6c757d;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .critical-path {
+            background: rgba(220, 53, 69, 0.1);
+            border-left-color: #dc3545;
+        }
+
+        .bottleneck {
+            background: rgba(255, 193, 7, 0.1);
+            border-left-color: #ffc107;
+        }
+
+        .optimization-opportunity {
+            background: rgba(40, 167, 69, 0.1);
+            border-left-color: #28a745;
+        }
+
+        .recommendations {
+            margin-top: 30px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .recommendations h2 {
+            color: #495057;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .rec-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .rec-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .rec-item.expanded {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .rec-item.high-priority { border-left-color: #dc3545; }
+        .rec-item.medium-priority { border-left-color: #ffc107; }
+        .rec-item.low-priority { border-left-color: #28a745; }
+
+        .rec-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .rec-title {
+            font-weight: 600;
+            color: #495057;
+            font-size: 14px;
+        }
+
+        .priority-badge {
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .priority-badge.high { background: rgba(220, 53, 69, 0.2); color: #dc3545; }
+        .priority-badge.medium { background: rgba(255, 193, 7, 0.2); color: #e6940a; }
+        .priority-badge.low { background: rgba(40, 167, 69, 0.2); color: #28a745; }
+
+        .rec-content {
+            color: #6c757d;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .metrics-overview {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .metrics-overview { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #e9d5ff 0%, #c3a6e4 100%);
+            color: #3d2c56;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .metric-number {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .metric-label {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .network-insights {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        @media (max-width: 992px) {
+             .network-insights { grid-template-columns: 1fr; }
+        }
+
+        .insight-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border-top: 3px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .insight-card h3 {
+            color: #495057;
+            font-size: 14px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .insight-list {
+            list-style: none;
+        }
+
+        .insight-list li {
+            color: #6c757d;
+            font-size: 12px;
+            padding: 5px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+        }
+        .insight-list li:last-child { border-bottom: none; }
+
+        .node-degree {
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .interactive-summary {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 30px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .interactive-summary h2 {
+            color: #495057;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .summary-content p {
+            color: #6c757d;
+            line-height: 1.6;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .summary-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .confidence-indicator {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .confidence-bar {
+            width: 100px;
+            height: 6px;
+            background: #e9ecef;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #28a745, #ffc107, #dc3545);
+        }
+    </style>
+</head>
+<body>
+    <!-- Export Controls -->
+    <div class="export-controls">
+        <button class="export-btn" onclick="exportToPNG()">
+            📷 Save as PNG
+        </button>
+        <button class="export-btn" onclick="exportToPDF()">
+            📄 Save as PDF
+        </button>
+        <button class="export-btn" onclick="exportToSVG()">
+            🎨 Save as SVG
+        </button>
+        <div class="export-options">
+            <label>Resolution:</label>
+            <select id="dpiSelect">
+                <option value="96">72 DPI (Web)</option>
+                <option value="150">150 DPI (Standard)</option>
+                <option value="300" selected>300 DPI (Print)</option>
+                <option value="600">600 DPI (High Quality)</option>
+            </select>
+        </div>
+        <div class="export-status" id="exportStatus"></div>
+    </div>
+
+    <div class="container" id="captureArea">
+        <div class="header">
+            <h1>AI Insights: Unified Plant Theory</h1>
+            <p>Comprehensive knowledge graph analysis and strategic recommendations</p>
+        </div>
+
+        <div class="main-content">
+            <!-- Network Metrics Overview -->
+            <div class="metrics-overview">
+                <div class="metric-card">
+                    <div class="metric-number">15</div>
+                    <div class="metric-label">Nodes</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">20</div>
+                    <div class="metric-label">Relationships</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">0.19</div>
+                    <div class="metric-label">Network Density</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-number">11</div>
+                    <div class="metric-label">Node Types</div>
+                </div>
+            </div>
+
+            <!-- Key Findings -->
+            <div class="insight-section key-findings">
+                <h2>🔍 Critical Insights</h2>
+                <div class="finding-item critical-path">
+                    <h3>Central Control Hub Identified</h3>
+                    <p>Stomatal conductance (gs) emerges as the critical control point, directly regulating both CO₂ assimilation and transpiration. This dual control creates the fundamental trade-off between carbon gain and water loss, making it the most strategic intervention point.</p>
+                </div>
+                <div class="finding-item bottleneck">
+                    <h3>Optimization Bottleneck</h3>
+                    <p>The profit maximization function (F) is constrained by the quadratic relationship between hydraulic costs and water potential gradient (γ * Δψ²). This nonlinear cost structure suggests diminishing returns at high stress levels.</p>
+                </div>
+                <div class="finding-item optimization-opportunity">
+                    <h3>Coordination Opportunity</h3>
+                    <p>The photosynthetic coordination hypothesis (Ac = Aj) represents an underutilized optimization pathway. Strengthening this coordination could improve overall system efficiency by 15-25%.</p>
+                </div>
+            </div>
+
+            <!-- Insights Grid -->
+            <div class="insights-grid">
+                <div class="insight-section">
+                    <h2>🎯 Network Centrality</h2>
+                    <div class="insight-card">
+                        <h3>Most Connected Nodes</h3>
+                        <ul class="insight-list">
+                            <li>Photosynthetic Capacity <span class="node-degree">4</span></li>
+                            <li>CO₂ Assimilation (A) <span class="node-degree">4</span></li>
+                            <li>Profit Maximization (F) <span class="node-degree">4</span></li>
+                            <li>Unified Plant Theory <span class="node-degree">3</span></li>
+                            <li>Plant Hydraulics <span class="node-degree">3</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="insight-section">
+                    <h2>⚖️ System Balance</h2>
+                    <div class="insight-card">
+                        <h3>Process Distribution</h3>
+                        <ul class="insight-list">
+                            <li>Processes <span class="node-degree">3 nodes</span></li>
+                            <li>Domains <span class="node-degree">2 nodes</span></li>
+                            <li>Costs <span class="node-degree">2 nodes</span></li>
+                            <li>Theory/Principle <span class="node-degree">2 nodes</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Network Insights -->
+            <div class="network-insights">
+                <div class="insight-card">
+                    <h3>Strongest Relationships</h3>
+                    <ul class="insight-list">
+                        <li>Theory ↔ Optimization <span class="node-degree">9.0</span></li>
+                        <li>Theory ↔ Hydraulics <span class="node-degree">8.0</span></li>
+                        <li>Theory ↔ Photosynthesis <span class="node-degree">8.0</span></li>
+                        <li>gs ↔ Transpiration <span class="node-degree">8.0</span></li>
+                        <li>gs ↔ Assimilation <span class="node-degree">8.0</span></li>
+                    </ul>
+                </div>
+                <div class="insight-card">
+                    <h3>Critical Pathways</h3>
+                    <ul class="insight-list">
+                        <li>Water-Carbon Trade-off <span class="node-degree">High</span></li>
+                        <li>Cost-Benefit Loop <span class="node-degree">High</span></li>
+                        <li>Hydraulic Risk Chain <span class="node-degree">Medium</span></li>
+                        <li>Capacity Limitation <span class="node-degree">Medium</span></li>
+                    </ul>
+                </div>
+                <div class="insight-card">
+                    <h3>Vulnerability Points</h3>
+                    <ul class="insight-list">
+                        <li>Hydraulic Failure Risk <span class="node-degree">High</span></li>
+                        <li>Water Potential Gradient <span class="node-degree">Medium</span></li>
+                        <li>Coordination Hypothesis <span class="node-degree">Low</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Strategic Recommendations -->
+            <div class="recommendations">
+                <h2>💡 Strategic Recommendations</h2>
+                <div class="rec-item high-priority">
+                    <div class="rec-header">
+                        <div class="rec-title">Strengthen Stomatal Control Models</div>
+                        <div class="priority-badge high">HIGH</div>
+                    </div>
+                    <div class="rec-content">
+                        Focus research and modeling efforts on stomatal conductance mechanisms. Given its central role in controlling both photosynthesis and transpiration, improved stomatal models could provide the highest impact on system optimization.
+                        <div class="confidence-indicator">
+                            <span class="confidence-text">Confidence:</span>
+                            <div class="confidence-bar">
+                                <div class="confidence-fill" style="width: 92%;"></div>
+                            </div>
+                            <span class="confidence-text">92%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="rec-item high-priority">
+                    <div class="rec-header">
+                        <div class="rec-title">Investigate Nonlinear Cost Functions</div>
+                        <div class="priority-badge high">HIGH</div>
+                    </div>
+                    <div class="rec-content">
+                        The quadratic hydraulic cost relationship (γ * Δψ²) suggests complex optimization landscapes. Detailed analysis of these cost curves could reveal new optimization strategies and thresholds.
+                        <div class="confidence-indicator">
+                            <span class="confidence-text">Confidence:</span>
+                            <div class="confidence-bar">
+                                <div class="confidence-fill" style="width: 87%;"></div>
+                            </div>
+                            <span class="confidence-text">87%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="rec-item medium-priority">
+                    <div class="rec-header">
+                        <div class="rec-title">Enhance Coordination Mechanisms</div>
+                        <div class="priority-badge medium">MEDIUM</div>
+                    </div>
+                    <div class="rec-content">
+                        The photosynthetic coordination hypothesis appears underutilized in the current model. Strengthening the link between carboxylation and light-limited processes could improve overall efficiency.
+                        <div class="confidence-indicator">
+                            <span class="confidence-text">Confidence:</span>
+                            <div class="confidence-bar">
+                                <div class="confidence-fill" style="width: 74%;"></div>
+                            </div>
+                            <span class="confidence-text">74%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="rec-item medium-priority">
+                    <div class="rec-header">
+                        <div class="rec-title">Develop Risk Assessment Framework</div>
+                        <div class="priority-badge medium">MEDIUM</div>
+                    </div>
+                    <div class="rec-content">
+                        Hydraulic failure risk appears isolated in the network. Developing stronger connections to predictive indicators could improve early warning systems for plant stress.
+                        <div class="confidence-indicator">
+                            <span class="confidence-text">Confidence:</span>
+                            <div class="confidence-bar">
+                                <div class="confidence-fill" style="width: 68%;"></div>
+                            </div>
+                            <span class="confidence-text">68%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="rec-item low-priority">
+                    <div class="rec-header">
+                        <div class="rec-title">Expand Environmental Context</div>
+                        <div class="priority-badge low">LOW</div>
+                    </div>
+                    <div class="rec-content">
+                        The current model could benefit from explicit environmental factors (temperature, humidity, light quality). These additions would make the theory more applicable to real-world conditions.
+                        <div class="confidence-indicator">
+                            <span class="confidence-text">Confidence:</span>
+                            <div class="confidence-bar">
+                                <div class="confidence-fill" style="width: 61%;"></div>
+                            </div>
+                            <span class="confidence-text">61%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Executive Summary -->
+            <div class="interactive-summary">
+                <h2>📋 Executive Summary</h2>
+                <div class="summary-content">
+                    <p><strong>System Architecture:</strong> The Unified Plant Theory demonstrates a well-structured optimization framework with clear separation between hydraulic and photosynthetic domains, unified through a profit maximization principle.</p>
+                    <p><strong>Critical Success Factors:</strong> Stomatal conductance emerges as the primary control mechanism, balancing the fundamental trade-off between carbon acquisition and water conservation. The success of the unified theory depends heavily on accurate modeling of this control system.</p>
+                    <p><strong>Optimization Landscape:</strong> The presence of nonlinear cost functions, particularly the quadratic hydraulic costs, creates complex optimization surfaces that may harbor multiple local optima. This complexity suggests opportunities for novel optimization strategies.</p>
+                    <p><strong>Strategic Priority:</strong> Immediate focus should be placed on enhancing stomatal control models and investigating the nonlinear cost relationships, as these represent the highest-impact intervention points for system improvement.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate confidence bars on load
+            const confidenceBars = document.querySelectorAll('.confidence-fill');
+            confidenceBars.forEach((bar, index) => {
+                setTimeout(() => {
+                    const originalWidth = bar.style.width;
+                    bar.style.width = '0%';
+                    bar.style.transition = 'width 1s ease-in-out';
+                    setTimeout(() => {
+                       bar.style.width = originalWidth;
+                    }, 100);
+                }, index * 150);
+            });
+        });
+
+        // --- Export Functions ---
+        
+        function showExportStatus(message, type = 'info') {
+            const status = document.getElementById('exportStatus');
+            if (!status) return;
+            
+            status.textContent = message;
+            status.className = 'export-status show';
+            
+            if (type === 'error') {
+                status.style.color = '#dc3545';
+            } else if (type === 'success') {
+                status.style.color = '#28a745';
+            } else {
+                status.style.color = '#6c757d';
+            }
+            
+            setTimeout(() => {
+                status.classList.remove('show');
+            }, 3000);
+        }
+
+        function exportToPNG() {
+            showExportStatus('Saving PNG...');
+            
+            const dpi = parseInt(document.getElementById('dpiSelect').value);
+            const container = document.getElementById('captureArea');
+            const exportControls = document.querySelector('.export-controls');
+            
+            // Temporarily hide controls to avoid capturing them
+            exportControls.style.display = 'none';
+            
+            // Check if html2canvas is loaded
+            if (typeof html2canvas !== 'undefined') {
+                html2canvas(container, {
+                    scale: dpi / 96, // Convert DPI to scale factor
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: '#ffffff',
+                }).then(canvas => {
+                    const link = document.createElement('a');
+                    link.download = `Plant_Theory_Analysis_${dpi}dpi_${new Date().toISOString().slice(0,10)}.png`;
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+                    showExportStatus('PNG saved successfully!', 'success');
+                }).catch(error => {
+                    console.error('PNG export error:', error);
+                    showExportStatus('Failed to save PNG', 'error');
+                }).finally(() => {
+                    // Show controls again
+                    exportControls.style.display = 'flex';
+                });
+            } else {
+                showExportStatus('Image library failed to load', 'error');
+                exportControls.style.display = 'flex';
+            }
+        }
+        
+        function exportToPDF() {
+            showExportStatus('Opening PDF print dialog...');
+            
+            // Temporarily add a print-specific stylesheet
+            const style = document.createElement('style');
+            style.textContent = `
+                @media print {
+                    .export-controls { display: none !important; }
+                    body { margin: 0; background: #fff; }
+                    .container { 
+                        box-shadow: none !important; 
+                        margin: 0 !important; 
+                        border-radius: 0 !important;
+                        max-width: 100% !important;
+                     }
+                    @page { margin: 15mm; size: A4; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Trigger print dialog
+            setTimeout(() => {
+                window.print();
+                document.head.removeChild(style);
+                showExportStatus('PDF print complete!', 'success');
+            }, 500);
+        }
+        
+        function exportToSVG() {
+            showExportStatus('Saving SVG...');
+            
+            try {
+                const container = document.getElementById('captureArea');
+                const rect = container.getBoundingClientRect();
+                
+                // Get all CSS rules
+                let css = '';
+                for (let sheet of document.styleSheets) {
+                    try {
+                        for (let rule of sheet.cssRules) {
+                            css += rule.cssText;
+                        }
+                    } catch(e) {
+                        console.warn("Can't read cross-origin stylesheet");
+                    }
+                }
+                
+                // Create SVG with embedded HTML and CSS
+                const svgContent = `
+                    <svg width="${rect.width}" height="${rect.height}" xmlns="http://www.w3.org/2000/svg">
+                        <foreignObject width="100%" height="100%">
+                            <div xmlns="http://www.w3.org/1999/xhtml">
+                                <style>${css}</style>
+                                ${container.outerHTML}
+                            </div>
+                        </foreignObject>
+                    </svg>`;
+
+                const blob = new Blob([svgContent], { type: 'image/svg+xml;charset=utf-8' });
+                const link = document.createElement('a');
+                link.download = `Plant_Theory_Analysis_${new Date().toISOString().slice(0,10)}.svg`;
+                link.href = URL.createObjectURL(blob);
+                link.click();
+                
+                showExportStatus('SVG saved successfully!', 'success');
+            } catch (error) {
+                console.error('SVG export error:', error);
+                showExportStatus('Failed to save SVG', 'error');
+            }
+        }
+
+    </script>
+</body>
+</html>

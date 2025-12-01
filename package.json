@@ -1,0 +1,46 @@
+{
+  "name": "photorag-frontend",
+  "version": "1.0.0",
+  "description": "PhotoRAG Knowledge Graph System - Frontend",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 3000",
+    "dev": "python -m http.server 3000",
+    "serve": "npx http-server -p 3000 -c-1",
+    "build": "echo 'No build process required for static frontend'",
+    "lint": "echo 'Linting not configured'",
+    "test": "echo 'Tests not configured'"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "keywords": [
+    "knowledge-graph",
+    "visualization",
+    "d3js",
+    "research",
+    "frontend"
+  ],
+  "author": "Research Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0",
+    "python": ">=3.8.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "."
+  },
+  "homepage": "http://localhost:3000",
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "cdnDependencies": {
+    "d3": "7.x",
+    "mathjax": "3.x",
+    "polyfill.io": "latest"
+  }
+}
