@@ -192,6 +192,7 @@ The system supports multiple AI models optimized for different use cases:
 | Model | Provider | Speed | Quality | Best For |
 |-------|----------|--------|---------|----------|
 | GPT-4.1-nano | OpenAI | ⚡⚡⚡ | ⭐⭐⭐⭐ | Primary engine for large-scale indexing; pair with Gemini-2.5-flash for on-demand deep reasoning on high-impact papers |
+| Gemini-2.5-flash | Google | ⚡ | ⭐⭐⭐⭐⭐ | Max extraction / research-grade deep reasoning |
 | Gemini-1.5-flash | Google | ⚡⚡⚡ | ⭐⭐⭐⭐ | Research & real-time parity |
 | GPT-4o-mini | OpenAI | ⚡⚡⚡⚡ | ⭐⭐⭐½ | Fast processing |
 
