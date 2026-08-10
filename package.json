@@ -41,7 +41,6 @@
   ],
   "cdnDependencies": {
     "d3": "7.x",
-    "mathjax": "3.x",
-    "polyfill.io": "latest"
+    "mathjax": "3.x"
   }
 }
