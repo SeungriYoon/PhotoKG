@@ -1,503 +1,158 @@
-// AI Service Class
+// Client-side AI helpers. All model requests use the backend analysis API.
 class AIService {
     constructor() {
         this.ollamaConnected = false;
-        this.ollamaUrl = 'http://127.0.0.1:11434';
-        this.model = 'llama3.1';
-        this.fallbackMode = true; // Enable fallback analysis without Ollama
+        this.ollamaUrl = '';
+        this.model = 'qwen2.5-1.5b-instruct';
+        this.fallbackMode = true;
     }
 
-    // Ollama Connection Test (via backend)
     async testConnection() {
         try {
-            console.log('🔗 Testing Ollama server connection via backend...');
-            
-            const response = await fetch('http://localhost:3015/api/arango/test-ollama', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            
-            if (response.ok) {
-                const data = await response.json();
-                console.log('✅ Ollama server connected successfully:', data);
-                this.ollamaConnected = true;
-                return { 
-                    success: true, 
-                    message: 'Connected ✅',
-                    models: data.models || []
-                };
-            } else {
-                throw new Error(`HTTP ${response.status}`);
-            }
+            const result = await window.backendAPI.request('/analysis/llm-health', { maxRetries: 1 });
+            this.ollamaConnected = Boolean(result.success && result.data?.connected);
+            return { success: this.ollamaConnected, message: result.data?.message || 'LLM health checked', models: [] };
         } catch (error) {
-            console.error('❌ Ollama server connection failed:', error);
             this.ollamaConnected = false;
-            return { 
-                success: false, 
-                message: 'Not Connected ❌',
-                error: error.message
-            };
+            return { success: false, message: 'Not connected', error: error.message };
         }
     }
 
-    // Ollama API Call
     async callOllama(prompt, model = null) {
         if (!this.ollamaConnected) return null;
-        
-        const modelToUse = model || this.model;
         try {
-            const response = await fetch(`${this.ollamaUrl}/api/generate`, {
+            const result = await window.backendAPI.request('/analysis/chat', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    model: modelToUse,
-                    prompt: prompt,
-                    stream: false,
-                    options: {
-                        temperature: 0.7,
-                        top_p: 0.9,
-                        num_predict: 800
-                    }
-                })
+                body: { message: prompt, model: model || this.model }
             });
-
-            if (!response.ok) {
-                throw new Error(`HTTP ${response.status}`);
-            }
-
-            const data = await response.json();
-            return data.response;
+            return result.response || '';
         } catch (error) {
-            console.error('Ollama API Error:', error);
+            console.error('AI API error:', error);
             return null;
         }
     }
 
-    // AI-based Clustering
     async generateAIClusters(nodes, edges) {
-        // Prepare node context (using top 50 only)
-        const topNodes = nodes
-            .sort((a, b) => b.size - a.size)
-            .slice(0, 50);
-            
-        const nodeContext = topNodes
-            .map(n => `${n.label} (Type: ${n.type}, Size: ${Math.round(n.size)})`)
-            .join(', ');
-
-        const prompt = `
-Analyze the following network nodes and create semantic clusters:
-
-Nodes: ${nodeContext}
-
-Create 3-7 thematic clusters based on the following conditions:
-1. Assign meaningful thematic names to each cluster
-2. Add a brief explanation of the importance and meaning of each cluster
-3. Classify nodes based on semantic relevance
-
-Respond in the following JSON format:
-{
-  "clusters": [
-    {
-      "name": "Cluster Name",
-      "insight": "Explanation of the meaning and importance of this cluster",
-      "nodes": ["Node1", "Node2", "Node3"]
-    }
-  ]
-}
-
-Prioritize semantic relevance over statistical connections for clustering.
-`;
-
+        const nodeContext = nodes.slice().sort((a, b) => b.size - a.size).slice(0, 50)
+            .map(node => `${node.label} (Type: ${node.type}, Size: ${Math.round(node.size || 0)})`).join(', ');
+        const prompt = `Analyze this network and return JSON with a clusters array. Each cluster must contain name, insight, and nodes (labels). Nodes: ${nodeContext}`;
         try {
-            const aiResponse = await this.callOllama(prompt);
-            if (aiResponse) {
-                // Extract JSON (handles markdown code blocks)
-                const jsonMatch = aiResponse.match(/\{[\s\S]*\}/);
-                if (jsonMatch) {
-                    const parsed = JSON.parse(jsonMatch[0]);
-                    return await this.enhanceAIClusters(parsed.clusters, nodes, edges);
-                }
-            }
+            const response = await this.callOllama(prompt);
+            const match = response && response.match(/\{[\s\S]*\}/);
+            if (match) return this.enhanceAIClusters(JSON.parse(match[0]).clusters || [], nodes);
         } catch (error) {
-            console.error('AI Clustering Error:', error);
+            console.error('AI clustering error:', error);
         }
-
-        return await this.generateBasicClusters(nodes, edges);
+        return this.generateBasicClusters(nodes, edges);
     }
 
-    // Analyze CSV Metadata via Backend
     async analyzeMetadata() {
         try {
-            console.log('🧠 Starting AI analysis via backend...');
-            
-            const response = await fetch('http://localhost:3015/api/arango/analyze-metadata', {
+            const graph = window.app?.currentData || { nodes: [], links: [] };
+            return await window.backendAPI.request('/analysis/metadata', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' }
+                body: { nodes: graph.nodes || [], links: graph.links || [] }
             });
-            
-            if (response.ok) {
-                const data = await response.json();
-                console.log('✅ AI analysis completed:', data);
-                return data;
-            } else {
-                throw new Error(`HTTP ${response.status}`);
-            }
         } catch (error) {
-            console.error('❌ AI analysis failed:', error);
             return { success: false, error: error.message };
         }
     }
 
-    // Enhance AI Clusters
-    async enhanceAIClusters(aiClusters, nodes, edges) {
+    enhanceAIClusters(aiClusters, nodes) {
+        const nodeMap = new Map(nodes.map(node => [String(node.label || '').toLowerCase(), node]));
         const clusters = {};
-        const nodeMap = new Map(nodes.map(n => [n.label.toLowerCase(), n]));
-
         aiClusters.forEach((cluster, index) => {
-            const clusterNodes = cluster.nodes
-                .map(nodeName => nodeMap.get(nodeName.toLowerCase()))
-                .filter(node => node);
-
-            if (clusterNodes.length > 0) {
+            const clusterNodes = (cluster.nodes || []).map(label => nodeMap.get(String(label).toLowerCase())).filter(Boolean);
+            if (clusterNodes.length) {
                 clusters[`ai_cluster_${index + 1}`] = {
-                    name: cluster.name,
-                    insight: cluster.insight,
+                    name: cluster.name || `Cluster ${index + 1}`,
+                    insight: cluster.insight || '',
                     nodes: clusterNodes,
                     isAI: true,
                     color: `hsl(${(index * 137.508) % 360}, 70%, 60%)`
                 };
             }
         });
-
-        // Add unclassified nodes to other clusters
-        const clusteredNodeIds = new Set();
-        Object.values(clusters).forEach(cluster => {
-            cluster.nodes.forEach(node => clusteredNodeIds.add(node.id));
-        });
-
-        const unclusteredNodes = nodes.filter(node => !clusteredNodeIds.has(node.id));
-        if (unclusteredNodes.length > 0) {
-            clusters['misc_cluster'] = {
-                name: 'Miscellaneous Concepts',
-                insight: 'Additional concepts not included in main topics',
-                nodes: unclusteredNodes,
-                isAI: false,
-                color: 'hsl(0, 0%, 60%)'
-            };
-        }
-
+        const clustered = new Set(Object.values(clusters).flatMap(cluster => cluster.nodes.map(node => node.id)));
+        const remaining = nodes.filter(node => !clustered.has(node.id));
+        if (remaining.length) clusters.misc_cluster = { name: 'Miscellaneous Concepts', insight: 'Unclassified concepts', nodes: remaining, isAI: false, color: 'hsl(0, 0%, 60%)' };
         return clusters;
     }
 
-    // Basic Clustering (Connectivity-based)
     async generateBasicClusters(nodes, edges) {
-        const clusters = {};
-        const visited = new Set();
-        let clusterIndex = 1;
-
-        // Create adjacency list
-        const adjacencyList = new Map();
-        nodes.forEach(node => adjacencyList.set(node.id, []));
+        const adjacency = new Map(nodes.map(node => [node.id, []]));
         edges.forEach(edge => {
-            const sourceId = edge.source.id || edge.source;
-            const targetId = edge.target.id || edge.target;
-            if (adjacencyList.has(sourceId)) {
-                adjacencyList.get(sourceId).push(targetId);
-            }
-            if (adjacencyList.has(targetId)) {
-                adjacencyList.get(targetId).push(sourceId);
-            }
+            const source = edge.source?.id || edge.source;
+            const target = edge.target?.id || edge.target;
+            if (adjacency.has(source)) adjacency.get(source).push(target);
+            if (adjacency.has(target)) adjacency.get(target).push(source);
         });
-
-        // Find connected components
+        const visited = new Set();
+        const clusters = {};
+        let index = 1;
         nodes.forEach(node => {
-            if (!visited.has(node.id)) {
-                const cluster = [];
-                const stack = [node];
-                
-                while (stack.length > 0) {
-                    const current = stack.pop();
-                    if (!visited.has(current.id)) {
-                        visited.add(current.id);
-                        cluster.push(current);
-                        
-                        const neighbors = adjacencyList.get(current.id) || [];
-                        neighbors.forEach(neighborId => {
-                            const neighbor = nodes.find(n => n.id === neighborId);
-                            if (neighbor && !visited.has(neighbor.id)) {
-                                stack.push(neighbor);
-                            }
-                        });
-                    }
-                }
-                
-                if (cluster.length > 1) {
-                    // Generate cluster name (based on largest node)
-                    const mainNode = cluster.reduce((max, node) => 
-                        node.size > max.size ? node : max
-                    );
-                    
-                    clusters[`cluster_${clusterIndex++}`] = {
-                        name: `${mainNode.label} Group`,
-                        insight: `${cluster.length} connected concepts`,
-                        nodes: cluster,
-                        isAI: false,
-                        color: `hsl(${(clusterIndex * 50) % 360}, 65%, 55%)`
-                    };
-                }
+            if (visited.has(node.id)) return;
+            const group = [];
+            const stack = [node.id];
+            while (stack.length) {
+                const id = stack.pop();
+                if (visited.has(id)) continue;
+                visited.add(id);
+                const current = nodes.find(item => item.id === id);
+                if (current) group.push(current);
+                (adjacency.get(id) || []).forEach(neighbor => { if (!visited.has(neighbor)) stack.push(neighbor); });
+            }
+            if (group.length > 1) {
+                const main = group.reduce((a, b) => (b.size || 0) > (a.size || 0) ? b : a);
+                clusters[`cluster_${index}`] = { name: `${main.label} Group`, insight: `${group.length} connected concepts`, nodes: group, isAI: false, color: `hsl(${(index * 50) % 360}, 65%, 55%)` };
+                index += 1;
             }
         });
-
         return clusters;
     }
 
-    // Detect Structural Gaps
-    async detectStructuralGaps(nodes, edges, clusters) {
-        const gaps = [];
-        
-        // Analyze inter-cluster connections
-        const clusterConnections = new Map();
-        
-        edges.forEach(edge => {
-            const sourceId = edge.source.id || edge.source;
-            const targetId = edge.target.id || edge.target;
-            
-            const sourceCluster = this.findNodeCluster(sourceId, clusters);
-            const targetCluster = this.findNodeCluster(targetId, clusters);
-            
-            if (sourceCluster && targetCluster && sourceCluster !== targetCluster) {
-                const key = [sourceCluster, targetCluster].sort().join('__');
-                if (!clusterConnections.has(key)) {
-                    clusterConnections.set(key, {
-                        source: sourceCluster,
-                        target: targetCluster,
-                        connections: 0,
-                        totalWeight: 0
-                    });
-                }
-                const connection = clusterConnections.get(key);
-                connection.connections++;
-                connection.totalWeight += edge.weight || 1;
-            }
-        });
-
-        // Find weak connections
-        const clusterSizes = new Map();
-        Object.entries(clusters).forEach(([id, cluster]) => {
-            clusterSizes.set(id, cluster.nodes.length);
-        });
-
-        clusterConnections.forEach((connection, key) => {
-            const sourceSize = clusterSizes.get(connection.source) || 1;
-            const targetSize = clusterSizes.get(connection.target) || 1;
-            const expectedConnections = Math.min(sourceSize, targetSize) * 0.1;
-            
-            if (connection.connections < expectedConnections) {
-                gaps.push({
-                    type: 'weak_connection',
-                    source: connection.source,
-                    target: connection.target,
-                    actual: connection.connections,
-                    expected: Math.round(expectedConnections),
-                    strength: connection.totalWeight,
-                    description: `Weak connection between ${connection.source} and ${connection.target} clusters.`
-                });
-            }
-        });
-
-        // Find isolated clusters
-        Object.entries(clusters).forEach(([id, cluster]) => {
-            const hasExternalConnections = Array.from(clusterConnections.values())
-                .some(conn => conn.source === id || conn.target === id);
-            
-            if (!hasExternalConnections && cluster.nodes.length > 3) {
-                gaps.push({
-                    type: 'isolated_cluster',
-                    cluster: id,
-                    nodeCount: cluster.nodes.length,
-                    description: `${cluster.name} cluster is not connected to other clusters.`
-                });
-            }
-        });
-
-        return gaps;
-    }
-
-    // Find node cluster
     findNodeCluster(nodeId, clusters) {
-        for (const [clusterId, cluster] of Object.entries(clusters)) {
-            if (cluster.nodes.some(node => node.id === nodeId)) {
-                return clusterId;
-            }
-        }
-        return null;
+        return Object.entries(clusters).find(([, cluster]) => cluster.nodes.some(node => node.id === nodeId))?.[0] || null;
     }
 
-    // Analyze Network Bias
-    analyzeNetworkBias(nodes, edges, clusters) {
-        const totalNodes = nodes.length;
-        const totalEdges = edges.length;
-        const clusterCount = Object.keys(clusters).length;
-        
-        // Calculate network density
-        const maxPossibleEdges = (totalNodes * (totalNodes - 1)) / 2;
-        const density = totalEdges / maxPossibleEdges;
-        
-        // Cluster size distribution
-        const clusterSizes = Object.values(clusters).map(c => c.nodes.length);
-        const sizeVariance = this.calculateVariance(clusterSizes);
-        
-        // Bias classification
-        let biasType = 'balanced';
-        let biasScore = 0;
-        
-        if (density < 0.01) {
-            biasType = 'sparse';
-            biasScore = 0.3;
-        } else if (density > 0.1) {
-            biasType = 'dense';
-            biasScore = 0.8;
-        }
-        
-        if (sizeVariance > 100) {
-            biasType = 'focused';
-            biasScore = Math.max(biasScore, 0.6);
-        }
-        
-        return {
-            type: biasType,
-            score: biasScore,
-            density: density,
-            clusterVariance: sizeVariance,
-            totalNodes: totalNodes,
-            totalEdges: totalEdges,
-            clusterCount: clusterCount
-        };
+    async detectStructuralGaps(nodes, edges, clusters) {
+        const connections = new Map();
+        edges.forEach(edge => {
+            const source = this.findNodeCluster(edge.source?.id || edge.source, clusters);
+            const target = this.findNodeCluster(edge.target?.id || edge.target, clusters);
+            if (!source || !target || source === target) return;
+            const key = [source, target].sort().join('__');
+            const item = connections.get(key) || { source, target, connections: 0, totalWeight: 0 };
+            item.connections += 1;
+            item.totalWeight += edge.weight || 1;
+            connections.set(key, item);
+        });
+        return [...connections.values()].filter(item => item.connections < Math.min(clusters[item.source]?.nodes.length || 1, clusters[item.target]?.nodes.length || 1) * 0.1)
+            .map(item => ({ type: 'weak_connection', source: item.source, target: item.target, actual: item.connections, strength: item.totalWeight, description: `Weak connection between ${item.source} and ${item.target} clusters.` }));
     }
 
-    // Calculate Variance
     calculateVariance(values) {
-        const mean = values.reduce((a, b) => a + b, 0) / values.length;
-        const variance = values.reduce((sum, val) => sum + Math.pow(val - mean, 2), 0) / values.length;
-        return variance;
+        if (!values.length) return 0;
+        const mean = values.reduce((sum, value) => sum + value, 0) / values.length;
+        return values.reduce((sum, value) => sum + Math.pow(value - mean, 2), 0) / values.length;
     }
 
-    // Update Settings
-    updateSettings(url, model) {
-        this.ollamaUrl = url;
-        this.model = model;
+    analyzeNetworkBias(nodes, edges, clusters) {
+        const possible = (nodes.length * Math.max(0, nodes.length - 1)) / 2;
+        const density = possible ? edges.length / possible : 0;
+        const variance = this.calculateVariance(Object.values(clusters).map(cluster => cluster.nodes.length));
+        const type = variance > 100 ? 'focused' : density < 0.01 ? 'sparse' : density > 0.1 ? 'dense' : 'balanced';
+        return { type, score: type === 'dense' ? 0.8 : type === 'focused' ? 0.6 : type === 'sparse' ? 0.3 : 0, density, clusterVariance: variance, totalNodes: nodes.length, totalEdges: edges.length, clusterCount: Object.keys(clusters).length };
     }
 
-    // Analyze Graph
+    updateSettings(_url, model) { this.model = model || this.model; }
+
     async analyzeGraph(nodes, edges) {
-        if (!this.ollamaConnected) {
-            return {
-                success: false,
-                error: 'Ollama server not connected.'
-            };
-        }
-
-        try {
-            // Create clusters
-            const clusters = await this.generateAIClusters(nodes, edges);
-            
-            // Detect structural gaps
-            const gaps = await this.detectStructuralGaps(nodes, edges, clusters);
-            
-            // Analyze network bias
-            const bias = this.analyzeNetworkBias(nodes, edges, clusters);
-            
-            // Generate AI insights
-            const insights = await this.generateInsights(nodes, edges, clusters, gaps, bias);
-            
-            return {
-                success: true,
-                clusters: clusters,
-                gaps: gaps,
-                bias: bias,
-                insights: insights,
-                summary: {
-                    nodeCount: nodes.length,
-                    edgeCount: edges.length,
-                    clusterCount: Object.keys(clusters).length,
-                    gapCount: gaps.length,
-                    biasScore: bias.score
-                }
-            };
-        } catch (error) {
-            console.error('AI Graph Analysis Error:', error);
-            return {
-                success: false,
-                error: error.message
-            };
-        }
-    }
-
-    // Generate AI Insights
-    async generateInsights(nodes, edges, clusters, gaps, bias) {
-        const topNodes = nodes
-            .sort((a, b) => b.size - a.size)
-            .slice(0, 10)
-            .map(n => n.label)
-            .join(', ');
-
-        const clusterNames = Object.values(clusters)
-            .map(c => c.name)
-            .join(', ');
-
-        const prompt = `
-Generate 3-5 key insights based on the following knowledge graph analysis results:
-
-Key Nodes: ${topNodes}
-Clusters: ${clusterNames}
-Network Type: ${bias.type}
-Number of Structural Gaps: ${gaps.length}
-Total Nodes: ${nodes.length}
-Total Edges: ${edges.length}
-
-Respond in the following JSON format:
-{
-  "insights": [
-    {
-      "type": "Key Findings|Structural Characteristics|Research Directions",
-      "title": "Insight Title",
-      "description": "Detailed Description",
-      "importance": "high|medium|low"
-    }
-  ]
-}
-
-Provide academic and practical insights.
-`;
-
-        try {
-            const aiResponse = await this.callOllama(prompt);
-            if (aiResponse) {
-                const jsonMatch = aiResponse.match(/\{[\s\S]*\}/);
-                if (jsonMatch) {
-                    const parsed = JSON.parse(jsonMatch[0]);
-                    return parsed.insights || [];
-                }
-            }
-        } catch (error) {
-            console.error('AI Insight Generation Error:', error);
-        }
-
-        return [
-            {
-                type: "Structural Characteristics",
-                title: `${bias.type} Network Structure`,
-                description: `The network shows ${bias.type} characteristics with a density of ${(bias.density * 100).toFixed(1)}%.`,
-                importance: "medium"
-            },
-            {
-                type: "Research Directions",
-                title: "Need to Strengthen Inter-Cluster Connections",
-                description: `${gaps.length} structural gaps were found, requiring further research.`,
-                importance: "high"
-            }
-        ];
+        const clusters = await this.generateAIClusters(nodes, edges);
+        const gaps = await this.detectStructuralGaps(nodes, edges, clusters);
+        const bias = this.analyzeNetworkBias(nodes, edges, clusters);
+        return { success: true, clusters, gaps, bias, summary: { nodeCount: nodes.length, edgeCount: edges.length, clusterCount: Object.keys(clusters).length, gapCount: gaps.length, biasScore: bias.score } };
     }
 }
+
+window.AIService = AIService;

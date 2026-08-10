@@ -204,3 +204,14 @@ Thumbs.db
 node_modules/
 venv/
 uploads/
+
+# Local prototypes and generated analysis artifacts
+.omx/
+AI Insights v2.html
+AI Insights v3.html
+AI Insights v4.html
+graphrag-poc.html
+plantconnectome_preview.json
+html-change-report.html
+tmp_*.json
+*_result.json

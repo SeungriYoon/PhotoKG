@@ -16,8 +16,8 @@ class BackendAPI {
   }
 
   // Check backend connection status
-  async checkConnection() {
-    if (this.connectionChecked) {
+  async checkConnection(force = false) {
+    if (this.connectionChecked && !force) {
       return { success: this.enabled, message: this.enabled ? 'Backend connected' : 'Backend not available' };
     }
 
@@ -26,16 +26,16 @@ class BackendAPI {
       if (response.ok) {
         this.enabled = true;
         this.connectionChecked = true;
-        console.log('✅ Backend API connected successfully');
+        console.log('Backend API connected successfully');
         return { success: true, message: 'Backend connected' };
       } else {
-        console.warn('⚠️ Backend API response error');
+        console.warn('Backend API response error');
         this.enabled = false;
         this.connectionChecked = true;
         return { success: false, message: 'Backend response error' };
       }
     } catch (error) {
-      console.warn('⚠️ Backend API connection failed:', error.message);
+      console.warn('Backend API connection failed:', error.message);
       this.enabled = false;
       this.connectionChecked = true;
       return { success: false, message: error.message };
@@ -51,17 +51,21 @@ class BackendAPI {
   async request(endpoint, options = {}) {
     const url = `${this.baseURL}/api${endpoint}`;
     const maxRetries = options.maxRetries || 3;
-    const retryDelay = options.retryDelay || 2000; // 2 seconds
+    let retryDelay = options.retryDelay || 2000; // 2 seconds
 
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
       try {
+        const headers = {
+          ...options.headers
+        };
+
+        if (options.body && typeof options.body === 'object') {
+          headers['Content-Type'] = 'application/json';
+        }
+
         const config = {
           method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept-Legacy-Format': 'true', // Request client-compatible format
-            ...options.headers
-          },
+          headers,
           // Increase timeout for large files
           signal: AbortSignal.timeout(options.timeout || 300000), // 5 minutes default
           ...options
@@ -104,29 +108,52 @@ class BackendAPI {
     }
   }
 
-  // Get Graph - Use analysis endpoints instead of ArangoDB
+  // Get Graph
   async getGraph(options = {}) {
-    if (!this.enabled && !this.fallbackToLocal) {
-      throw new Error('Backend API is not available');
-    }
-
-    if (!this.enabled) {
-      console.log('🔄 Falling back to local mode');
-      return this.getLocalGraph(options);
-    }
-
     try {
-      // For initial data, return empty to trigger sample data loading
-      // This system is designed for CSV/PDF upload analysis, not pre-existing graphs
-      console.log('📊 No pre-existing graph data. System designed for CSV/PDF analysis.');
-      return {
-        success: false,
-        message: 'No graph data available. Please upload CSV or PDF files for analysis.',
-        data: { nodes: [], links: [] },
-        source: 'analysis_system'
-      };
+      if (!this.enabled) {
+        await this.checkConnection(true);
+      }
 
+      if (!this.enabled) {
+        if (this.fallbackToLocal) {
+          console.log('[i] Falling back to local mode');
+          return this.getLocalGraph(options);
+        }
+        throw new Error('Backend API is not available');
+      }
+
+      const params = new URLSearchParams({
+        limit: options.limit || 50,
+        offset: options.offset || 0
+      });
+
+      if (options.graphId || options.graphSource) {
+        const filter = {};
+        if (options.graphId) filter.graphId = options.graphId;
+        if (options.graphSource) filter.graphSource = options.graphSource;
+        params.set('filter', JSON.stringify(filter));
+      }
+
+      const result = await this.request(`/graph?${params.toString()}`);
+      const nodes = Array.isArray(result?.data?.nodes) ? result.data.nodes : [];
+      const links = Array.isArray(result?.data?.links)
+        ? result.data.links
+        : Array.isArray(result?.data?.edges)
+          ? result.data.edges
+          : [];
+
+      return {
+        success: true,
+        data: { nodes, links },
+        source: 'backend',
+        message: result.message || 'Graph loaded successfully'
+      };
     } catch (error) {
+      if (this.fallbackToLocal) {
+        console.warn('[!] Backend graph fetch failed, falling back to local mode:', error.message);
+        return this.getLocalGraph(options);
+      }
       console.error('Graph fetch error:', error);
       throw new Error(`Failed to fetch graph: ${error.message}`);
     }
@@ -134,7 +161,7 @@ class BackendAPI {
 
   // Keep the original local graph method for fallback
   getLocalGraph(options = {}) {
-    console.log('🔄 Using local sample graph');
+    console.log('Using local sample graph');
     const transformedNodes = [
       { id: 'photosynthesis', label: 'Photosynthesis', size: 50, type: 'process' },
       { id: 'chloroplast', label: 'Chloroplast', size: 40, type: 'structure' },
@@ -158,13 +185,31 @@ class BackendAPI {
   }
 
   // Get Subgraph
-  async getSubgraph(nodeId, depth = 1) {
+  async getSubgraph(nodeId, depth = 1, options = {}) {
+    if (!this.enabled) {
+      await this.checkConnection(true);
+    }
+
     if (!this.enabled) {
       return this.getLocalSubgraph(nodeId, depth);
     }
 
     try {
-      const result = await this.request(`/graph/subgraph/${nodeId}?depth=${depth}&legacy=true`);
+      const params = new URLSearchParams({
+        depth,
+        legacy: 'true'
+      });
+
+      if (options.graphId) {
+        params.append('graphId', options.graphId);
+      }
+
+      if (options.graphSource) {
+        params.append('graphSource', options.graphSource);
+      }
+
+      const encodedNodeId = encodeURIComponent(nodeId);
+      const result = await this.request(`/graph/subgraph?nodeId=${encodedNodeId}${params ? `&${params}` : ''}`);
       return {
         success: true,
         data: result.data,
@@ -181,6 +226,10 @@ class BackendAPI {
   // Search Nodes
   async searchNodes(query, options = {}) {
     if (!this.enabled) {
+      await this.checkConnection(true);
+    }
+
+    if (!this.enabled) {
       return this.searchLocalNodes(query, options);
     }
 
@@ -193,6 +242,14 @@ class BackendAPI {
 
       if (options.type) {
         params.append('type', options.type);
+      }
+
+      if (options.graphId) {
+        params.append('graphId', options.graphId);
+      }
+
+      if (options.graphSource) {
+        params.append('graphSource', options.graphSource);
       }
 
       const result = await this.request(`/graph/search?${params}`);
@@ -211,6 +268,10 @@ class BackendAPI {
 
   // Upload Graph
   async uploadGraph(graphData, metadata = {}) {
+    if (!this.enabled) {
+      await this.checkConnection(true);
+    }
+
     if (!this.enabled) {
       throw new Error('Graph upload requires the backend API');
     }
@@ -284,7 +345,7 @@ class BackendAPI {
     }
 
     try {
-      const response = await fetch(`${this.baseURL}/api/arango/upload-csv`, {
+      const response = await fetch(`${this.baseURL}/api/analysis/csv`, {
         method: 'POST',
         body: formData // FormData object, fetch will set Content-Type automatically
       });
@@ -428,7 +489,7 @@ class BackendAPI {
 
   // Local Fallback Methods (using existing client logic)
   getLocalGraph(options) {
-    console.log('🔄 Using local graph data');
+    console.log('Using local graph data');
     
     // Get data from existing global variables or local storage
     if (window.currentGraph) {
@@ -447,7 +508,7 @@ class BackendAPI {
   }
 
   getLocalSubgraph(nodeId, depth) {
-    console.log(`🔄 Creating local subgraph: ${nodeId} (depth: ${depth})`);
+    console.log(`Creating local subgraph: ${nodeId} (depth: ${depth})`);
     
     if (!window.currentGraph) {
       return { success: false, data: { nodes: [], edges: [] } };
@@ -482,7 +543,7 @@ class BackendAPI {
   }
 
   searchLocalNodes(query, options) {
-    console.log(`🔍 Searching local nodes: ${query}`);
+    console.log(`Searching local nodes: ${query}`);
     
     if (!window.currentGraph) {
       return { success: false, data: [] };
@@ -566,7 +627,9 @@ async function getRichAIInsights(graphData) {
     }
 }
 
-console.log('🔌 Backend API client loaded successfully');
+window.getRichAIInsights = getRichAIInsights;
+
+console.log('Backend API client loaded successfully');
 
 // Module export (for ES6 modules)
 if (typeof module !== 'undefined' && module.exports) {

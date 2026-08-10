@@ -273,7 +273,8 @@ class SimpleAnalysisService {
           const links = graph.links || graph.edges || []; // Accept both for backward compatibility
 
           nodes.forEach(node => {
-              const nodeId = node.id || node.label.toLowerCase().replace(/\s+/g, '_');
+              const labelText = this.coerceTextValue(node?.label || node?.name || node?.id, '');
+              const nodeId = node.id || (labelText ? labelText.toLowerCase().replace(/\s+/g, '_') : `merged_node_${mergedNodes.size}`);
               if (mergedNodes.has(nodeId)) {
                   const existingNode = mergedNodes.get(nodeId);
                   existingNode.size = Math.max(existingNode.size, node.size);
@@ -719,8 +720,14 @@ CRITICAL: Return ONLY valid JSON. Use 'links' not 'edges'.`
         // More lenient node validation - accept both 'label' and 'name' fields
         nodes.filter(n => n && (n.id || n.label || n.name)).forEach(rawNode => {
             const normalizedNode = this.normalizeGraphObject(rawNode, 'node');
-            const nodeLabel = normalizedNode.label || rawNode.label || rawNode.name || rawNode.id || 'Unknown';
-            const nodeId = normalizedNode.id || rawNode.id || this.generateNodeId(nodeLabel);
+            const nodeLabel = this.coerceTextValue(
+                normalizedNode.label || rawNode.label || rawNode.name || rawNode.id,
+                'Unknown'
+            );
+            const nodeId = this.coerceTextValue(
+                normalizedNode.id || rawNode.id || this.generateNodeId(nodeLabel),
+                this.generateNodeId(nodeLabel)
+            );
 
             registerNode({
                 id: nodeId,
@@ -925,11 +932,51 @@ CRITICAL: Return ONLY valid JSON. Use 'links' not 'edges'.`
    * Generate a valid node ID from a label
    */
   generateNodeId(label) {
-    if (!label) return 'unknown_node';
-    return label.toLowerCase()
+    const text = this.coerceTextValue(label, '');
+    if (!text) return 'unknown_node';
+    return text.toLowerCase()
       .replace(/[^a-z0-9\s]/g, '')
       .replace(/\s+/g, '_')
       .substring(0, 50); // Limit length
+  }
+
+  coerceTextValue(value, fallback = '') {
+    if (value === null || value === undefined) {
+      return fallback;
+    }
+
+    if (typeof value === 'string') {
+      const text = value.trim();
+      return text || fallback;
+    }
+
+    if (typeof value === 'number' || typeof value === 'boolean') {
+      return String(value);
+    }
+
+    if (Array.isArray(value)) {
+      const text = value
+        .map(item => this.coerceTextValue(item, ''))
+        .filter(Boolean)
+        .join(' ');
+      return text || fallback;
+    }
+
+    if (typeof value === 'object') {
+      const nestedCandidate = value.label ?? value.name ?? value.id ?? value.title ?? value.value;
+      if (nestedCandidate !== undefined) {
+        return this.coerceTextValue(nestedCandidate, fallback);
+      }
+
+      try {
+        return JSON.stringify(value) || fallback;
+      } catch (error) {
+        return fallback;
+      }
+    }
+
+    const text = String(value).trim();
+    return text || fallback;
   }
 
   normalizeIdentifier(value) {
@@ -1447,7 +1494,7 @@ CRITICAL: Return ONLY valid JSON. Use 'links' not 'edges'.`
       return 'entity';
     }
 
-    const label = node.label.toLowerCase();
+    const label = this.coerceTextValue(node.label, '').toLowerCase();
     const type = (node.type || '').toLowerCase();
 
     if (type.includes('process') || label.includes('process') ||

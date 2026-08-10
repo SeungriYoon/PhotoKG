@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage,
   limits: {
-    fileSize: 50 * 1024 * 1024 // 50MB
+    fileSize: 100 * 1024 * 1024 // 100MB
   },
   fileFilter: (req, file, cb) => {
     const allowedTypes = ['.csv', '.json', '.pdf'];
@@ -256,7 +256,7 @@ router.use((error, req, res, next) => {
       return res.status(400).json({
         success: false,
         error: 'File too large',
-        message: 'File size exceeds 50MB limit'
+        message: 'File size exceeds 100MB limit'
       });
     }
     

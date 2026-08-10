@@ -1,4 +1,4 @@
-// import { CONFIG, UTILS } from './config.js'; // ES6 modules removed - using global objects
+﻿// import { CONFIG, UTILS } from './config.js'; // ES6 modules removed - using global objects
 
 // Visualization Class
 class GraphVisualization {
@@ -19,6 +19,7 @@ class GraphVisualization {
         this.performanceStats = { fps: 0, renderTime: 0, nodesInView: 0 };
         this.lastFrameTime = performance.now();
         this.frameCount = 0;
+        this.semanticColors = CONFIG.SEMANTIC_COLORS;
     }
 
     // Calculate label position slightly offset from edge midpoint
@@ -222,26 +223,32 @@ class GraphVisualization {
     // Create gradient definitions for 3D effect
     createGradientDefinitions() {
         const defs = this.svg.append('defs');
-        
-        // Create 50 radial gradients (3D effect)
-        for (let i = 0; i < 50; i++) {
-            const hue = (i * 137.508) % 360;
+
+        const gradientPairs = [
+            ['teal', this.semanticColors.primary, this.semanticColors.primaryStrong],
+            ['blue', this.semanticColors.secondary, '#1d4ed8'],
+            ['amber', this.semanticColors.accent, '#f59e0b'],
+            ['green', this.semanticColors.success, '#22c55e'],
+            ['slate', this.semanticColors.neutral, '#475569']
+        ];
+
+        gradientPairs.forEach(([name, start, end]) => {
             const gradient = defs.append('radialGradient')
-                .attr('id', `nodeGradient${i}`)
+                .attr('id', `nodeGradient-${name}`)
                 .attr('cx', '30%')
                 .attr('cy', '30%')
                 .attr('r', '70%');
 
             gradient.append('stop')
                 .attr('offset', '0%')
-                .attr('stop-color', `hsl(${hue}, 70%, 65%)`)
+                .attr('stop-color', start)
                 .attr('stop-opacity', 1);
 
             gradient.append('stop')
                 .attr('offset', '100%')
-                .attr('stop-color', `hsl(${hue}, 80%, 45%)`)
+                .attr('stop-color', end)
                 .attr('stop-opacity', 1);
-        }
+        });
 
         // Drop shadow filter
         const filter = defs.append('filter')
@@ -295,37 +302,9 @@ class GraphVisualization {
 
     // Dynamic node color
     getNodeColor(d, index) {
-        const radius = this.getNodeRadius(d);
-        const normalizedSize = Math.min(1, (radius - CONFIG.DEFAULTS.NODE_SIZE_MIN) / 
-                                          (CONFIG.DEFAULTS.NODE_SIZE_MAX - CONFIG.DEFAULTS.NODE_SIZE_MIN));
-        
-        // Color palettes by node type (soft colors)
-        const colorPalettes = {
-            'concept': [200, 220, 240, 260, 280], // Blue tones
-            'process': [120, 140, 160, 180, 200], // Green tones
-            'molecule': [300, 320, 340, 360, 380], // Purple tones
-            'enzyme': [40, 60, 80, 100, 120],     // Orange tones
-            'complex': [0, 20, 40, 60, 80],       // Red tones
-            'structure': [160, 180, 200, 220, 240], // Teal tones
-            'pigment': [30, 50, 70, 90, 110],     // Gold tones
-            'energy': [15, 35, 55, 75, 95],       // Orange-red tones
-            'particle': [280, 300, 320, 340, 360], // Magenta tones
-            'cell': [140, 160, 180, 200, 220],    // Teal tones
-            'tissue': [100, 120, 140, 160, 180],  // Green tones
-            'category': [180, 200, 220, 240, 260], // Blue tones
-            'organelle': [220, 240, 260, 280, 300] // Blue-purple tones
-        };
-        
         const nodeType = d.type || 'concept';
-        const palette = colorPalettes[nodeType] || colorPalettes['concept'];
-        const colorIndex = index % palette.length;
-        const baseHue = palette[colorIndex];
-        
-        // Adjust lightness based on size
-        const saturation = 45 + normalizedSize * 25; // 45-70%
-        const lightness = 70 - normalizedSize * 20;  // 70-50%
-        
-        return `hsl(${baseHue}, ${saturation}%, ${lightness}%)`;
+        const palette = CONFIG.GRAPH_PALETTE[nodeType] || CONFIG.GRAPH_PALETTE.concept;
+        return palette[index % palette.length];
     }
 
     // Create curved path (Bezier curve)
@@ -439,14 +418,14 @@ class GraphVisualization {
             .enter().append('path')
             .attr('class', 'link')
             .attr('fill', 'none')
-            .style('stroke', 'rgba(150, 150, 150, 0.6)')
+            .style('stroke', 'rgba(72, 88, 108, 0.72)')
             .style('stroke-width', d => Math.max(0.5, Math.min(4, Math.sqrt(d.weight))))
             .style('opacity', d => UTILS.calculateEdgeOpacity(d.weight))
             .style('cursor', 'pointer')
             .on('mouseover', (event, d) => this.showLinkTooltip(event, d))
             .on('mouseout', this.hideLinkTooltip);
 
-        const linkLabelData = this.visibleLinks.filter(d => (d.label && d.label.trim()) || (d.relationship_type && d.relationship_type.trim()));
+        const linkLabelData = this.visibleLinks.filter(d => this.getEdgeLabelText(d));
 
         const linkLabels = g.append('g')
             .attr('class', 'edge-labels')
@@ -455,7 +434,7 @@ class GraphVisualization {
             .enter()
             .append('text')
             .attr('class', 'edge-label')
-            .text(d => (d.label || d.relationship_type || '').trim())
+            .text(d => this.getEdgeLabelText(d))
             .attr('text-anchor', 'middle')
             .style('font-size', '10px')
             .style('font-weight', '500')
@@ -681,9 +660,9 @@ class GraphVisualization {
             .style('opacity', link => connectedLinks.includes(link) ? 0.9 : 0.05)
             .style('stroke', link => {
                 if (connectedLinks.includes(link)) {
-                    return `hsl(${(d.id.length * 37) % 360}, 70%, 60%)`;
+                    return this.semanticColors.primary;
                 }
-                return 'rgba(150, 150, 150, 0.6)';
+                return 'rgba(72, 88, 108, 0.72)';
             })
             .style('stroke-width', link => {
                 return connectedLinks.includes(link) ? 
@@ -706,9 +685,10 @@ class GraphVisualization {
         const formulaDisplay = document.getElementById('formulaDisplay');
         const referencesSection = document.getElementById('referencesSection');
         const referencesList = document.getElementById('referencesList');
+        const paperMetadata = this.extractPaperMetadata(node);
         
         // Set basic information
-        title.textContent = node.label;
+        title.textContent = paperMetadata.primary?.title || node.label || 'Node';
         type.textContent = this.formatNodeType(node.type);
         size.textContent = this.formatNodeSize(node.size);
         
@@ -732,6 +712,13 @@ class GraphVisualization {
             propertyItem.appendChild(valueEl);
             propertiesList.appendChild(propertyItem);
         };
+
+        if (paperMetadata.primary) {
+            const paperSummaryCard = this.buildPaperSummaryCard(paperMetadata.primary);
+            if (paperSummaryCard) {
+                propertiesList.appendChild(paperSummaryCard);
+            }
+        }
 
         // Debugging: Check node data structure
         console.log('🔍 Displaying node details:', {
@@ -837,55 +824,15 @@ class GraphVisualization {
         }
 
         // References section
-        if (node.attributes && node.attributes.related_papers && Array.isArray(node.attributes.related_papers)) {
+        if (paperMetadata.relatedPapers.length > 0) {
             referencesSection.style.display = 'block';
             referencesList.innerHTML = '';
             
-            node.attributes.related_papers.slice(0, 5).forEach((paper, index) => {
-                const refItem = document.createElement('div');
-                refItem.className = 'reference-item';
-                
-                const titleEl = document.createElement('div');
-                titleEl.className = 'reference-title';
-                
-                // Improved title handling
-                let title = '';
-                if (paper.title && paper.title.trim()) {
-                    title = paper.title.trim();
-                } else if (paper.name && paper.name.trim()) {
-                    title = paper.name.trim();
-                } else if (typeof paper === 'string' && paper.trim()) {
-                    title = paper.trim();
-                } else {
-                    title = `Paper ${index + 1}`;
+            paperMetadata.relatedPapers.slice(0, 5).forEach((paper, index) => {
+                const refItem = this.buildReferenceCard(paper, index);
+                if (refItem) {
+                    referencesList.appendChild(refItem);
                 }
-                titleEl.textContent = title;
-                
-                const authorsEl = document.createElement('div');
-                authorsEl.className = 'reference-authors';
-                
-                // Improved author/DOI information handling
-                let authorInfo = '';
-                if (paper.authors && paper.authors.trim()) {
-                    authorInfo = paper.authors.trim();
-                } else if (paper.author && paper.author.trim()) {
-                    authorInfo = paper.author.trim();
-                } else if (paper.doi && paper.doi.trim()) {
-                    authorInfo = `DOI: ${paper.doi.trim()}`;
-                } else if (paper.pmid && paper.pmid.trim()) {
-                    authorInfo = `PMID: ${paper.pmid.trim()}`;
-                } else if (paper.journal && paper.journal.trim()) {
-                    authorInfo = paper.journal.trim();
-                } else if (paper.year) {
-                    authorInfo = `Publication Year: ${paper.year}`;
-                } else {
-                    authorInfo = 'No information available';
-                }
-                authorsEl.textContent = authorInfo;
-                
-                refItem.appendChild(titleEl);
-                refItem.appendChild(authorsEl);
-                referencesList.appendChild(refItem);
             });
         } else {
             referencesSection.style.display = 'none';
@@ -940,7 +887,33 @@ class GraphVisualization {
             'process': 'Process',
             'capacity': 'Capacity',
             'optimization': 'Optimization',
-            'equation': 'Equation'
+            'equation': 'Equation',
+            'gene': 'Gene',
+            'protein': 'Protein',
+            'organism': 'Organism',
+            'phenotype': 'Phenotype',
+            'trait': 'Trait',
+            'metabolite': 'Metabolite',
+            'molecule': 'Molecule',
+            'enzyme': 'Enzyme',
+            'pathway': 'Pathway',
+            'cell': 'Cell',
+            'tissue': 'Tissue',
+            'complex': 'Complex',
+            'disease': 'Disease',
+            'regulation': 'Regulation',
+            'cellular_component': 'Cellular Component',
+            'anatomy': 'Anatomy',
+            'location': 'Location',
+            'paper': 'Paper',
+            'model': 'Model',
+            'parameter': 'Parameter',
+            'measurement': 'Measurement',
+            'formula': 'Formula',
+            'method': 'Method',
+            'material': 'Material',
+            'condition': 'Condition',
+            'site': 'Site'
         };
         return typeMap[type] || type;
     }
@@ -954,6 +927,300 @@ class GraphVisualization {
         } else {
             return size.toString();
         }
+    }
+
+    isGenericEdgeLabel(label) {
+        const normalized = String(label || '').trim().toUpperCase();
+        if (!normalized) {
+            return true;
+        }
+
+        return new Set(['KG_EDGE', 'RELATED_TO', 'RELATIONSHIP', 'RELATES_TO', 'EDGE', 'LINK']).has(normalized);
+    }
+
+    getEdgeLabelText(edge) {
+        const candidates = [
+            edge?.label,
+            edge?.relationship_type,
+            edge?.predicate,
+            edge?.relation,
+            edge?.relationship,
+            edge?.edge_label,
+            edge?.type
+        ];
+
+        for (const candidate of candidates) {
+            const text = String(candidate || '').trim();
+            if (text && !this.isGenericEdgeLabel(text)) {
+                return text;
+            }
+        }
+
+        return '';
+    }
+
+    normalizePaperValue(value) {
+        if (value === undefined || value === null) {
+            return '';
+        }
+
+        if (Array.isArray(value)) {
+            return value.map(item => this.normalizePaperValue(item)).filter(Boolean).join(', ');
+        }
+
+        if (typeof value === 'object') {
+            return this.normalizePaperValue(
+                value.title ||
+                value.name ||
+                value.label ||
+                value.text ||
+                value.pmid ||
+                value.doi ||
+                value.journal ||
+                value.year
+            );
+        }
+
+        return String(value).trim();
+    }
+
+    extractDoiFromText(text) {
+        if (!text) {
+            return '';
+        }
+
+        const match = String(text).match(/10\.\d{4,9}\/[-._;()/:A-Z0-9]+/i);
+        return match ? match[0] : '';
+    }
+
+    inferDoiFromFilename(filename) {
+        const raw = String(filename || '').trim();
+        if (!raw) {
+            return '';
+        }
+
+        const withoutExt = raw.replace(/\.[^.]+$/, '');
+        const directMatch = withoutExt.match(/(10\.\d{4,9})[_/](.+)$/i);
+        if (directMatch) {
+            const prefix = directMatch[1];
+            const suffix = directMatch[2].replace(/_/g, '/').replace(/^\/+/, '');
+            return `${prefix}/${suffix}`.replace(/\s+/g, '');
+        }
+
+        const embeddedMatch = withoutExt.match(/(?:^|[_\/])(10\.\d{4,9}[_/].+)$/i);
+        if (embeddedMatch) {
+            return embeddedMatch[1].replace(/_/g, '/').replace(/\s+/g, '');
+        }
+
+        return '';
+    }
+
+    normalizePaperRecord(paper, fallbackTitle = 'Paper') {
+        if (!paper) {
+            return null;
+        }
+
+        if (typeof paper === 'string') {
+            const title = paper.trim();
+            return title ? { title, authors: '', journal: '', year: '', pmid: '', doi: '', abstract: '' } : null;
+        }
+
+        if (typeof paper !== 'object') {
+            const title = this.normalizePaperValue(paper);
+            return title ? { title, authors: '', journal: '', year: '', pmid: '', doi: '', abstract: '' } : null;
+        }
+
+        const title = this.normalizePaperValue(
+            paper.title ||
+            paper.name ||
+            paper.label ||
+            paper.paper_title ||
+            paper.document_title ||
+            fallbackTitle
+        );
+        const authors = this.normalizePaperValue(paper.authors || paper.author || paper.creator || paper.creators);
+        const journal = this.normalizePaperValue(paper.journal || paper.journal_name || paper.source_journal);
+        const year = this.normalizePaperValue(paper.year || paper.pub_year || paper.publication_year || paper.published_year);
+        const pmid = this.normalizePaperValue(paper.pmid || paper.pubmed_id || paper.pubmedId || paper.pubmed_ids);
+        const description = this.normalizePaperValue(paper.abstract || paper.summary || paper.description);
+        const doi = this.normalizePaperValue(
+            paper.doi ||
+            paper.DOI ||
+            paper.doi_url ||
+            paper.doiUrl ||
+            paper.paper_doi ||
+            paper.article_doi ||
+            paper.external_doi ||
+            paper.url ||
+            paper.link ||
+            paper.external_link ||
+            this.extractDoiFromText(description) ||
+            this.inferDoiFromFilename(
+                paper.fname ||
+                paper.filename ||
+                paper.file_name ||
+                paper.source_file ||
+                paper.pdf
+            )
+        );
+        if (!title && !authors && !journal && !year && !pmid && !doi && !description) {
+            return null;
+        }
+
+        return { title, authors, journal, year, pmid, doi, description };
+    }
+
+    extractPaperMetadata(node) {
+        const attrs = node?.attributes && typeof node.attributes === 'object' ? node.attributes : {};
+        const source = { ...attrs, ...node };
+        const filenameDoi = this.inferDoiFromFilename(
+            source.fname ||
+            source.filename ||
+            source.file_name ||
+            source.source_file ||
+            source.pdf
+        );
+        const primary = this.normalizePaperRecord({
+            title: source.paper_title || source.title || source.document_title || (String(source.type || '').toLowerCase() === 'paper' ? node.label : ''),
+            authors: source.authors || source.author || source.creator || source.creators,
+            journal: source.journal || source.journal_name || source.source_journal,
+            year: source.pub_year || source.year || source.publication_year || source.published_year,
+            pmid: source.pmid || source.pubmed_id || source.pubmedId || source.pubmed_ids,
+            doi: source.doi || source.DOI || source.doi_url || source.doiUrl || source.paper_doi || source.article_doi || source.external_doi || source.url || source.link || source.external_link || source.attributes?.doi || source.attributes?.DOI || filenameDoi,
+            abstract: source.abstract || source.summary || source.description
+        }, node?.label || 'Paper');
+
+        const relatedRaw = attrs.related_papers ?? source.related_papers ?? source.papers ?? source.references ?? [];
+        const relatedPapers = Array.isArray(relatedRaw) ? relatedRaw : (relatedRaw ? [relatedRaw] : []);
+
+        return {
+            primary,
+            relatedPapers: relatedPapers
+                .map((paper, index) => this.normalizePaperRecord(paper, `Paper ${index + 1}`))
+                .filter(Boolean)
+        };
+    }
+
+    buildPaperSummaryCard(paper) {
+        if (!paper) {
+            return null;
+        }
+
+        const card = document.createElement('div');
+        card.className = 'paper-summary-card';
+
+        const title = document.createElement('div');
+        title.className = 'paper-summary-title';
+        title.textContent = paper.title || 'Paper';
+        card.appendChild(title);
+
+        const meta = document.createElement('div');
+        meta.className = 'paper-summary-meta';
+        const metaParts = [];
+        if (paper.authors) {
+            metaParts.push(paper.authors);
+        }
+        const journalLine = [paper.journal, paper.year].filter(Boolean).join(' - ');
+        if (journalLine) {
+            metaParts.push(journalLine);
+        }
+        if (paper.pmid) {
+            metaParts.push(`PMID: ${paper.pmid}`);
+        }
+        if (paper.doi) {
+            metaParts.push(`DOI: ${paper.doi}`);
+        }
+        meta.textContent = metaParts.length ? metaParts.join(' | ') : 'No paper metadata available';
+        card.appendChild(meta);
+
+        const descriptionText = paper.description || paper.abstract || '';
+        if (descriptionText) {
+            const descriptionLabel = document.createElement('div');
+            descriptionLabel.className = 'paper-summary-description-label';
+            descriptionLabel.textContent = 'Description';
+            card.appendChild(descriptionLabel);
+
+            const abstract = document.createElement('div');
+            abstract.className = 'paper-summary-abstract';
+            const snippet = descriptionText.length > 360 ? `${descriptionText.slice(0, 357)}...` : descriptionText;
+            abstract.textContent = snippet;
+            card.appendChild(abstract);
+        }
+
+        const linkRow = document.createElement('div');
+        linkRow.className = 'paper-summary-links';
+
+        if (paper.pmid) {
+            const pubmedLink = document.createElement('a');
+            pubmedLink.className = 'reference-pmid-link';
+            pubmedLink.href = `https://pubmed.ncbi.nlm.nih.gov/${encodeURIComponent(String(paper.pmid).trim())}/`;
+            pubmedLink.target = '_blank';
+            pubmedLink.rel = 'noopener noreferrer';
+            pubmedLink.textContent = 'Open PubMed';
+            linkRow.appendChild(pubmedLink);
+        }
+
+        if (paper.doi) {
+            const doiLink = document.createElement('a');
+            doiLink.className = 'reference-pmid-link';
+            doiLink.href = /^https?:\/\//i.test(paper.doi)
+                ? paper.doi
+                : `https://doi.org/${encodeURIComponent(String(paper.doi).trim())}`;
+            doiLink.target = '_blank';
+            doiLink.rel = 'noopener noreferrer';
+            doiLink.textContent = 'Open DOI';
+            linkRow.appendChild(doiLink);
+        }
+
+        if (linkRow.childElementCount > 0) {
+            card.appendChild(linkRow);
+        }
+
+        return card;
+    }
+    buildReferenceCard(paper, index) {
+        if (!paper) {
+            return null;
+        }
+
+        const refItem = document.createElement('div');
+        refItem.className = 'reference-item';
+
+        const titleEl = document.createElement('div');
+        titleEl.className = 'reference-title';
+        titleEl.textContent = paper.title || `Paper ${index + 1}`;
+        refItem.appendChild(titleEl);
+
+        const metaEl = document.createElement('div');
+        metaEl.className = 'reference-authors';
+        const metaParts = [];
+        if (paper.authors) {
+            metaParts.push(paper.authors);
+        }
+        const journalLine = [paper.journal, paper.year].filter(Boolean).join(' - ');
+        if (journalLine) {
+            metaParts.push(journalLine);
+        }
+        if (paper.pmid) {
+            metaParts.push(`PMID: ${paper.pmid}`);
+        }
+        if (paper.doi) {
+            metaParts.push(`DOI: ${paper.doi}`);
+        }
+        metaEl.textContent = metaParts.length ? metaParts.join(' · ') : 'No information available';
+        refItem.appendChild(metaEl);
+
+        if (paper.pmid) {
+            const pmidLink = document.createElement('a');
+            pmidLink.className = 'reference-pmid-link';
+            pmidLink.href = `https://pubmed.ncbi.nlm.nih.gov/${encodeURIComponent(String(paper.pmid).trim())}/`;
+            pmidLink.target = '_blank';
+            pmidLink.rel = 'noopener noreferrer';
+            pmidLink.textContent = `PubMed ${paper.pmid}`;
+            refItem.appendChild(pmidLink);
+        }
+
+        return refItem;
     }
 
     handleNodeDoubleClick(event, d) {
@@ -1026,12 +1293,11 @@ class GraphVisualization {
             .style('stroke', link => {
                 const linkData = allConnectedLinks.find(l => l.source === link.source && l.target === link.target);
                 if (linkData) {
-                    const hue = (d.id.length * 37) % 360;
-                    return linkData.level === 1 ? 
-                        `hsl(${hue}, 80%, 65%)` : 
-                        `hsl(${hue}, 60%, 50%)`;
+                    return linkData.level === 1 ?
+                        this.semanticColors.primary :
+                        this.semanticColors.secondary;
                 }
-                return 'rgba(150, 150, 150, 0.3)';
+                return 'rgba(72, 88, 108, 0.56)';
             })
             .style('stroke-width', link => {
                 const linkData = allConnectedLinks.find(l => l.source === link.source && l.target === link.target);
@@ -1070,32 +1336,34 @@ class GraphVisualization {
     showTooltip(event, d) {
         const tooltip = document.getElementById('tooltip');
         tooltip.style.display = 'block';
-        
-        let tooltipContent = `<strong>${d.label}</strong><br>`;
-        tooltipContent += `Type: ${d.type}<br>`;
-        tooltipContent += `Size: ${Math.round(d.size)}<br>`;
-        
+
+        let tooltipContent = `<div class="tooltip-card">`;
+        tooltipContent += `<div class="tooltip-title">${d.label}</div>`;
+        tooltipContent += `<div class="tooltip-subtitle">Type: ${d.type}</div>`;
+        tooltipContent += `<div class="tooltip-subtitle">Size: ${Math.round(d.size)}</div>`;
+
         if (d.attributes) {
             if (d.attributes.total_citations) {
-                tooltipContent += `Total Citations: ${d.attributes.total_citations}<br>`;
+                tooltipContent += `<div class="tooltip-chip">Citations: ${UTILS.formatNumber(d.attributes.total_citations)}</div>`;
             }
             if (d.attributes.frequency) {
-                tooltipContent += `Frequency: ${d.attributes.frequency}<br>`;
+                tooltipContent += `<div class="tooltip-chip">Frequency: ${d.attributes.frequency}</div>`;
             }
             if (d.attributes.first_appeared && d.attributes.last_appeared) {
-                tooltipContent += `Period: ${d.attributes.first_appeared} - ${d.attributes.last_appeared}<br>`;
+                tooltipContent += `<div class="tooltip-chip">Period: ${d.attributes.first_appeared} - ${d.attributes.last_appeared}</div>`;
             }
             if (d.attributes.related_papers && d.attributes.related_papers.length) {
-                tooltipContent += `Related Papers: ${d.attributes.related_papers.length}`;
+                tooltipContent += `<div class="tooltip-chip">Related Papers: ${d.attributes.related_papers.length}</div>`;
             }
         }
-        
+
+        tooltipContent += `</div>`;
         tooltip.innerHTML = tooltipContent;
-        
+
         const tooltipRect = tooltip.getBoundingClientRect();
         const left = Math.min(event.pageX + 10, window.innerWidth - tooltipRect.width - 20);
         const top = Math.max(event.pageY - tooltipRect.height - 10, 20);
-        
+
         tooltip.style.left = left + 'px';
         tooltip.style.top = top + 'px';
     }
@@ -1109,7 +1377,7 @@ class GraphVisualization {
         tooltip.style.display = 'block';
         
         let tooltipContent = `<div style="max-width: 300px;">`;
-        tooltipContent += `<div style="font-size: 16px; font-weight: bold; margin-bottom: 8px; color: #4CAF50;">${d.label}</div>`;
+        tooltipContent += `<div style="font-size: 16px; font-weight: bold; margin-bottom: 8px; color: ${this.semanticColors.primary};">${d.label}</div>`;
         tooltipContent += `<div style="margin-bottom: 6px;"><span style="color: #888;">Type:</span> ${d.type}</div>`;
         tooltipContent += `<div style="margin-bottom: 6px;"><span style="color: #888;">Size:</span> ${Math.round(d.size)}</div>`;
         
@@ -1144,7 +1412,7 @@ class GraphVisualization {
             tooltipContent += `<div style="font-weight: 600; margin-bottom: 4px; color: #888;">Network Info:</div>`;
             tooltipContent += `<div style="font-size: 12px;">Direct Connections: ${networkInfo.primaryConnected}</div>`;
             tooltipContent += `<div style="font-size: 12px;">2nd-Degree Connections: ${networkInfo.secondaryConnected}</div>`;
-            tooltipContent += `<div style="font-size: 12px; font-weight: 600; color: #4CAF50;">Total Network: ${networkInfo.totalNetwork}</div>`;
+            tooltipContent += `<div style="font-size: 12px; font-weight: 600; color: ${this.semanticColors.primary};">Total Network: ${networkInfo.totalNetwork}</div>`;
             tooltipContent += `</div>`;
         }
         
@@ -1214,7 +1482,7 @@ class GraphVisualization {
         this.svg.selectAll('.link')
             .classed('highlighted', false)
             .style('opacity', d => UTILS.calculateEdgeOpacity(d.weight))
-            .style('stroke', 'rgba(150, 150, 150, 0.6)')
+            .style('stroke', 'rgba(72, 88, 108, 0.72)')
             .style('stroke-width', d => Math.max(0.5, Math.sqrt(d.weight)));
         
         this.hideTooltip();
@@ -1229,12 +1497,27 @@ class GraphVisualization {
         this.showLoading('Rendering graph...');
         
         this.allNodes = nodes.map(d => ({...d}));
-        this.allLinks = links.map(d => ({...d}));
+
+        const nodeIds = new Set(this.allNodes.map(node => String(node.id)));
+        const normalizedLinks = (links || [])
+            .map(link => ({ ...link }))
+            .filter(link => {
+                const sourceId = String(link.source?.id || link.source || '');
+                const targetId = String(link.target?.id || link.target || '');
+                return sourceId && targetId && nodeIds.has(sourceId) && nodeIds.has(targetId);
+            });
+
+        if (normalizedLinks.length !== (links || []).length) {
+            console.warn('Filtered invalid links before rendering:', (links || []).length - normalizedLinks.length);
+        }
+
+        this.allLinks = normalizedLinks;
         this.visibleNodes = [...this.allNodes];
         this.visibleLinks = [...this.allLinks];
         
         // Immediately execute a simple visualization
         this.renderSimpleGraph();
+        requestAnimationFrame(() => this.handleResize());
     }
 
     // Render simple graph
@@ -1276,13 +1559,13 @@ class GraphVisualization {
             .attr('class', 'link')
             .attr('fill', 'none')
             .attr('stroke-linecap', 'round')
-            .attr('stroke', 'rgba(150, 150, 150, 0.7)')
+            .attr('stroke', 'rgba(72, 88, 108, 0.72)')
             .attr('stroke-opacity', d => UTILS.calculateEdgeOpacity(d.weight || 1))
             .attr('stroke-width', d => Math.max(1.5, Math.sqrt(d.weight || 1) * 1.2) )
             .on('mouseover', (event, d) => this.showLinkTooltip(event, d))
             .on('mouseout', () => this.hideLinkTooltip());
 
-        const simpleLinkLabelData = this.visibleLinks.filter(d => (d.label && d.label.trim()) || (d.relationship_type && d.relationship_type.trim()));
+        const simpleLinkLabelData = this.visibleLinks.filter(d => this.getEdgeLabelText(d));
         const simpleLinkLabels = graphGroup.append('g')
             .attr('class', 'edge-labels')
             .selectAll('text')
@@ -1290,7 +1573,7 @@ class GraphVisualization {
             .enter()
             .append('text')
             .attr('class', 'edge-label')
-            .text(d => (d.label || d.relationship_type || '').trim())
+            .text(d => this.getEdgeLabelText(d))
             .attr('text-anchor', 'middle')
             .style('font-size', '10px')
             .style('font-weight', '500')
@@ -1406,18 +1689,19 @@ class GraphVisualization {
             return;
         }
 
-        console.log('Applying filters:', {nodeSizeThreshold, edgeWeightThreshold, maxNodesDisplay, progressiveLoading});
+        const safeMaxNodesDisplay = Math.min(500, Math.max(1, Number(maxNodesDisplay) || 500));
+        console.log('Applying filters:', {nodeSizeThreshold, edgeWeightThreshold, maxNodesDisplay: safeMaxNodesDisplay, progressiveLoading});
 
         // Filter nodes
         let filteredNodes = this.allNodes.filter(node => (node.size || 10) >= nodeSizeThreshold);
         
         // Progressive loading - sort by size and select top nodes
-        if (progressiveLoading && filteredNodes.length > maxNodesDisplay) {
+        if (progressiveLoading && filteredNodes.length > safeMaxNodesDisplay) {
             filteredNodes = filteredNodes
                 .sort((a, b) => (b.size || 10) - (a.size || 10))
-                .slice(0, maxNodesDisplay);
-        } else if (filteredNodes.length > maxNodesDisplay) {
-            filteredNodes = filteredNodes.slice(0, maxNodesDisplay);
+                .slice(0, safeMaxNodesDisplay);
+        } else if (filteredNodes.length > safeMaxNodesDisplay) {
+            filteredNodes = filteredNodes.slice(0, safeMaxNodesDisplay);
         }
 
         // Filter edges - select only edges connected to filtered nodes
@@ -1583,7 +1867,7 @@ class GraphVisualization {
         this.svg.selectAll('.node')
             .filter(d => matchingNodeIds.has(d.id))
             .style('opacity', 1)
-            .style('stroke', '#ff6b6b')
+            .style('stroke', this.semanticColors.accent)
             .style('stroke-width', '3px');
         
         this.svg.selectAll('.node-label')
@@ -1601,7 +1885,7 @@ class GraphVisualization {
         // Restore styles of all nodes
         this.svg.selectAll('.node')
             .style('opacity', 1)
-            .style('stroke', '#fff')
+            .style('stroke', 'rgba(255, 255, 255, 0.82)')
             .style('stroke-width', '2px');
         
         this.svg.selectAll('.node-label')

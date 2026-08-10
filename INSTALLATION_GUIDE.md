@@ -1,387 +1,369 @@
-# 🧠 PhotoRAG Knowledge Graph System - Installation Guide
+# PhotoKG Installation Guide
 
-Welcome to PhotoRAG, an advanced knowledge graph system for scientific research analysis! This guide provides two installation paths tailored to different user needs and technical expertise levels.
+This guide describes the current PhotoKG setup: an Express backend, a static D3.js frontend, an LLM provider, and an optional graph database. The backend defaults to Neo4j; ArangoDB remains available as a compatibility mode.
 
-## 📋 Prerequisites
+## 1. Prerequisites
 
-Before starting, ensure you have the following installed on your system:
+Install the following tools before starting:
 
-- **Node.js** (v16.0.0 or higher) - [Download here](https://nodejs.org/)
-- **Python** (v3.8 or higher) - [Download here](https://python.org/)
-- **Git** - [Download here](https://git-scm.com/)
+- Node.js 16 or newer and npm
+- Python 3.8 or newer for the optional Python environment or a separate static frontend server
+- Git
+- Docker, if you plan to run Neo4j or ArangoDB in containers
 
-## 🚀 Quick Start (Simplified Version)
+Check the versions:
 
-Perfect for users who want to get up and running immediately without complex database setup.
+~~~bash
+node --version
+npm --version
+python --version
+git --version
+~~~
 
-### Step 1: Clone the Repository
-```bash
-git clone <repository-url>
-cd PhotoRAG
-```
+## 2. Clone the project
 
-### Step 2: Install Dependencies
+~~~bash
+git clone https://github.com/SeungriYoon/PhotoKG.git
+cd PhotoKG
+~~~
 
-#### Backend Dependencies
-```bash
+## 3. Install dependencies
+
+Install the backend dependencies:
+
+~~~bash
 cd backend
 npm install
 cd ..
-```
+~~~
 
-#### Python Dependencies
-```bash
-# Create virtual environment (recommended)
+The frontend is static and does not require a bundler. The root package.json only provides helper commands such as the Python server and PlantConnectome conversion.
+
+### Optional Python environment
+
+The repository also contains Python utilities and dependency metadata. Create the environment only if your workflow needs them:
+
+Windows PowerShell:
+
+~~~powershell
 python -m venv venv
+venv/Scripts/Activate.ps1
+python -m pip install -r requirements.txt
+~~~
 
-# Activate virtual environment
-# Windows:
-venv\Scripts\activate
-# macOS/Linux:
+macOS/Linux:
+
+~~~bash
+python3 -m venv venv
 source venv/bin/activate
+python -m pip install -r requirements.txt
+~~~
 
-# Install Python packages
-pip install -r requirements.txt
-```
+## 4. Configure .env
 
-### Step 3: Configure Environment Variables
+Copy the safe template:
 
-Create a `.env` file in the project root:
+Windows PowerShell:
 
-```env
-# OpenAI API Key (Required)
-OPENAI_API_KEY=sk-your-actual-openai-api-key-here
+~~~powershell
+Copy-Item .env.example .env
+~~~
 
-# Server Configuration
+macOS/Linux:
+
+~~~bash
+cp .env.example .env
+~~~
+
+Edit .env. A minimal Neo4j + OpenAI-compatible configuration is:
+
+~~~env
+LLM_PROVIDER=openai_compatible
+LLM_BASE_URL=https://api.openai.com/v1
+LLM_MODEL=gpt-4o-mini
+LLM_API_KEY=replace-with-your-key
+
+GRAPH_BACKEND=neo4j
+NEO4J_URL=http://localhost:7474
+NEO4J_DATABASE=neo4j
+NEO4J_USERNAME=neo4j
+NEO4J_PASSWORD=replace-with-your-password
+
 PORT=3015
 NODE_ENV=development
-```
+~~~
 
-**🔑 Getting Your OpenAI API Key:**
-1. Visit [OpenAI Platform](https://platform.openai.com/)
-2. Sign up or log in to your account
-3. Navigate to "API Keys" section
-4. Create a new API key
-5. Copy the key and paste it in your `.env` file
+The backend reads .env from the repository root. Never commit .env, API keys, passwords, or local logs. .gitignore intentionally excludes .env and *.log; verify them before staging with:
 
-### Step 4: Start the System
+~~~bash
+git status --short --ignored
+git diff --cached --name-only
+~~~
 
-#### Option A: Start Backend Only (Recommended for Quick Start)
-```bash
+## 5. Configure an LLM provider
+
+Choose one provider. The supported values are gemini, openai_compatible, ollama, and local_http.
+
+### OpenAI-compatible API
+
+~~~env
+LLM_PROVIDER=openai_compatible
+LLM_BASE_URL=https://api.openai.com/v1
+LLM_MODEL=gpt-4o-mini
+LLM_API_KEY=replace-with-your-key
+LLM_TIMEOUT_MS=60000
+LLM_TEMPERATURE=0
+LLM_MAX_TOKENS=2048
+~~~
+
+### Gemini
+
+~~~env
+LLM_PROVIDER=gemini
+LLM_MODEL=gemini-2.5-flash
+LLM_API_KEY=replace-with-your-key
+~~~
+
+GEMINI_API_KEY is also accepted for Gemini configuration.
+
+### Ollama
+
+Start Ollama and make sure the selected model is available:
+
+~~~bash
+ollama pull llama3.1
+~~~
+
+Then set:
+
+~~~env
+LLM_PROVIDER=ollama
+LLM_BASE_URL=http://localhost:11434
+LLM_MODEL=llama3.1
+~~~
+
+### Local OpenAI-compatible server
+
+~~~env
+LLM_PROVIDER=local_http
+LLM_BASE_URL=http://127.0.0.1:8000/v1
+LLM_MODEL=your-local-model
+~~~
+
+Verify the provider after starting the backend at GET /api/analysis/llm-health.
+
+## 6. Configure the graph database
+
+### Option A: Neo4j (default)
+
+Run Neo4j with Docker:
+
+~~~bash
+docker run --name photokg-neo4j -p 7474:7474 -p 7687:7687 -e NEO4J_AUTH=neo4j/replace-with-your-password -d neo4j:5
+~~~
+
+Set the corresponding values in .env:
+
+~~~env
+GRAPH_BACKEND=neo4j
+NEO4J_URL=http://localhost:7474
+NEO4J_DATABASE=neo4j
+NEO4J_USERNAME=neo4j
+NEO4J_PASSWORD=replace-with-your-password
+~~~
+
+Test the connection:
+
+~~~bash
 cd backend
-npm start
-```
+npm run test:neo4j
+~~~
 
-The system will run in **simplified mode** with in-memory processing. You can:
-- Upload CSV/PDF files
-- Generate knowledge graphs using AI
-- Visualize and analyze data
-- Export results
+The same adapter contract can be run against both databases after each service is started:
 
-#### Option B: Start with Live Server (For Frontend Development)
-```bash
-# Terminal 1: Start Backend
+~~~bash
 cd backend
-npm start
+npm run test:contract:neo4j
+npm run test:contract:arango
+~~~
 
-# Terminal 2: Start Frontend Server
-# Using Python's built-in server
-python -m http.server 3000
+The shared graph response uses `nodes` and `links`; each record has a stable `id` and an `attributes` object. The database-neutral health endpoint is `GET /api/graph/health`.
 
-# Or using Node.js http-server (if installed)
-npx http-server -p 3000
-```
+### Option B: ArangoDB compatibility mode
 
-### Step 5: Access the Application
+Run ArangoDB:
 
-Open your browser and navigate to:
-- **Main Application**: `http://localhost:3000`
-- **Backend API**: `http://localhost:3015/api/health`
+~~~bash
+docker run --name photokg-arangodb -p 8529:8529 -e ARANGO_ROOT_PASSWORD=replace-with-your-password -d arangodb:latest
+~~~
 
-### Step 6: Test the System
+Use these settings:
 
-1. **Upload a Sample File**: Try uploading a CSV file with research data
-2. **Check AI Analysis**: Verify that OpenAI analysis is working
-3. **Explore Visualization**: Interact with the generated knowledge graph
-
----
-
-## 🔧 Advanced Setup (Comprehensive Version)
-
-For users who need full database integration, advanced analytics, and production-ready features.
-
-### Step 1: Complete Basic Setup
-
-Follow Steps 1-3 from the Quick Start section above.
-
-### Step 2: Install ArangoDB
-
-#### Option A: Using Docker (Recommended)
-```bash
-# Pull and run ArangoDB container
-docker run -e ARANGO_ROOT_PASSWORD=your_secure_password -p 8529:8529 -d --name arangodb arangodb:latest
-
-# Verify ArangoDB is running
-docker ps
-```
-
-#### Option B: Native Installation
-
-**Windows:**
-```bash
-# Using Chocolatey
-choco install arangodb
-
-# Or download from official website
-# https://www.arangodb.com/download/
-```
-
-**macOS:**
-```bash
-# Using Homebrew
-brew install arangodb
-
-# Start ArangoDB
-brew services start arangodb
-```
-
-**Linux (Ubuntu/Debian):**
-```bash
-# Add ArangoDB repository
-curl -OL https://download.arangodb.com/arangodb310/DEBIAN/Release.key
-sudo apt-key add - < Release.key
-echo 'deb https://download.arangodb.com/arangodb310/DEBIAN/ /' | sudo tee /etc/apt/sources.list.d/arangodb.list
-sudo apt-get update
-
-# Install ArangoDB
-sudo apt-get install arangodb3
-
-# Start ArangoDB
-sudo systemctl start arangodb3
-```
-
-### Step 3: Configure Advanced Environment
-
-Update your `.env` file with database settings:
-
-```env
-# OpenAI API Key (Required)
-OPENAI_API_KEY=sk-your-actual-openai-api-key-here
-
-# ArangoDB Configuration
+~~~env
+GRAPH_BACKEND=arango
 ARANGODB_URL=http://localhost:8529
 ARANGODB_USERNAME=root
-ARANGODB_PASSWORD=your_secure_password
+ARANGODB_PASSWORD=replace-with-your-password
 ARANGODB_DATABASE=knowledge_graph
+~~~
 
-# Server Configuration
-PORT=3015
-NODE_ENV=development
+Initialize and test ArangoDB:
 
-# Optional: Advanced Features
-ENABLE_CACHE=true
-LOG_LEVEL=info
-MAX_FILE_SIZE=52428800
-```
-
-### Step 4: Initialize Database
-
-```bash
+~~~bash
 cd backend
-
-# Test database connection
 npm run test-connection
-
-# Initialize database schema
 npm run init-db
+~~~
 
-# (Optional) Migrate existing data
-npm run migrate
-```
+## 7. Start PhotoKG
 
-### Step 5: Start All Services
+### Recommended: backend serves the frontend
 
-#### Development Mode (with auto-reload)
-```bash
-# Terminal 1: Start ArangoDB (if not using Docker)
-sudo systemctl start arangodb3
+The Express server serves both the API and the project root:
 
-# Terminal 2: Start Backend with Database
+~~~bash
+cd backend
+npm start
+~~~
+
+Open:
+
+- Application: http://localhost:3015
+- API health: http://localhost:3015/api/health
+- LLM health: http://localhost:3015/api/analysis/llm-health
+- Selected graph backend health: http://localhost:3015/api/graph/health
+
+### Frontend development server
+
+Run the backend and frontend in separate terminals:
+
+~~~bash
+# Terminal 1
 cd backend
 npm run dev
 
-# Terminal 3: Start Frontend
+# Terminal 2, from the project root
 python -m http.server 3000
-```
+~~~
 
-#### Production Mode
-```bash
-# Start ArangoDB
-sudo systemctl start arangodb3
+Open http://localhost:3000. The frontend calls the backend at http://localhost:3015.
 
-# Start Backend
+If the backend is unavailable, the interface loads a local sample graph. Uploading files, querying stored graphs, and server-side analysis require the backend.
+
+## 8. First-run checks
+
+1. Open the application and confirm the console reports that the frontend initialized.
+2. Confirm /api/health returns a successful response.
+3. Confirm /api/analysis/llm-health reports the selected provider.
+4. Confirm /api/graph/health succeeds when a graph database is configured.
+5. Upload a small CSV or PDF and verify that nodes and relationships appear in the graph.
+6. Open PEO Analysis, Network Analysis, and AI Insights to verify the analysis panels.
+
+## 9. Data import workflows
+
+### PlantConnectome CSV
+
+Convert a large CSV into the normalized graph JSON format:
+
+~~~bash
+npm run convert:plantconnectome -- input.csv output.json 20000
+~~~
+
+The optional final argument limits rows; the default is 20,000. Keep generated preview files outside the committed source tree unless they are intentional release assets.
+
+### SciData JSONL
+
+Preview the import without writing to the database:
+
+~~~bash
 cd backend
-npm start
+node scripts/import-scidata.js --source "path/to/scidata/data" --dry-run
+~~~
 
-# Start Frontend (using a production server)
-npx serve -s . -l 3000
-```
+Import the data after the graph backend is ready:
 
-### Step 6: Verify Advanced Features
+~~~bash
+npm run import:scidata -- --source "path/to/scidata/data"
+~~~
 
-1. **Database Integration**: Check that data is being stored in ArangoDB
-2. **Advanced Analytics**: Test PEO analysis and network metrics
-3. **Data Persistence**: Verify that uploaded data persists between sessions
-4. **Performance Monitoring**: Check the performance dashboard
+## 10. Troubleshooting
 
----
+### The UI loads but the graph request fails
 
-## 🛠️ Troubleshooting
+- Confirm that the backend is running on port 3015.
+- Open /api/health directly.
+- Check the selected GRAPH_BACKEND value.
+- For Neo4j, check /api/graph/health and confirm the HTTP URL, database, username, and password.
+- For ArangoDB, run npm run test-connection from backend.
 
-### Common Issues and Solutions
+### LLM health reports a configuration error
 
-#### OpenAI API Errors
-```
-Error: OpenAI API key not found
-```
-**Solution**: Verify your API key in the `.env` file and ensure it starts with `sk-`
+- Confirm LLM_PROVIDER, LLM_BASE_URL, and LLM_MODEL.
+- Confirm the API key is present for Gemini and OpenAI-compatible services.
+- For Ollama or local_http, confirm the local service is running and the model exists.
+- Restart the backend after changing .env.
 
-#### Database Connection Issues
-```
-Error: Connection refused to localhost:8529
-```
-**Solution**: 
-- Ensure ArangoDB is running: `docker ps` or `sudo systemctl status arangodb3`
-- Check your database credentials in `.env`
-- Verify the database URL is correct
+### File upload or PDF analysis fails
 
-#### Port Already in Use
-```
-Error: Port 3015 is already in use
-```
-**Solution**: 
-- Change the port in `.env`: `PORT=3016`
-- Or kill the process using the port: `lsof -ti:3015 | xargs kill -9`
+- Confirm the backend is running and the selected file type is supported.
+- Check the file size against MAX_FILE_SIZE.
+- Check the backend console for parser or LLM errors.
+- For long PDFs, increase LLM_TIMEOUT_MS and ANALYSIS_TIMEOUT if the provider requires more time.
 
-#### File Upload Errors
-```
-Error: File too large
-```
-**Solution**: 
-- Check file size (max 50MB)
-- Verify `MAX_FILE_SIZE` in `.env` if using advanced setup
+### Port 3015 or 3000 is already in use
 
-### Log Files and Debugging
+Change PORT in .env for the backend. If the frontend is served separately, start Python's server on another port:
 
-#### Backend Logs
-```bash
-# View backend logs
-cd backend
-npm run dev  # Shows logs in console
+~~~bash
+python -m http.server 3001
+~~~
 
-# Or check system logs
-tail -f /var/log/arangodb3/arangod.log
-```
+When changing the backend port, update the frontend API base URL in js/backendAPI.js or serve the frontend through the backend to keep the default configuration.
 
-#### Frontend Debugging
-1. Open browser Developer Tools (F12)
-2. Check Console tab for JavaScript errors
-3. Check Network tab for API call failures
+### Browser console or CORS errors
 
-### Performance Optimization
+- Prefer opening the frontend through http://localhost:3015 for a same-origin setup.
+- If using port 3000, confirm that the backend is running and that the browser is not blocking the request.
+- Do not open the HTML file directly from an untrusted location when testing API calls.
 
-#### For Large Datasets
-```env
-# Increase memory limits
-NODE_OPTIONS="--max-old-space-size=4096"
-MAX_FILE_SIZE=104857600  # 100MB
-```
+## 11. Validation commands
 
-#### For Production
-```env
-# Enable caching
-ENABLE_CACHE=true
-REDIS_URL=redis://localhost:6379
+From the repository root:
 
-# Set log level
-LOG_LEVEL=warn
-```
+~~~bash
+git diff --check
+node --check js/main.js
+node --check js/analysisPanel.js
+node --check js/backendAPI.js
+~~~
 
----
+From backend:
 
-## 🧪 Evaluation Assets (Optional)
+~~~bash
+npm run lint
+npm test
+~~~
 
-If you plan to validate extraction quality or reproduce our paper benchmarks, include the `Evaluation/` folder when cloning or syncing:
+The current lint command is a placeholder, and the root test command is not configured. Use the database connection commands above for environment-level verification.
 
-- `01. Ground Truth/` — curated annotations for five reference documents.
-- `02.~05./` — JSON outputs grouped by provider/model (Gemini-2.5-flash, Gemini-1.5-flash, GPT-4o-mini, GPT-4.1-nano).
+## 12. Keeping the checkout clean
 
-You can extend these sets with your own runs and compare against ground truth in any evaluation notebook.
+Before committing or pushing:
 
----
+~~~bash
+git status --short
+git diff --check
+git diff --cached --name-only
+~~~
 
-## 📚 Additional Resources
+Do not stage or publish:
 
-### API Documentation
-- **Backend API**: `http://localhost:3015/api/health`
-- **Graph Endpoints**: `http://localhost:3015/api/graph`
-- **Analysis Endpoints**: `http://localhost:3015/api/analysis`
-- **Domain Prompts**: See `docs/Domain_Prompt_Playbook.md` for additional system prompts.
+- .env and any file containing credentials
+- *.log
+- uploads/
+- .omx/ runtime state
+- temporary result JSON files
+- large local datasets or generated previews
+- UI prototypes that are not part of the selected release
 
-### Sample Data
-- Use the provided `frontend_test.csv` for testing
-- Try uploading research papers in PDF format
-- Test with JSON data exports from other systems
-
-### Advanced Configuration
-
-#### Custom Analysis Models
-```javascript
-// Modify analysis parameters in backend/services/AnalysisService.js
-const analysisConfig = {
-  maxNodes: 200,
-  minEdgeWeight: 0.1,
-  clusteringMethod: 'community_detection'
-};
-```
-
-#### Visualization Settings
-```javascript
-// Adjust visualization in js/config.js
-const CONFIG = {
-  DEFAULTS: {
-    NODE_SIZE_MIN: 8,
-    NODE_SIZE_MAX: 45,
-    MAX_NODES_DISPLAY: 200
-  }
-};
-```
-
----
-
-## 🆘 Getting Help
-
-If you encounter issues not covered in this guide:
-
-1. **Check the Console**: Look for error messages in browser console
-2. **Review Logs**: Check backend and database logs
-3. **Verify Dependencies**: Ensure all packages are properly installed
-4. **Test Connectivity**: Use the built-in connection test features
-
-### Support Channels
-- **Documentation**: Check the project README and code comments
-- **Issues**: Report bugs and feature requests through the project repository
-- **Community**: Join discussions in the project forums
-
----
-
-## 🎉 You're All Set!
-
-Congratulations! You now have PhotoRAG Knowledge Graph System running on your machine. Whether you chose the simplified or comprehensive setup, you can now:
-
-- Upload research data in various formats
-- Generate intelligent knowledge graphs
-- Analyze relationships and patterns
-- Export results for further research
-
-Happy analyzing! 🚀
+Use .env.example as the shareable configuration template.

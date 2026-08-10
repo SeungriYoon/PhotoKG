@@ -148,6 +148,12 @@ class DatabaseManager {
           fields: ['type'],
           name: 'type_hash_idx'
         });
+
+        await collection.ensureIndex({
+          type: 'hash',
+          fields: ['graph_source'],
+          name: 'graph_source_hash_idx'
+        });
         
         await collection.ensureIndex({
           type: 'skiplist',
@@ -161,6 +167,12 @@ class DatabaseManager {
           type: 'hash',
           fields: ['relationship_type'],
           name: 'relationship_type_hash_idx'
+        });
+
+        await collection.ensureIndex({
+          type: 'hash',
+          fields: ['graph_source'],
+          name: 'edge_graph_source_hash_idx'
         });
         
         await collection.ensureIndex({

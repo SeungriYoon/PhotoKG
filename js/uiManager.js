@@ -24,7 +24,6 @@ class UIManager {
     }
 
     setupStatusDisplay() {
-        // Set up the status display element if it exists
         const statusElement = document.querySelector('.status-display');
         if (statusElement) {
             this.statusElement = statusElement;
@@ -37,22 +36,20 @@ class UIManager {
 
         const messageDiv = document.createElement('div');
         messageDiv.className = `console-message ${type}`;
-        
+
         const timestamp = new Date().toLocaleTimeString();
         const icon = this.getConsoleIcon(type);
-        
+        const cleanMessage = this.normalizeConsoleMessage(message);
+
         messageDiv.innerHTML = `
             <span class="console-timestamp">${timestamp}</span>
             <span class="console-icon">${icon}</span>
-            <span class="console-text">${message}</span>
+            <span class="console-text">${cleanMessage}</span>
         `;
 
         consoleContent.appendChild(messageDiv);
-        
-        // Scroll to the bottom
         consoleContent.scrollTop = consoleContent.scrollHeight;
-        
-        // Keep a maximum of 100 messages
+
         const messages = consoleContent.querySelectorAll('.console-message');
         if (messages.length > 100) {
             messages[0].remove();
@@ -61,12 +58,27 @@ class UIManager {
 
     getConsoleIcon(type) {
         const icons = {
-            'info': 'ℹ️',
-            'error': '❌',
-            'warning': '⚠️',
-            'success': '✅'
+            info: '[i]',
+            error: '[x]',
+            warning: '[!]',
+            success: '[+]'
         };
-        return icons[type] || icons['info'];
+        return icons[type] || icons.info;
+    }
+
+    normalizeConsoleMessage(message) {
+        const text = String(message ?? '').replace(/\s+/g, ' ').trim();
+        if (!text) {
+            return '';
+        }
+
+        const firstAsciiWord = text.match(/[A-Za-z][A-Za-z0-9 ,.:;()_\-/'"'"'"!?%+=[\]{}@#&*<>]*/);
+        if (firstAsciiWord && firstAsciiWord[0]) {
+            return firstAsciiWord[0].replace(/^[^A-Za-z0-9]+/, '').trim();
+        }
+
+        const cleaned = text.replace(/[^\x20-\x7E]+/g, ' ').replace(/\s+/g, ' ').trim();
+        return cleaned || text;
     }
 
     log(message) {
@@ -112,11 +124,10 @@ class UIManager {
             <div class="notification-content">
                 <span class="notification-icon">${this.getConsoleIcon(type)}</span>
                 <span class="notification-text">${message}</span>
-                <button class="notification-close" onclick="this.parentElement.parentElement.remove()">×</button>
+                <button class="notification-close" onclick="this.parentElement.parentElement.remove()">x</button>
             </div>
         `;
 
-        // Apply styles
         notification.style.cssText = `
             position: fixed;
             top: 20px;
@@ -133,7 +144,6 @@ class UIManager {
             animation: slideIn 0.3s ease-out;
         `;
 
-        // Add animation styles
         if (!document.getElementById('notification-styles')) {
             const style = document.createElement('style');
             style.id = 'notification-styles';
@@ -176,7 +186,6 @@ class UIManager {
 
         document.body.appendChild(notification);
 
-        // Auto-remove
         setTimeout(() => {
             if (notification.parentElement) {
                 notification.remove();
@@ -186,15 +195,14 @@ class UIManager {
 
     getNotificationColor(type) {
         const colors = {
-            'info': '#2196F3',
-            'error': '#f44336',
-            'warning': '#ff9800',
-            'success': '#4CAF50'
+            info: '#2196F3',
+            error: '#f44336',
+            warning: '#ff9800',
+            success: '#4CAF50'
         };
-        return colors[type] || colors['info'];
+        return colors[type] || colors.info;
     }
 
-    // Update file upload status
     updateFileStatus(message, type = 'info') {
         const fileStatus = document.getElementById('fileStatus');
         if (fileStatus) {
@@ -203,7 +211,6 @@ class UIManager {
         }
     }
 
-    // Update Ollama status
     updateOllamaStatus(success, message) {
         const statusDiv = document.getElementById('ollamaStatus');
         if (statusDiv) {
@@ -212,15 +219,12 @@ class UIManager {
         }
     }
 
-    // Update button state
     updateButtonState(buttonId, state) {
         const button = document.getElementById(buttonId);
         if (!button) return;
 
-        // Remove existing state classes
         button.classList.remove('active', 'inactive');
-        
-        // Add new state class
+
         if (state === 'active') {
             button.classList.add('active');
         } else if (state === 'inactive') {
@@ -228,7 +232,6 @@ class UIManager {
         }
     }
 
-    // Update drag and drop state
     updateDragDropState(isDragging) {
         const uploadArea = document.getElementById('fileUploadArea');
         if (uploadArea) {

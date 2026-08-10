@@ -1,16 +1,70 @@
 // Configuration and Constant Management
 const CONFIG = {
     // Color Palette (50 HSL-based colors)
-    COLOR_PALETTE: (() => {
-        const palette = [];
-        for (let i = 0; i < 50; i++) {
-            const hue = (i * 137.508) % 360; // Even distribution using the golden angle
-            const saturation = 65 + (i % 3) * 10; // 65-85% saturation
-            const lightness = 50 + (i % 4) * 8;   // 50-74% lightness
-            palette.push(`hsl(${hue}, ${saturation}%, ${lightness}%)`);
-        }
-        return palette;
-    })(),
+    COLOR_PALETTE: [
+        '#0f766e', '#115e59', '#14b8a6', '#0ea5e9', '#2563eb',
+        '#1d4ed8', '#3b82f6', '#16a34a', '#22c55e', '#15803d',
+        '#d97706', '#f59e0b', '#ea580c', '#64748b', '#475569',
+        '#1e293b', '#94a3b8', '#38bdf8', '#06b6d4', '#84cc16'
+    ],
+
+    SEMANTIC_COLORS: {
+        primary: '#0f766e',
+        primaryStrong: '#115e59',
+        secondary: '#2563eb',
+        accent: '#d97706',
+        success: '#15803d',
+        warning: '#f59e0b',
+        danger: '#b91c1c',
+        neutral: '#64748b',
+        surface: '#ffffff',
+        surfaceSoft: '#f8fafc',
+        text: '#102a43',
+        muted: '#627d98'
+    },
+
+    GRAPH_PALETTE: {
+        concept: ['#0f766e', '#14b8a6', '#0ea5e9'],
+        gene: ['#0f766e', '#14b8a6', '#0ea5e9'],
+        protein: ['#2563eb', '#3b82f6', '#1d4ed8'],
+        organism: ['#16a34a', '#22c55e', '#15803d'],
+        phenotype: ['#d97706', '#f59e0b', '#ea580c'],
+        trait: ['#f59e0b', '#fbbf24', '#d97706'],
+        metabolite: ['#06b6d4', '#0ea5e9', '#38bdf8'],
+        molecule: ['#0284c7', '#0ea5e9', '#38bdf8'],
+        enzyme: ['#f97316', '#fb923c', '#d97706'],
+        process: ['#0f766e', '#14b8a6', '#06b6d4'],
+        pathway: ['#2563eb', '#3b82f6', '#60a5fa'],
+        cell: ['#15803d', '#22c55e', '#84cc16'],
+        tissue: ['#0f766e', '#10b981', '#14b8a6'],
+        complex: ['#475569', '#64748b', '#94a3b8'],
+        disease: ['#b91c1c', '#dc2626', '#ef4444'],
+        regulation: ['#0f766e', '#14b8a6', '#0ea5e9'],
+        cellular_component: ['#334155', '#475569', '#64748b'],
+        anatomy: ['#0f766e', '#0ea5e9', '#14b8a6'],
+        location: ['#64748b', '#475569', '#334155'],
+        paper: ['#64748b', '#475569', '#334155'],
+        model: ['#0f766e', '#14b8a6', '#0ea5e9'],
+        parameter: ['#d97706', '#f59e0b', '#ea580c'],
+        measurement: ['#d97706', '#f59e0b', '#ea580c'],
+        formula: ['#2563eb', '#3b82f6', '#1d4ed8'],
+        method: ['#0f766e', '#14b8a6', '#06b6d4'],
+        material: ['#475569', '#64748b', '#94a3b8'],
+        condition: ['#f59e0b', '#f97316', '#ea580c'],
+        site: ['#64748b', '#94a3b8', '#cbd5e1'],
+        author: ['#2563eb', '#3b82f6', '#1d4ed8'],
+        journal: ['#d97706', '#f59e0b', '#ea580c'],
+        keyword: ['#15803d', '#22c55e', '#16a34a'],
+        process: ['#0f766e', '#14b8a6', '#06b6d4'],
+        molecule: ['#2563eb', '#0ea5e9', '#38bdf8'],
+        enzyme: ['#d97706', '#f59e0b', '#f97316'],
+        complex: ['#475569', '#64748b', '#94a3b8'],
+        structure: ['#1d4ed8', '#2563eb', '#3b82f6'],
+        cell: ['#15803d', '#22c55e', '#84cc16'],
+        tissue: ['#0f766e', '#10b981', '#14b8a6'],
+        category: ['#2563eb', '#38bdf8', '#0ea5e9'],
+        organelle: ['#d97706', '#f59e0b', '#f97316']
+    },
 
     // Default Settings
     DEFAULTS: {
@@ -118,10 +172,27 @@ const CONFIG = {
 
     // Node Type Settings
     NODE_TYPES: {
-        keyword: { shape: 'circle', color: 'hsl(200, 70%, 60%)' },
-        author: { shape: 'circle', color: 'hsl(120, 70%, 60%)' },
-        journal: { shape: 'rounded-rect', color: 'hsl(280, 70%, 60%)' },
-        concept: { shape: 'diamond', color: 'hsl(40, 70%, 60%)' }
+        keyword: { shape: 'circle', color: '#15803d' },
+        author: { shape: 'circle', color: '#2563eb' },
+        journal: { shape: 'rounded-rect', color: '#d97706' },
+        concept: { shape: 'diamond', color: '#0f766e' },
+        paper: { shape: 'rounded-rect', color: '#64748b' },
+        model: { shape: 'rounded-square', color: '#0f766e' },
+        parameter: { shape: 'rounded-square', color: '#d97706' },
+        measurement: { shape: 'rounded-square', color: '#d97706' },
+        formula: { shape: 'rounded-square', color: '#2563eb' },
+        method: { shape: 'rounded-square', color: '#0f766e' },
+        material: { shape: 'rounded-square', color: '#64748b' },
+        condition: { shape: 'rounded-square', color: '#f59e0b' },
+        site: { shape: 'rounded-square', color: '#94a3b8' },
+        gene: { shape: 'rounded-square', color: '#0f766e' },
+        protein: { shape: 'rounded-square', color: '#2563eb' },
+        organism: { shape: 'rounded-square', color: '#16a34a' },
+        phenotype: { shape: 'rounded-square', color: '#d97706' },
+        metabolite: { shape: 'rounded-square', color: '#06b6d4' },
+        enzyme: { shape: 'rounded-square', color: '#f97316' },
+        process: { shape: 'rounded-square', color: '#0f766e' },
+        pathway: { shape: 'rounded-square', color: '#2563eb' }
     },
 
     // Animation Settings
@@ -139,10 +210,8 @@ const CONFIG = {
 const UTILS = {
     // Generate HSL Color
     generateHSLColor: (index, baseHue = 0) => {
-        const hue = (baseHue + index * 137.508) % 360;
-        const saturation = 65 + (index % 3) * 10;
-        const lightness = 50 + (index % 4) * 8;
-        return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+        const palette = CONFIG.COLOR_PALETTE;
+        return palette[(baseHue + index) % palette.length];
     },
 
     // Calculate Node Size

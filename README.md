@@ -1,281 +1,145 @@
-# PhotoKG Knowledge Graph System
+# PhotoKG
 
-Advanced knowledge graph visualization and analysis platform for scientific research. PhotoKG combines AI-powered entity extraction with interactive graph visualization to help researchers understand complex relationships in their data.
+PhotoKG is a plant-science knowledge-graph system for exploring relationships among photosynthesis concepts, papers, processes, structures, and evidence.
 
-## ✨ Features
+The repository contains a static D3.js frontend and an Express backend. The backend exposes one graph API façade; Neo4j is the default adapter and ArangoDB is an alternative adapter.
 
-### 🎯 Core Capabilities
-- **Multi-format Data Import**: CSV, JSON, and PDF file support
-- **AI-Powered Analysis**: OpenAI GPT-4 and Google Gemini integration
-- **Interactive Visualization**: D3.js-based knowledge graph rendering
-- **Real-time Filtering**: Dynamic node and edge filtering
-- **Advanced Analytics**: PEO analysis, network metrics, and community detection
-- **Export Functionality**: Save graphs and analysis results
+## Features
 
-### 🤖 AI Integration
-- **OpenAI Models**: GPT-4.1-nano (default), GPT-4o-mini, GPT-3.5-turbo
-- **Google Gemini**: Gemini-2.5-flash (highest accuracy), Gemini-1.5-flash, Gemini-1.5-pro
-- **Intelligent Extraction**: Automatic entity and relationship detection
-- **Contextual Analysis**: Research paper understanding and knowledge graph generation
+- Interactive graph exploration, search, subgraphs, and node/edge operations.
+- CSV and PDF analysis through the database-neutral `/api/analysis/*` API.
+- LLM providers: Gemini, OpenAI-compatible APIs, Ollama, and local HTTP servers.
+- PlantConnectome and SciData import helpers.
+- Common graph contract: `nodes`, `links`, stable `id`, and `attributes` for both databases.
 
-### 📊 Visualization Features
-- **Interactive Graphs**: Zoom, pan, and explore relationships
-- **Performance Monitoring**: Real-time FPS and rendering statistics
-- **Search & Filter**: Find specific nodes and relationships
-- **Progressive Loading**: Handle large datasets efficiently
-- **Export Options**: Save visualizations as images or data
+## Architecture
 
-## 🚀 Quick Start
-
-### Prerequisites
-- Node.js (v16.0.0+)
-- Python (v3.8+)
-- Git
-
-### Installation
-
-1. **Clone the repository**
-```bash
-git clone <repository-url>
-cd PhotoRAG
+```text
+Browser UI
+   │
+   ├── /api/graph/*       GraphService façade
+   │                          ├── Neo4jGraphService (default)
+   │                          └── ArangoGraphService (optional)
+   └── /api/analysis/*    LLM and file analysis
 ```
 
-2. **Install dependencies**
+The frontend never needs to call a database-specific graph or AI endpoint.
+
+## Requirements
+
+- Node.js 16 or newer and npm
+- Python 3.8 or newer for optional utilities
+- Neo4j 5+ or ArangoDB when the corresponding backend is selected
+- An optional LLM provider for model-backed analysis
+
+## Quick start
+
 ```bash
-# Backend dependencies
+git clone https://github.com/SeungriYoon/PhotoKG.git
+cd PhotoKG
 cd backend
 npm install
-cd ..
-
-# Python dependencies
-python -m venv venv
-# Windows:
-venv\Scripts\activate
-# macOS/Linux:
-source venv/bin/activate
-pip install -r requirements.txt
 ```
 
-3. **Configure environment**
-```bash
-# Create .env file in project root
-OPENAI_API_KEY=sk-your-openai-api-key-here
-PORT=3015
-NODE_ENV=development
-```
+Copy `.env.example` to `.env`, configure the selected services, then start the application:
 
-4. **Start the system**
-
-You need to run two servers in separate terminal windows:
-
-**Terminal 1 - Backend Server:**
-```bash
-cd backend
+```powershell
+Copy-Item ..\.env.example ..\.env
 npm start
 ```
-The backend server will run on port 3015. Keep this terminal window open.
 
-**Terminal 2 - Frontend Server:**
-```bash
-# Navigate to project root directory
-cd <project-root-directory>
-python -m http.server 3000
-```
-The frontend server will run on port 3000. Keep this terminal window open.
+Open [http://localhost:3015](http://localhost:3015). The backend serves both the API and the static frontend.
 
-**Note:** 
-- You need two separate terminal windows
-- Backend runs from the `backend` folder
-- Frontend runs from the project **root folder**
-- Each server must run in a separate terminal window
+## Configuration
 
-5. **Access the application**
-- Open `http://localhost:3000` in your browser
-- Upload CSV, JSON, or PDF files
-- Explore the generated knowledge graph
+### Neo4j (default)
 
-## 📁 Project Structure
-
-```
-PhotoRAG/
-├── backend/                 # Node.js backend server
-│   ├── config/             # Database configuration
-│   ├── middleware/         # API middleware
-│   ├── models/             # Data schemas
-│   ├── routes/             # API endpoints
-│   ├── services/           # Business logic
-│   ├── scripts/            # Database scripts
-│   └── server.js           # Main server file
-├── js/                     # Frontend JavaScript modules
-│   ├── main.js            # Main application logic
-│   ├── visualization.js   # D3.js graph rendering
-│   ├── aiService.js       # AI integration
-│   ├── dataProcessor.js   # Data processing
-│   └── uiManager.js       # UI management
-├── index.html              # Main HTML file
-├── styles.css             # Main stylesheet
-├── styles_analysis.css    # Analysis panel styles
-└── requirements.txt       # Python dependencies
-```
-
-## 🔧 Advanced Setup
-
-For production use with full database integration:
-
-### ArangoDB Setup
-```bash
-# Using Docker (recommended)
-docker run -e ARANGO_ROOT_PASSWORD=your_password -p 8529:8529 -d --name arangodb arangodb:latest
-
-# Or install natively
-# See INSTALLATION_GUIDE.md for detailed instructions
-```
-
-### Environment Configuration
 ```env
-# Database Configuration
+GRAPH_BACKEND=neo4j
+NEO4J_URL=http://localhost:7474
+NEO4J_DATABASE=neo4j
+NEO4J_USERNAME=neo4j
+NEO4J_PASSWORD=replace-with-your-password
+```
+
+Example Docker command:
+
+```bash
+docker run --name photokg-neo4j -p 7474:7474 -p 7687:7687 \
+  -e NEO4J_AUTH=neo4j/replace-with-your-password -d neo4j:5
+```
+
+### ArangoDB
+
+```env
+GRAPH_BACKEND=arango
 ARANGODB_URL=http://localhost:8529
 ARANGODB_USERNAME=root
-ARANGODB_PASSWORD=your_password
+ARANGODB_PASSWORD=replace-with-your-password
 ARANGODB_DATABASE=knowledge_graph
-
-# AI Configuration
-OPENAI_API_KEY=sk-your-key-here
-OPENAI_MODEL=gpt-4.1-nano
-GOOGLE_API_KEY=your-google-key-here
-GOOGLE_MODEL=gemini-2.5-flash
-
-# Server Configuration
-PORT=3015
-NODE_ENV=production
 ```
 
-## 📖 API Documentation
+Example Docker command:
 
-### Core Endpoints
-- `GET /api/health` - System health check
-- `POST /api/upload/csv` - Upload and analyze CSV files
-- `POST /api/upload/pdf` - Upload and analyze PDF files
-- `GET /api/graph` - Retrieve knowledge graph data
-- `POST /api/analysis/peo` - Perform PEO analysis
-- `POST /api/analysis/network` - Network analysis
-
-### AI Analysis Endpoints
-- `POST /api/arango/analyze-metadata` - AI-powered metadata analysis
-- `POST /api/arango/chat` - AI chat interface
-- `GET /api/arango/test-openai` - Test OpenAI connection
-
-## 🎨 Usage Examples
-
-### Upload CSV Data
-1. Click "Select File" button
-2. Choose your CSV file
-3. System automatically processes and generates knowledge graph
-4. Use filters to explore relationships
-
-### Analyze PDF Research Papers
-1. Upload PDF file
-2. AI extracts entities and relationships
-3. Interactive graph shows research concepts
-4. Use analysis tools for deeper insights
-
-### Export Results
-1. Use zoom/pan controls to focus on areas of interest
-2. Click export button to save visualization
-3. Download analysis results as JSON
-
-## 🛠️ Configuration
-
-### AI Model Selection
-The system supports multiple AI models optimized for different use cases:
-
-| Model | Provider | Speed | Quality | Best For |
-|-------|----------|--------|---------|----------|
-| GPT-4.1-nano | OpenAI | ⚡⚡⚡ | ⭐⭐⭐⭐ | Primary engine for large-scale indexing; pair with Gemini-2.5-flash for on-demand deep reasoning on high-impact papers |
-| Gemini-2.5-flash | Google | ⚡ | ⭐⭐⭐⭐⭐ | Max extraction / research-grade deep reasoning |
-| Gemini-1.5-flash | Google | ⚡⚡⚡ | ⭐⭐⭐⭐ | Research & real-time parity |
-| GPT-4o-mini | OpenAI | ⚡⚡⚡⚡ | ⭐⭐⭐½ | Fast processing |
-
-### Performance Tuning
-```javascript
-// Adjust visualization settings in js/config.js
-const CONFIG = {
-  DEFAULTS: {
-    NODE_SIZE_MIN: 8,
-    NODE_SIZE_MAX: 45,
-    MAX_NODES_DISPLAY: 200
-  }
-};
-```
-
-## 🔍 Troubleshooting
-
-### Common Issues
-
-**OpenAI API Errors**
-- Verify API key is correct and has sufficient credits
-- Check rate limits and retry configuration
-
-**Database Connection Issues**
-- Ensure ArangoDB is running on port 8529
-- Verify credentials in .env file
-
-**File Upload Errors**
-- Check file size (max 50MB)
-- Ensure file format is supported (CSV, JSON, PDF)
-
-### Debug Mode
 ```bash
-# Enable debug logging
-NODE_ENV=development npm start
-
-# Check backend logs
-cd backend && npm run dev
+docker run --name photokg-arangodb -p 8529:8529 \
+  -e ARANGO_ROOT_PASSWORD=replace-with-your-password -d arangodb:latest
 ```
 
-## 📚 Documentation
+### LLM
 
-- [Installation Guide](INSTALLATION_GUIDE.md) - Detailed setup instructions
-- [API Guide](API_Guide.md) - Complete API documentation
-- [Domain Prompt Playbook](docs/Domain_Prompt_Playbook.md) - Additional domain-specific system prompts
-- `Evaluation/` - Ground truth and model-specific extraction logs for benchmarking
+```env
+LLM_PROVIDER=openai_compatible
+LLM_BASE_URL=https://api.openai.com/v1
+LLM_MODEL=gpt-4o-mini
+LLM_API_KEY=replace-with-your-key
+```
 
-## 📈 Evaluation Assets
+Supported providers are `openai_compatible`, `gemini`, `ollama`, and `local_http`. Check the configured provider with `GET /api/analysis/llm-health`.
 
-The `Evaluation/` folder bundles the datasets we used to benchmark GPT-4.1-nano, GPT-4o-mini, Gemini-1.5-flash, and Gemini-2.5-flash:
+## API overview
 
-- `01. Ground Truth/` — Human-curated entity/relationship annotations.
-- `02.~05.` — Model outputs (five samples each) aligned with ground truth IDs for quick diffing.
+| Method | Endpoint | Purpose |
+| --- | --- | --- |
+| GET | `/api/graph/health` | Selected graph backend health |
+| GET | `/api/graph` | Graph data as `nodes` and `links` |
+| GET | `/api/graph/search` | Node search |
+| GET | `/api/graph/subgraph` | Depth-limited subgraph |
+| POST | `/api/graph` | Create graph data |
+| POST | `/api/graph/merge` | Merge graph data |
+| POST | `/api/analysis/csv` | Analyze a CSV upload |
+| POST | `/api/analysis/pdf` | Analyze a PDF upload |
+| POST | `/api/analysis/metadata` | Analyze the submitted graph |
+| POST | `/api/analysis/chat` | Chat through the configured LLM |
+| GET | `/api/analysis/llm-health` | LLM health |
 
-You can plug these JSON files into your own scoring scripts or extend them with additional model runs.
+See [API_Guide.md](API_Guide.md) for the broader endpoint reference.
 
-## 🤝 Contributing
+## Verification
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+Run static checks from the repository root:
 
-## 📄 License
+```bash
+git diff --check
+node --check js/main.js
+node --check js/backendAPI.js
+```
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Run the backend checks:
 
-## 🙏 Acknowledgments
+```bash
+cd backend
+npm test -- --runInBand --passWithNoTests
+npm run test:contract:neo4j
+npm run test:contract:arango
+```
 
-- Built with [D3.js](https://d3js.org/) for visualization
-- AI integration with [OpenAI](https://openai.com/) and [Google AI](https://ai.google.dev/)
-- Database powered by [ArangoDB](https://www.arangodb.com/)
-- Backend built with [Express.js](https://expressjs.com/)
+The two contract commands exercise the same lifecycle against the selected database adapter. Both database services must be running and configured before they can pass.
 
-## 📞 Support
+## Repository hygiene
 
-For support and questions:
-- Check the [troubleshooting section](#troubleshooting)
-- Review the [API documentation](API_Guide.md)
-- Open an issue in the repository
+Do not stage or commit `.env`, `*.log`, `.omx/`, AI Insights v2-v4, `graphrag-poc.html`, `plantconnectome_preview.json`, temporary JSON results, or other local experiment outputs. These are intentionally excluded from the GitHub release.
 
----
+## License
 
-**Happy analyzing! 🚀**
->>>>>>> e065657 (Initial commit)
+See [LICENSE](LICENSE) if present in the repository.

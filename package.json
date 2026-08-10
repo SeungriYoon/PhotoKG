@@ -7,6 +7,7 @@
     "start": "python -m http.server 3000",
     "dev": "python -m http.server 3000",
     "serve": "npx http-server -p 3000 -c-1",
+    "convert:plantconnectome": "node scripts/convert-plantconnectome-csv.js",
     "build": "echo 'No build process required for static frontend'",
     "lint": "echo 'Linting not configured'",
     "test": "echo 'Tests not configured'"

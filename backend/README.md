@@ -56,6 +56,25 @@ PORT=3015
 NODE_ENV=development
 FRONTEND_URL=http://localhost:3000
 
+# LLM Configuration
+LLM_PROVIDER=openai_compatible
+LLM_MODEL=gpt-4o-mini
+LLM_BASE_URL=https://api.openai.com/v1
+LLM_API_KEY=sk-your-openai-api-key-here
+LLM_TIMEOUT_MS=60000
+LLM_TEMPERATURE=0
+LLM_MAX_TOKENS=2048
+
+# Local OpenAI-compatible server
+# LLM_PROVIDER=local_http
+# LLM_BASE_URL=http://127.0.0.1:8000/v1
+# LLM_MODEL=your-local-model-name
+
+# Ollama
+# LLM_PROVIDER=ollama
+# LLM_BASE_URL=http://127.0.0.1:11434
+# LLM_MODEL=llama3.1
+
 # ArangoDB Configuration (Optional)
 ARANGODB_URL=http://localhost:8529
 ARANGODB_DATABASE=knowledge_graph
@@ -83,6 +102,12 @@ GET /api/graph?limit=50&offset=0&filter={"nodeType":"concept"}
 #### Get Subgraph
 ```http
 GET /api/graph/subgraph/:nodeId?depth=2
+```
+
+To scope queries to a specific dataset, pass `graphSource` or `graphId`:
+```http
+GET /api/graph/search?query=VPD&graphSource=scidata
+GET /api/graph/subgraph/:nodeId?depth=2&graphSource=scidata
 ```
 
 #### Search Nodes
@@ -235,6 +260,9 @@ npm run test-connection
 
 # Initialize database
 npm run init-db
+
+# Import SciData ModelKG JSONL files
+npm run import:scidata -- --source "C:\\Users\\ISLab\\Desktop\\LLM\\5. Plant_microbiome_v2\\ModelKG\\SciData\\data"
 
 # Run tests
 npm test

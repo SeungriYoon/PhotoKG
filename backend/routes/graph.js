@@ -2,6 +2,15 @@ const express = require('express');
 const router = express.Router();
 const GraphService = require('../services/GraphService');
 
+router.get('/health', async (_req, res) => {
+  try {
+    const connection = await GraphService.testConnection();
+    res.json({ success: true, data: { ...GraphService.getBackendInfo(), ...connection } });
+  } catch (error) {
+    res.status(503).json({ success: false, data: GraphService.getBackendInfo(), error: 'Graph backend is unavailable', message: error.message });
+  }
+});
+
 // 전체 그래프 조회
 router.get('/', async (req, res) => {
   try {
@@ -43,12 +52,22 @@ router.get('/', async (req, res) => {
 });
 
 // 특정 노드와 연결된 서브그래프 조회
-router.get('/subgraph/:nodeId', async (req, res) => {
+router.get('/subgraph/:nodeId?', async (req, res) => {
   try {
-    const { nodeId } = req.params;
-    const { depth = 1 } = req.query;
+    const nodeId = req.query.nodeId || req.params.nodeId;
+    const { depth = 1, graphId, graphSource } = req.query;
+
+    if (!nodeId) {
+      return res.status(400).json({
+        success: false,
+        error: 'Node ID is required'
+      });
+    }
     
-    const result = await GraphService.getSubgraph(nodeId, parseInt(depth));
+    const result = await GraphService.getSubgraph(nodeId, parseInt(depth), {
+      graphId,
+      graphSource
+    });
     
     res.json({
       success: true,
@@ -66,7 +85,7 @@ router.get('/subgraph/:nodeId', async (req, res) => {
 // 노드 검색
 router.get('/search', async (req, res) => {
   try {
-    const { query, type, limit = 20 } = req.query;
+    const { query, type, limit = 20, graphId, graphSource } = req.query;
     
     if (!query) {
       return res.status(400).json({
@@ -78,7 +97,9 @@ router.get('/search', async (req, res) => {
     const result = await GraphService.searchNodes({
       query,
       type,
-      limit: parseInt(limit)
+      limit: parseInt(limit),
+      graphId,
+      graphSource
     });
     
     res.json({
@@ -97,7 +118,8 @@ router.get('/search', async (req, res) => {
 // 새 그래프 생성/업로드
 router.post('/', async (req, res) => {
   try {
-    const { nodes, edges, metadata } = req.body;
+    const { nodes, edges, links, metadata } = req.body;
+    const graphLinks = Array.isArray(links) ? links : edges;
     
     if (!nodes || !Array.isArray(nodes)) {
       return res.status(400).json({
@@ -106,7 +128,7 @@ router.post('/', async (req, res) => {
       });
     }
     
-    if (!edges || !Array.isArray(edges)) {
+    if (!Array.isArray(graphLinks)) {
       return res.status(400).json({
         success: false,
         error: 'Invalid edges data'
@@ -115,7 +137,7 @@ router.post('/', async (req, res) => {
     
     const result = await GraphService.createGraph({
       nodes,
-      edges,
+      links: graphLinks,
       metadata: metadata || {}
     });
     
@@ -136,11 +158,11 @@ router.post('/', async (req, res) => {
 // 기존 그래프에 노드/엣지 추가
 router.post('/merge', async (req, res) => {
   try {
-    const { nodes, edges, mergeStrategy = 'append' } = req.body;
+    const { nodes, edges, links, mergeStrategy = 'append' } = req.body;
     
     const result = await GraphService.mergeGraph({
       nodes: nodes || [],
-      edges: edges || [],
+      links: Array.isArray(links) ? links : (edges || []),
       mergeStrategy
     });
     

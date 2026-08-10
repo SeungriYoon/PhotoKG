@@ -177,10 +177,12 @@ class DatabaseInitializer {
       // 기본 검색 인덱스
       { type: 'hash', fields: ['label'], name: 'label_hash_idx' },
       { type: 'hash', fields: ['type'], name: 'type_hash_idx' },
+      { type: 'hash', fields: ['graph_source'], name: 'graph_source_hash_idx' },
       { type: 'skiplist', fields: ['size'], name: 'size_skiplist_idx' },
       
       // 복합 인덱스
       { type: 'hash', fields: ['type', 'graph_id'], name: 'type_graph_hash_idx' },
+      { type: 'hash', fields: ['type', 'graph_source'], name: 'type_graph_source_hash_idx' },
       { type: 'skiplist', fields: ['created_at'], name: 'created_at_skiplist_idx' },
       
       // 전문 검색을 위한 인덱스
@@ -207,6 +209,7 @@ class DatabaseInitializer {
     const indexes = [
       // 관계 타입 인덱스
       { type: 'hash', fields: ['relationship_type'], name: 'relationship_type_hash_idx' },
+      { type: 'hash', fields: ['graph_source'], name: 'edge_graph_source_hash_idx' },
       
       // 가중치 인덱스
       { type: 'skiplist', fields: ['weight'], name: 'weight_skiplist_idx' },
@@ -214,6 +217,7 @@ class DatabaseInitializer {
       
       // 복합 인덱스
       { type: 'hash', fields: ['relationship_type', 'graph_id'], name: 'rel_graph_hash_idx' },
+      { type: 'hash', fields: ['relationship_type', 'graph_source'], name: 'rel_graph_source_hash_idx' },
       { type: 'skiplist', fields: ['created_at'], name: 'edge_created_at_skiplist_idx' }
     ];
 
@@ -232,6 +236,7 @@ class DatabaseInitializer {
     
     const indexes = [
       { type: 'hash', fields: ['file_type'], name: 'file_type_hash_idx' },
+      { type: 'hash', fields: ['graph_source'], name: 'metadata_graph_source_hash_idx' },
       { type: 'skiplist', fields: ['created_at'], name: 'meta_created_at_skiplist_idx' },
       { type: 'skiplist', fields: ['node_count'], name: 'node_count_skiplist_idx' },
       { type: 'fulltext', fields: ['title'], name: 'title_fulltext_idx' }

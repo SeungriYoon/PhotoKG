@@ -6,6 +6,8 @@ const AnalysisService = require('../services/AnalysisService');
 // Create a single instance of SimpleAnalysisService to be shared (Singleton pattern).
 const SimpleAnalysisService = require('../services/SimpleAnalysisService');
 const simpleService = new SimpleAnalysisService(); // Create the instance outside the router.
+const LLMExtractionService = require('../services/LLMExtractionService');
+const llmExtractionService = new LLMExtractionService();
 
 // Multer setup for file uploads
 const upload = multer({ 
@@ -16,6 +18,63 @@ const upload = multer({
   }
 });
 
+router.get('/llm-health', async (_req, res) => {
+  try {
+    const status = await llmExtractionService.testConnection();
+    res.json({
+      success: status?.configured !== false && status?.connected !== false,
+      data: status
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: 'Failed to check LLM health',
+      message: error.message
+    });
+  }
+});
+
+async function generateGraphAnalysis(req) {
+  const { nodes, links, edges, metadata } = req.body || {};
+  const graphEdges = Array.isArray(links) ? links : edges;
+  if (!Array.isArray(nodes) || !Array.isArray(graphEdges)) {
+    const error = new Error('Graph data (nodes and links/edges) is required');
+    error.statusCode = 400;
+    throw error;
+  }
+  if (llmExtractionService.isEnabled()) {
+    return llmExtractionService.generateGraphInsights({ nodes, links: graphEdges, metadata }, {
+      graphSource: req.body?.graphSource || metadata?.graph_source || null,
+      graphId: req.body?.graphId || metadata?.graph_id || null
+    });
+  }
+  return simpleService.generateRichAIInsights({ nodes, links: graphEdges });
+}
+
+router.post('/metadata', async (req, res) => {
+  try {
+    const result = await generateGraphAnalysis(req);
+    res.json({ success: true, analysis: result, data: result, message: 'Metadata analysis completed' });
+  } catch (error) {
+    res.status(error.statusCode || 500).json({ success: false, error: 'Metadata analysis failed', message: error.message });
+  }
+});
+
+router.post('/chat', async (req, res) => {
+  try {
+    const message = String(req.body?.message || '').trim();
+    if (!message) return res.status(400).json({ success: false, error: 'Message is required' });
+    if (!llmExtractionService.isEnabled()) return res.status(503).json({ success: false, error: 'LLM is not configured' });
+    const context = req.body?.context ? `\nGraph context:\n${JSON.stringify(req.body.context).slice(0, 12000)}` : '';
+    const response = await llmExtractionService.callModel([
+      { role: 'system', content: 'You are a concise assistant for a plant-science knowledge graph interface.' },
+      { role: 'user', content: `${message}${context}` }
+    ], { maxTokens: 1200, timeoutMs: 120000 });
+    res.json({ success: true, response: String(response || '').trim() });
+  } catch (error) {
+    res.status(500).json({ success: false, error: 'Chat analysis failed', message: error.message });
+  }
+});
 // CSV Analysis with OpenAI (Database-free)
 router.post('/csv', upload.single('csvFile'), async (req, res) => {
   try {
@@ -26,7 +85,7 @@ router.post('/csv', upload.single('csvFile'), async (req, res) => {
       });
     }
 
-    console.log(`📄 Starting CSV analysis: ${req.file.originalname} (${req.file.size} bytes)`);
+    console.log(`Starting CSV analysis: ${req.file.originalname} (${req.file.size} bytes)`);
 
     // Convert buffer to text
     const csvText = req.file.buffer.toString('utf-8');
@@ -43,7 +102,7 @@ router.post('/csv', upload.single('csvFile'), async (req, res) => {
 
     const nodeCount = result.knowledgeGraph?.nodes?.length || 0;
     const edgeCount = result.knowledgeGraph?.edges?.length || result.knowledgeGraph?.links?.length || 0;
-    console.log(`✅ CSV analysis complete: ${nodeCount} nodes and ${edgeCount} links created`);
+    console.log(`CSV analysis complete: ${nodeCount} nodes and ${edgeCount} links created`);
 
     res.json({
       success: true,
@@ -52,7 +111,7 @@ router.post('/csv', upload.single('csvFile'), async (req, res) => {
     });
 
   } catch (error) {
-    console.error('❌ CSV analysis failed:', error);
+    console.error('CSV analysis failed:', error);
 
     const statusCode = error.message.includes('timed out') ? 408 :
                       error.message.includes('OpenAI API key') ? 401 : 500;
@@ -66,7 +125,7 @@ router.post('/csv', upload.single('csvFile'), async (req, res) => {
   }
 });
 
-// PDF Analysis with OpenAI (Database-free)
+// PDF Analysis with LLM extraction (database-free)
 router.post('/pdf', upload.single('pdfFile'), async (req, res) => {
   try {
     if (!req.file) {
@@ -76,10 +135,22 @@ router.post('/pdf', upload.single('pdfFile'), async (req, res) => {
       });
     }
 
-    console.log(`📄 Starting PDF analysis: ${req.file.originalname} (${req.file.size} bytes)`);
-    
-    // Use the shared service instance.
-    const result = await simpleService.analyzePDFWithAI(req.file.buffer);
+    console.log(`Starting PDF analysis: ${req.file.originalname} (${req.file.size} bytes)`);
+
+    let result;
+    if (llmExtractionService && typeof llmExtractionService.analyzePDF === 'function' && llmExtractionService.isEnabled()) {
+      console.log('Calling Gemini-backed LLM service for PDF analysis...');
+      result = await llmExtractionService.analyzePDF(req.file.buffer, {
+        metadata: {
+          filename: req.file.originalname,
+          size: req.file.size,
+          mimeType: req.file.mimetype
+        }
+      });
+    } else {
+      console.log('Gemini LLM unavailable; falling back to legacy PDF analyzer...');
+      result = await simpleService.analyzePDFWithAI(req.file.buffer);
+    }
 
     if (!result || !result.knowledgeGraph) {
       throw new Error('PDF analysis produced no graph data');
@@ -88,7 +159,7 @@ router.post('/pdf', upload.single('pdfFile'), async (req, res) => {
     const nodeCount = result.knowledgeGraph.nodes?.length ?? 0;
     const edgeCount = result.knowledgeGraph.edges?.length ?? result.knowledgeGraph.links?.length ?? 0;
 
-    console.log(`✅ PDF analysis complete: ${nodeCount} nodes, ${edgeCount} edges`);
+    console.log(`PDF analysis complete: ${nodeCount} nodes, ${edgeCount} edges`);
 
     res.json({
       success: true,
@@ -97,10 +168,10 @@ router.post('/pdf', upload.single('pdfFile'), async (req, res) => {
     });
 
   } catch (error) {
-    console.error('❌ PDF analysis failed:', error);
+    console.error('PDF analysis failed:', error);
 
     const statusCode = error.message.includes('timed out') ? 408 :
-                      error.message.includes('OpenAI API key') ? 401 :
+                      error.message.includes('API key') ? 401 :
                       error.message.includes('No readable text') ? 400 : 500;
 
     res.status(statusCode).json({
@@ -148,17 +219,7 @@ router.post('/graph', async (req, res) => {
 // [NEW] Rich AI Insights Report
 router.post('/rich-insights', async (req, res) => {
   try {
-    const { nodes, links, edges } = req.body;
-    const graphEdges = links || edges;
-
-    if (!nodes || !graphEdges) {
-      return res.status(400).json({
-        success: false,
-        error: 'Graph data (nodes and links/edges) is required'
-      });
-    }
-
-    const result = await simpleService.generateRichAIInsights({ nodes, links: graphEdges });
+    const result = await generateGraphAnalysis(req);
 
     res.json({
       success: true,
@@ -188,7 +249,7 @@ router.post('/peo', async (req, res) => {
       });
     }
 
-    console.log(`🔍 Starting PEO analysis with ${papers_data.length} papers`);
+    console.log(`Starting PEO analysis with ${papers_data.length} papers`);
 
     // Import PEO service
     const PEOService = require('../services/PEOService');
@@ -197,7 +258,7 @@ router.post('/peo', async (req, res) => {
     // Run the improved PEO analysis
     const result = await peoService.runCoverageAnalysis(papers_data, analysis_options || {});
 
-    console.log('✅ PEO analysis completed successfully');
+    console.log('PEO analysis completed successfully');
 
     res.json({
       success: true,
@@ -208,7 +269,7 @@ router.post('/peo', async (req, res) => {
     });
 
   } catch (error) {
-    console.error('❌ PEO analysis failed:', error);
+    console.error('PEO analysis failed:', error);
 
     const statusCode = error.message.includes('timeout') ? 408 :
                       error.message.includes('validation') ? 400 : 500;

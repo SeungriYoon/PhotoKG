@@ -3,7 +3,17 @@ const cors = require('cors');
 const helmet = require('helmet');
 const compression = require('compression');
 const morgan = require('morgan');
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
+
+if (!process.env.LLM_PROVIDER && process.env.GEMINI_API_KEY) {
+  process.env.LLM_PROVIDER = 'gemini';
+}
+if (!process.env.LLM_MODEL && process.env.GEMINI_API_KEY) {
+  process.env.LLM_MODEL = 'gemini-2.5-flash';
+}
+
+process.env.GRAPH_BACKEND = process.env.GRAPH_BACKEND || 'neo4j';
 
 const multer = require('multer');
 const upload = multer({ storage: multer.memoryStorage() });
@@ -49,7 +59,6 @@ app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 // 정적 파일 서빙 (프론트엔드 파일들)
-const path = require('path');
 app.use(express.static(path.join(__dirname, '..')));
 
 // API 어댑터 미들웨어 적용
@@ -60,14 +69,18 @@ const graphRoutes = require('./routes/graph');
 const analysisRoutes = require('./routes/analysis');
 const uploadRoutes = require('./routes/upload');
 const peoRoutes = require('./routes/peo');
-const arangoRoutes = require('./arangoRoutes');
+const neo4jRoutes = require('./routes/neo4j');
+const arangoRoutes = process.env.GRAPH_BACKEND === 'arango' ? require('./arangoRoutes') : null;
 
 // API 라우트
 app.use('/api/graph', graphRoutes);
 app.use('/api/analysis', analysisRoutes);
 app.use('/api/upload', uploadRoutes);
 app.use('/api/peo', peoRoutes);
-app.use('/api/arango', arangoRoutes); // Enhanced ArangoDB routes
+app.use('/api/neo4j', neo4jRoutes);
+if (arangoRoutes) {
+  app.use('/api/arango', arangoRoutes); // Enhanced ArangoDB routes
+}
 
 // 헬스 체크
 app.get('/health', (req, res) => {
@@ -126,12 +139,15 @@ app.listen(PORT, () => {
   console.log(`🚀 Knowledge Graph Backend Server running on port ${PORT}`);
   console.log(`📊 Health check: http://localhost:${PORT}/health`);
   console.log(`🔗 API Base URL: http://localhost:${PORT}/api`);
+  console.log(`🧭 Graph backend: ${process.env.GRAPH_BACKEND}`);
 
-  // 환경 변수 확인 로그
-  if (process.env.OPENAI_API_KEY && process.env.OPENAI_API_KEY !== 'your-openai-api-key-here') {
-    console.log(`✅ OpenAI API key configured`);
+  const llmProvider = process.env.LLM_PROVIDER || 'unknown';
+  const llmModel = process.env.LLM_MODEL || 'unknown';
+  if (llmProvider !== 'unknown') {
+    console.log(`🧭 LLM provider: ${llmProvider}`);
+    console.log(`🧠 LLM model: ${llmModel}`);
   } else {
-    console.warn(`⚠️ OpenAI API key not configured. Please set OPENAI_API_KEY in .env file`);
+    console.warn(`⚠️ LLM provider not configured. Please set LLM_PROVIDER in .env file`);
   }
 
   if (process.env.NODE_ENV) {
